@@ -40,6 +40,10 @@ body {
   min-height: 100vh;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 [dir='rtl'] body {
   font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
 }

@@ -54,18 +54,18 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
             <nav
                 style={{
                     direction: 'ltr',
-                    background: 'rgba(11,21,32,0.93)',
+                    background: 'rgba(11,21,32,0.97)', // ✅ more opaque on mobile
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
                     borderBottom: '1px solid rgba(255,255,255,0.06)',
                     position: 'sticky',
                     top: 0,
-                    zIndex: 100,
+                    zIndex: 1000, // ✅ increased from 100
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    height: '64px',
-                    padding: '0 28px',
+                    height: isMobile ? '72px' : '64px', // ✅ taller on mobile
+                    padding: isMobile ? '0 16px' : '0 28px', // ✅ less padding mobile
                     boxShadow: scrolled ? '0 4px 40px rgba(0,0,0,0.6)' : 'none',
                     transition: 'box-shadow 0.3s',
                 }}
@@ -86,11 +86,11 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                     <img
                         src="/logo.png"
                         alt="Ålesund Masjid logo"
-                        style={{ width: '88px', height: '88px', margin: '0', objectFit: 'contain', filter: 'brightness(1.9) contrast(1.1)' }}
+                        style={{ width: '68px', height: '68px', margin: '0', objectFit: 'contain', filter: 'brightness(1.9) contrast(1.1)' }}
                     />
                     <div style={{ textAlign: 'left' }}>
                         <div style={{
-                            fontSize: '15px',
+                            fontSize: '16px',
                             fontWeight: 700,
                             color: '#f0f4f8',
                             letterSpacing: '-0.3px',
@@ -216,13 +216,18 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                         style={{
                             display: isMobile ? 'flex' : 'none',
                             alignItems: 'center',
-                            background: 'none',
-                            border: 'none',
+                            justifyContent: 'center',
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: '10px',
                             cursor: 'pointer',
                             color: '#f0f4f8',
+                            width: '44px',
+                            height: '44px',
+                            flexShrink: 0,
                         }}
                     >
-                        {mobileOpen ? <IconX size={22} /> : <IconMenu size={22} />}
+                        {mobileOpen ? <IconX size={24} /> : <IconMenu size={24} />}
                     </button>
                 </div>
             </nav>
@@ -231,10 +236,10 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
             {mobileOpen && isMobile && (
                 <div style={{
                     position: 'fixed',
-                    top: '64px',
+                    top: '72px',
                     left: 0,
                     right: 0,
-                    zIndex: 99,
+                    zIndex: 999,
                     background: 'rgba(11,21,32,0.97)',
                     backdropFilter: 'blur(20px)',
                     borderBottom: '1px solid rgba(255,255,255,0.06)',
