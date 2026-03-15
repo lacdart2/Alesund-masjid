@@ -41,32 +41,37 @@ export default function PrayerGrid({ data }: PrayerGridProps) {
                             overflow: 'hidden',
                         }}
                     >
-                        {/* Top accent line for active */}
+
                         {isActive && (
                             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: '#166534' }} />
                         )}
 
-                        {/* Icon */}
+
                         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px', color: '#22a052' }}>
                             <PrayerIcon prayerKey={key} size={22} />
                         </div>
 
-                        {/* Name */}
+
                         <div style={{ fontSize: '11px', fontWeight: 700, color: isActive ? '#a8b8c8' : '#607080', letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: '2px' }}>
                             {t.prayers.names[key]}
                         </div>
 
-                        {/* Arabic */}
-                        <div style={{ fontSize: '13px', color: '#607080', marginBottom: '10px', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
-                            {ARABIC[key]}
-                        </div>
 
-                        {/* Time */}
+                        {/*  <div style={{ fontSize: '13px', color: '#607080', marginBottom: '10px', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                            {ARABIC[key]}
+                        </div> */}
+
+                        {/* Arabic label — only show in NO/EN, not in AR since name is already Arabic */}
+                        {lang !== 'ar' && (
+                            <div style={{ fontSize: '13px', color: '#607080', marginBottom: '10px', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+                                {ARABIC[key]}
+                            </div>
+                        )}
                         <div style={{ fontSize: '23px', fontWeight: 700, color: isActive ? '#22a052' : '#f0f4f8', letterSpacing: '-0.5px', lineHeight: 1 }}>
                             {data[key]}
                         </div>
 
-                        {/* Next badge */}
+
                         {isActive && (
                             <span style={{
                                 display: 'inline-block', fontSize: '10px', fontWeight: 700,
