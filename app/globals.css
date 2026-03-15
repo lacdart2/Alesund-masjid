@@ -1,26 +1,172 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b1520;
+  --bg2: #111e2d;
+  --bg3: #162538;
+  --bg4: #1c2e42;
+  --green: #166534;
+  --green-mid: #1a7a40;
+  --green-light: #22a052;
+  --green-dim: rgba(22, 101, 52, 0.14);
+  --green-border: rgba(22, 101, 52, 0.28);
+  --text: #f0f4f8;
+  --text-2: #a8b8c8;
+  --text-3: #607080;
+  --border: rgba(255, 255, 255, 0.06);
+  --border2: rgba(255, 255, 255, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+[dir='rtl'] body {
+  font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green);
+}
+
+.phone-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-scroll {
+  scrollbar-width: none;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUpDelayed {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+
+.animate-fade-up-1 {
+  animation: fadeUp 0.6s 0.08s ease both;
+}
+
+.animate-fade-up-2 {
+  animation: fadeUp 0.6s 0.16s ease both;
+}
+
+.animate-fade-up-3 {
+  animation: fadeUp 0.6s 0.24s ease both;
+}
+
+.animate-pulse-dot {
+  animation: pulse 2s infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 1s linear infinite;
+}
+
+.geo-pattern {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.02;
+  background-image:
+    repeating-linear-gradient(60deg, #22a052 0, #22a052 1px, transparent 0, transparent 50%),
+    repeating-linear-gradient(120deg, #22a052 0, #22a052 1px, transparent 0, transparent 50%);
+  background-size: 40px 40px;
+}
+
+.card-top-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-top-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.25s;
+}
+
+.card-top-line:hover::after {
+  background: linear-gradient(to right, transparent, var(--green), transparent);
+}
+
+.card-top-line.active::after {
+  background: var(--green);
 }
