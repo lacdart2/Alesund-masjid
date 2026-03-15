@@ -5,6 +5,7 @@ import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
 import { getTodayPrayers } from '@/lib/prayer'
 import PrayerGrid from '@/components/prayer/PrayerGrid'
+import PrayerNotification from '@/components/ui/PrayerNotification'
 
 export default function PrayersPage() {
     const { lang } = useLang()
@@ -31,6 +32,7 @@ export default function PrayersPage() {
                 <div style={{ width: '40px', height: '3px', background: '#166534', borderRadius: '3px', margin: '12px auto 0' }} />
             </div>
 
+            <PrayerNotification />
             <PrayerGrid data={today} />
 
             <div style={{

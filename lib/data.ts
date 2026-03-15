@@ -34,24 +34,8 @@ export const ANNOUNCEMENTS: Announcement[] = [
             ar: 'التسجيل مفتوح لدورة تلاوة القرآن الربيعية للكبار والأطفال.',
         },
         date: 'Mars 2026',
-    },
-    {
-        id: '3',
-        icon: 'tool',
-        colorClass: 'blue',
-        tag: 'Melding',
-        title: {
-            no: 'Vedlikehold av wudu-fasiliteter',
-            en: 'Wudu Facilities Maintenance',
-            ar: 'صيانة مرافق الوضوء',
-        },
-        body: {
-            no: 'Wudu-rommet stenges midlertidig lørdag morgen for vedlikehold. Takk for forståelsen.',
-            en: 'The wudu area will be briefly closed Saturday morning for maintenance.',
-            ar: 'سيتم إغلاق منطقة الوضوء مؤقتاً للصيانة صباح السبت.',
-        },
-        date: '5 mars 2026',
-    },
+    }
+
 ]
 
 export const EVENTS: MasjidEvent[] = [

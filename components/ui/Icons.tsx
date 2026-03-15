@@ -14,6 +14,14 @@ const ic = (size: number, cls: string) => ({
     strokeLinejoin: 'round' as const,
 })
 
+export function IconBell({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+}
+
+export function IconBellOff({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M13.73 21a2 2 0 0 1-3.46 0" /><path d="M18.63 13A17.9 17.9 0 0 1 18 8" /><path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14" /><path d="M18 8a6 6 0 0 0-9.33-5" /><path d="M3 3l18 18" /></svg>
+}
+
 export function IconMosque({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M3 21h18M9 21V10.5M15 21V10.5M12 3a3 3 0 0 1 3 3v1l-3 2-3-2V6a3 3 0 0 1 3-3zM6 10.5V8a6 6 0 0 1 12 0v2.5M3 10.5h18" /></svg>
 }
