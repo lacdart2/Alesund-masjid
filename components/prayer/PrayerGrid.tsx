@@ -56,11 +56,6 @@ export default function PrayerGrid({ data }: PrayerGridProps) {
                             {t.prayers.names[key]}
                         </div>
 
-
-                        {/*  <div style={{ fontSize: '13px', color: '#607080', marginBottom: '10px', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
-                            {ARABIC[key]}
-                        </div> */}
-
                         {/* Arabic label — only show in NO/EN, not in AR since name is already Arabic */}
                         {lang !== 'ar' && (
                             <div style={{ fontSize: '13px', color: '#607080', marginBottom: '10px', fontFamily: "'Noto Sans Arabic', sans-serif" }}>
