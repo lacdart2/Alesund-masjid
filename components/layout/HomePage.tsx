@@ -10,6 +10,7 @@ import { PageKey } from '@/app/page'
 import PrayerGrid from '@/components/prayer/PrayerGrid'
 import PhoneMockup from '@/components/prayer/PhoneMockup'
 import { IconMosque, IconSpeakerphone, IconCalendar, IconMapPin, IconHeart, AnnouncementIcon, IconClock } from '@/components/ui/Icons'
+import ZakatBanner from '@/components/ui/ZakatBanner'
 
 interface HomePageProps {
     navigate: (page: PageKey) => void
@@ -125,7 +126,10 @@ export default function HomePage({ navigate }: HomePageProps) {
                         </div>
                     </div>
                 </section>
+
             )}
+            {/* ── QUICK LINKS ──────────────────────────────────────────── */}
+            <ZakatBanner />
 
             {/* ── QUICK LINKS ──────────────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '0 20px' : '0 40px' }}>

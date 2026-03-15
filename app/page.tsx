@@ -10,6 +10,7 @@ import EventsPage from '@/components/events/EventsPage'
 import AboutPage from '@/components/about/AboutPage'
 import ContactPage from '@/components/contact/ContactPage'
 import DonatePage from '@/components/donate/DonatePage'
+import InstallPrompt from '@/components/ui/InstallPrompt'
 
 export type PageKey = 'home' | 'prayers' | 'announcements' | 'events' | 'about' | 'contact' | 'donate'
 
@@ -35,6 +36,7 @@ export default function App() {
         {page === 'donate' && <DonatePage />}
       </main>
       <Footer navigate={navigate} />
+      <InstallPrompt />
     </>
   )
 }

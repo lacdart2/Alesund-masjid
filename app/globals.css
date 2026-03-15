@@ -44,6 +44,11 @@ html {
   overflow-x: hidden;
 }
 
+/* Makes favicon brighter on dark backgrounds — works for SVG favicons */
+link[rel="icon"] {
+  filter: brightness(2);
+}
+
 [dir='rtl'] body {
   font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
 }
