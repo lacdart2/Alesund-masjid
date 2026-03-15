@@ -43,7 +43,12 @@ export default function Footer({ navigate }: FooterProps) {
                     {/* Brand — full width on mobile */}
                     <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '11px' }}>
-                            <img src="/logo.png" alt="logo" style={{ width: '52px', height: '52px', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(22,101,52,0.3))' }} />
+                            <img src="/logo.png" alt="logo" style={{
+                                objectFit: 'contain',
+                                width: isMobile ? '78px' : '74px',
+                                height: isMobile ? '78px' : '74px',
+                                filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)'
+                            }} />
                             <span style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8' }}>Ålesund Masjid</span>
                         </div>
                         <p style={{ fontSize: '13px', color: '#607080', lineHeight: 1.7, maxWidth: '210px' }}>
