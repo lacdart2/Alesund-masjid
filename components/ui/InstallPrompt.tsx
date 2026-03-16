@@ -122,7 +122,7 @@ export default function InstallPrompt() {
 
                 {/* Share icon hint */}
                 <div style={{ textAlign: 'center', marginTop: '10px', fontSize: '13px', color: '#607080' }}>
-                    {lang === 'ar' ? '↑ زر المشاركة في الأسفل' : lang === 'en' ? '↑ Share button at the bottom' : '↑ Del-knappen nederst'}
+                    {lang === 'ar' ? '↓ زر المشاركة في الأسفل' : lang === 'en' ? '↓ Share button at the bottom' : '↓ Del-knappen nederst'}
                 </div>
             </div>
         )

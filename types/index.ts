@@ -30,4 +30,6 @@ export type MasjidEvent = {
     name: Record<Lang, string>
     time: string
     location: string
+    tentative?: boolean
+    tentativeNote?: Record<Lang, string>
 }

@@ -20,7 +20,7 @@ export default function HomePage({ navigate }: HomePageProps) {
     const { lang } = useLang()
     const t = translations[lang]
     const today = getTodayPrayers()
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState<boolean | null>(null)
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 1024)
@@ -29,17 +29,19 @@ export default function HomePage({ navigate }: HomePageProps) {
         return () => window.removeEventListener('resize', check)
     }, [])
 
+    // Hold just the hero until we know screen size — footer stays down
+    if (isMobile === null) return (
+        <div style={{ minHeight: '100vh', background: '#0b1520' }} />
+    )
+
     return (
         <>
             {isMobile ? (
-                /* MOBILE: phone on top, text below */
                 <section style={{ padding: '24px 20px 40px', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '28px' }}>
                     <div style={{ position: 'absolute', top: '5%', right: '3%', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(22,101,52,0.1), transparent 65%)', pointerEvents: 'none' }} />
-                    {/* Phone full width */}
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
                         <PhoneMockup />
                     </div>
-                    {/* Text */}
                     <div style={{ position: 'relative', zIndex: 1 }}>
                         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', color: '#22a052', fontSize: '12px', fontWeight: 600, padding: '6px 14px', borderRadius: '20px', marginBottom: '20px', letterSpacing: '0.6px', textTransform: 'uppercase' }}>
                             <span className="animate-pulse-dot" style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22a052', flexShrink: 0 }} />
@@ -64,42 +66,27 @@ export default function HomePage({ navigate }: HomePageProps) {
                     </div>
                 </section>
             ) : (
-
                 <section style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
-                    {/* Background glows — contained, won't cause overflow */}
                     <div style={{ position: 'absolute', top: '5%', right: '3%', width: '500px', height: '500px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(22,101,52,0.1), transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
                     <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(22,101,52,0.06), transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
-
-                    {/* ✅ Exact same container as Hurtigtilgang and all sections below */}
                     <div style={{
-                        maxWidth: '1120px',
-                        width: '100%',
-                        padding: '80px 40px 60px',
-                        display: 'grid',
-                        gridTemplateColumns: '1fr minmax(0, 1fr)',
-                        alignItems: 'center',
-                        gap: '40px',
-                        position: 'relative',
-                        zIndex: 1,
+                        maxWidth: '1120px', width: '100%', padding: '80px 40px 60px',
+                        display: 'grid', gridTemplateColumns: '1fr minmax(0, 1fr)',
+                        alignItems: 'center', gap: '40px', position: 'relative', zIndex: 1,
                     }}>
-                        {/* Left — text */}
                         <div>
                             <div className="animate-fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', color: '#22a052', fontSize: '12px', fontWeight: 600, padding: '6px 14px', borderRadius: '20px', marginBottom: '28px', letterSpacing: '0.6px', textTransform: 'uppercase' }}>
                                 <span className="animate-pulse-dot" style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22a052', flexShrink: 0 }} />
                                 {t.hero.badge}
                             </div>
-
-                            {/* ✅ Smaller, better-fitting font size */}
                             <h1 className="animate-fade-up-1" style={{ fontSize: 'clamp(24px, 2.8vw, 48px)', fontWeight: 700, color: '#f0f4f8', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: '20px' }}>
                                 {t.hero.line1}<br />
                                 {t.hero.line2}<br />
                                 <em style={{ fontStyle: 'normal', color: '#22a052' }}>{t.hero.line3}</em>
                             </h1>
-
                             <p className="animate-fade-up-2" style={{ fontSize: '15px', color: '#a8b8c8', lineHeight: 1.75, maxWidth: '400px', marginBottom: '32px' }}>
                                 {t.hero.sub}
                             </p>
-
                             <div className="animate-fade-up-3" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                                 <button
                                     onClick={() => navigate('prayers')}
@@ -119,19 +106,15 @@ export default function HomePage({ navigate }: HomePageProps) {
                                 </button>
                             </div>
                         </div>
-
-                        {/* Right — phone */}
                         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                             <PhoneMockup />
                         </div>
                     </div>
                 </section>
-
             )}
-            {/* ── QUICK LINKS ──────────────────────────────────────────── */}
+
             <ZakatBanner />
 
-            {/* ── QUICK LINKS ──────────────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '0 20px' : '0 40px' }}>
                 <div style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px', marginBottom: '20px' }}>
                     {t.quickLinks.title}
@@ -157,7 +140,6 @@ export default function HomePage({ navigate }: HomePageProps) {
                 </div>
             </div>
 
-            {/* ── PRAYER TIMES PREVIEW ─────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px 0' : '48px 40px 0' }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
                     <span style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px' }}>{t.prayers.title}</span>
@@ -168,7 +150,6 @@ export default function HomePage({ navigate }: HomePageProps) {
                 <PrayerGrid data={today} />
             </div>
 
-            {/* ── JUMU'AH ───────────────────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '0 20px' : '0 40px' }}>
                 <div style={{ background: '#111e2d', border: '1px solid rgba(22,101,52,0.28)', borderRadius: '24px', padding: isMobile ? '22px 20px' : '28px 32px', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between', gap: '16px', position: 'relative', overflow: 'hidden' }}>
                     <div style={{ position: 'absolute', right: '32px', top: '50%', transform: 'translateY(-50%)', fontSize: '72px', color: 'rgba(22,101,52,0.05)', fontFamily: "'Noto Sans Arabic', sans-serif", pointerEvents: 'none' }}>الجمعة</div>
@@ -185,7 +166,6 @@ export default function HomePage({ navigate }: HomePageProps) {
                 </div>
             </div>
 
-            {/* ── ANNOUNCEMENTS PREVIEW ─────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px 0' : '48px 40px 0' }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
                     <span style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8' }}>{t.announcements.title}</span>
@@ -213,7 +193,6 @@ export default function HomePage({ navigate }: HomePageProps) {
                 </div>
             </div>
 
-            {/* ── EVENTS PREVIEW ────────────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px 0' : '48px 40px 0' }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
                     <span style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8' }}>{t.events.title}</span>
@@ -252,7 +231,6 @@ export default function HomePage({ navigate }: HomePageProps) {
                 </div>
             </div>
 
-            {/* ── DONATE ────────────────────────────────────────────────── */}
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px' : '48px 40px' }}>
                 <div style={{ background: '#111e2d', border: '1px solid rgba(22,101,52,0.28)', borderRadius: '24px', padding: '36px', position: 'relative', overflow: 'hidden' }}>
                     <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '220px', height: '220px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(22,101,52,0.08), transparent)', pointerEvents: 'none' }} />

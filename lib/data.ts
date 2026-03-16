@@ -43,9 +43,11 @@ export const EVENTS: MasjidEvent[] = [
         id: '1',
         day: '20', month: 'Mar',
         type: { no: 'Ramadan', en: 'Ramadan', ar: 'رمضان' },
-        name: { no: 'Siste Ramadan-dag (tentativt)', en: 'Last Day of Ramadan (tentative)', ar: 'آخر يوم من رمضان' },
+        name: { no: 'Siste Ramadan-dag', en: 'Last Day of Ramadan', ar: 'آخر يوم من رمضان' },
         time: '—',
         location: 'Ålesund Masjid',
+        tentative: true,
+        tentativeNote: { no: 'Dato ikke bekreftet', en: 'Date not confirmed', ar: 'التاريخ غير مؤكد' },
     },
     {
         id: '2',
@@ -54,6 +56,8 @@ export const EVENTS: MasjidEvent[] = [
         name: { no: 'Eid Al-Fitr 1447', en: 'Eid Al-Fitr 1447', ar: 'عيد الفطر 1447' },
         time: '08:00',
         location: 'Ålesund Masjid',
+        tentative: true,
+        tentativeNote: { no: 'Kan være 20. eller 21. mars', en: 'Could be Mar 20 or 21', ar: 'قد يكون 20 أو 21 مارس' },
     },
     {
         id: '3',

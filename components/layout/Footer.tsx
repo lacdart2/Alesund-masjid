@@ -33,20 +33,18 @@ export default function Footer({ navigate }: FooterProps) {
         }}>
             <div style={{ maxWidth: '1120px', margin: '0 auto' }}>
 
-                {/* Top grid */}
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr',
                     gap: isMobile ? '28px' : '36px',
                     marginBottom: '32px',
                 }}>
-                    {/* Brand — full width on mobile */}
                     <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '11px' }}>
                             <img src="/logo.png" alt="logo" style={{
                                 objectFit: 'contain',
-                                width: isMobile ? '78px' : '74px',
-                                height: isMobile ? '78px' : '74px',
+                                width: isMobile ? '52px' : '48px',
+                                height: isMobile ? '52px' : '48px',
                                 filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)'
                             }} />
                             <span style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8' }}>Ålesund Masjid</span>
@@ -56,7 +54,6 @@ export default function Footer({ navigate }: FooterProps) {
                         </p>
                     </div>
 
-                    {/* Navigation */}
                     <div>
                         <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#607080', marginBottom: '13px' }}>
                             {t.footer.navigation}
@@ -74,7 +71,6 @@ export default function Footer({ navigate }: FooterProps) {
                         ))}
                     </div>
 
-                    {/* More */}
                     <div>
                         <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#607080', marginBottom: '13px' }}>
                             {t.footer.more}
@@ -92,7 +88,6 @@ export default function Footer({ navigate }: FooterProps) {
                         ))}
                     </div>
 
-                    {/* Today's prayers */}
                     <div>
                         <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#607080', marginBottom: '13px' }}>
                             {t.footer.prayersToday}
@@ -106,10 +101,8 @@ export default function Footer({ navigate }: FooterProps) {
                     </div>
                 </div>
 
-                {/* Divider */}
                 <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', marginBottom: '18px' }} />
 
-                {/* Bottom */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
                     <span style={{ fontSize: '12px', color: '#607080' }}>
                         © 2026 <span style={{ color: '#22a052' }}>Ålesund Masjid</span>. {t.footer.copy}
