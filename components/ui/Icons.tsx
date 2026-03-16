@@ -13,7 +13,17 @@ const ic = (size: number, cls: string) => ({
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
 })
+export function IconUsers({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+}
 
+export function IconDroplet({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" /></svg>
+}
+
+export function IconDoor({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><circle cx="14" cy="13" r="1" fill="currentColor" /></svg>
+}
 export function IconBell({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
 }

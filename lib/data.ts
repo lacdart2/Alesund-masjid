@@ -61,6 +61,20 @@ export const EVENTS: MasjidEvent[] = [
     },
     {
         id: '3',
+        day: '20', month: 'Mar',
+        type: { no: 'Eid-bønn', en: 'Eid Prayer', ar: 'صلاة العيد' },
+        name: { no: 'Eid Al-Fitr bønn 1447', en: 'Eid Al-Fitr Prayer 1447', ar: 'صلاة عيد الفطر 1447' },
+        time: '—',
+        location: '—',
+        tentative: true,
+        tentativeNote: {
+            no: 'Kan være 20. eller 21. mars — Sted og tid kommer snart',
+            en: 'Could be Mar 20 or 21 — Location and time coming soon',
+            ar: 'قد يكون 20 أو 21 مارس — المكان والوقت قريباً'
+        },
+    },
+    {
+        id: '4',
         day: '28', month: 'Mar',
         type: { no: 'Fellesskap', en: 'Community', ar: 'مجتمع' },
         name: { no: 'Fellesskapets iftaar-middag', en: 'Community Iftaar Dinner', ar: 'عشاء إفطار المجتمع' },

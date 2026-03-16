@@ -26,7 +26,7 @@ export default function App() {
     <>
       <div className="geo-pattern" />
       <Navbar currentPage={page} navigate={navigate} />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <main style={{ position: 'relative', zIndex: 1, paddingTop: '64px' }}>
         {page === 'home' && <HomePage navigate={navigate} />}
         {page === 'prayers' && <PrayersPage />}
         {page === 'announcements' && <AnnouncementsPage />}

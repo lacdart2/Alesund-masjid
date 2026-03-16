@@ -43,8 +43,8 @@ export default function Footer({ navigate }: FooterProps) {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '11px' }}>
                             <img src="/logo.png" alt="logo" style={{
                                 objectFit: 'contain',
-                                width: isMobile ? '52px' : '48px',
-                                height: isMobile ? '52px' : '48px',
+                                width: isMobile ? '62px' : '68px',
+                                height: isMobile ? '62px' : '68px',
                                 filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)'
                             }} />
                             <span style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8' }}>Ålesund Masjid</span>
