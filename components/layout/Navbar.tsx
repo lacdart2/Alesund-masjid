@@ -266,7 +266,7 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
             {mobileOpen && isMobile && (
                 <div style={{
                     position: 'fixed', top: '70px', left: 0, right: 0, bottom: 0,
-                    zIndex: 999, background: 'rgba(9,18,28,0.98)',
+                    zIndex: 3000, background: 'rgba(9,18,28,0.98)',
                     backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
                     display: 'flex', flexDirection: 'column',
                     padding: '12px 20px 40px', overflowY: 'auto',
