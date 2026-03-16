@@ -55,39 +55,7 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
     const langButtons: Lang[] = ['no', 'en', 'ar']
 
     // Render nothing until we know screen size — just the shell
-    /*  if (isMobile === null) return (
-         <nav style={{
-             direction: 'ltr',
-             background: 'rgba(11,21,32,0.97)',
-             borderBottom: '1px solid rgba(255,255,255,0.06)',
-             position: 'sticky',
-             top: 0,
-             zIndex: 1000,
-             display: 'flex',
-             alignItems: 'center',
-             justifyContent: 'space-between',
-             height: '64px',
-             padding: '0 28px',
-         }}>
-             <button style={{
-                 display: 'flex', alignItems: 'center', gap: '10px',
-                 background: 'none', border: 'none', cursor: 'pointer',
-                 flexShrink: 0, padding: 0,
-             }}>
-                 <img
-                     src="/logo.png"
-                     alt="Ålesund Masjid"
-                     style={{
-                         width: '48px', height: '48px', objectFit: 'contain',
-                         filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)'
-                     }}
-                 />
-                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
-                     Ålesund Masjid
-                 </div>
-             </button>
-         </nav>
-     ) */
+
     if (isMobile === null) return (
         <>
             <style>{`
@@ -142,13 +110,7 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                     <div style={{ width: '80px', height: '34px', borderRadius: '10px', background: 'rgba(255,255,255,0.03)' }} />
                 </div>
 
-                {/* Mobile skeleton — hamburger placeholder */}
-                {/*  <div className="nav-sk-mobile" style={{
-                    width: '48px', height: '48px', borderRadius: '14px',
-                    background: 'rgba(255,255,255,0.07)',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    flexShrink: 0,
-                }} /> */}
+
                 {/* Mobile skeleton — hamburger with icon */}
                 <div className="nav-sk-mobile" style={{
                     width: '48px', height: '48px', borderRadius: '14px',
@@ -308,6 +270,7 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                     backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
                     display: 'flex', flexDirection: 'column',
                     padding: '12px 20px 40px', overflowY: 'auto',
+                    direction: lang === 'ar' ? 'rtl' : 'ltr',
                 }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '32px' }}>
                         {navLinks.map(link => (
@@ -318,7 +281,7 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                                     fontSize: '18px', fontWeight: 600,
                                     color: currentPage === link.key ? '#fff' : '#a8b8c8',
                                     padding: '16px 18px', borderRadius: '14px',
-                                    border: 'none', cursor: 'pointer', textAlign: 'left',
+                                    border: 'none', cursor: 'pointer', textAlign: lang === 'ar' ? 'right' : 'left',
                                     background: currentPage === link.key
                                         ? 'linear-gradient(135deg, #166534, #0e5027)'
                                         : 'transparent',
