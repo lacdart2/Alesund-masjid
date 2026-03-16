@@ -172,7 +172,6 @@ export default function InstallPrompt() {
         </div>
     )
 } */
-
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -227,15 +226,15 @@ const labels = {
         safariLabel: 'Safari',
         chromeLabel: 'Chrome',
         safariSteps: [
-            { icon: 'dots', text: 'Trykk på ••• (tre prikker) nederst til høyre' },
-            { icon: 'chevron', text: 'Trykk "Se mer" (En voir plus)' },
-            { icon: 'plus', text: 'Trykk "Legg til på Hjem-skjerm"' },
+            { icon: 'dots', text: 'Trykk ••• (tre prikker) nederst til høyre' },
+            { icon: 'chevron', text: 'Trykk "Mer" for å se flere valg' },
+            { icon: 'plus', text: 'Trykk "Legg til på startskjermen"' },
             { icon: 'tap', text: 'Trykk "Legg til" for å bekrefte' },
         ],
         chromeSteps: [
-            { icon: 'share', text: 'Trykk Del-ikonet øverst til høyre' },
-            { icon: 'chevron', text: 'Trykk "Se mer" (En voir plus)' },
-            { icon: 'plus', text: 'Trykk "Legg til på Hjem-skjerm"' },
+            { icon: 'share', text: 'Trykk "Del" øverst til høyre' },
+            { icon: 'chevron', text: 'Trykk "Mer" for å se flere valg' },
+            { icon: 'plus', text: 'Trykk "Legg til på startskjermen"' },
             { icon: 'tap', text: 'Trykk "Legg til" for å bekrefte' },
         ],
     },
@@ -249,13 +248,13 @@ const labels = {
         chromeLabel: 'Chrome',
         safariSteps: [
             { icon: 'dots', text: 'Tap ••• (three dots) bottom right' },
-            { icon: 'chevron', text: 'Tap "See more" (En voir plus)' },
+            { icon: 'chevron', text: 'Tap "More" to see more options' },
             { icon: 'plus', text: 'Tap "Add to Home Screen"' },
             { icon: 'tap', text: 'Tap "Add" to confirm' },
         ],
         chromeSteps: [
-            { icon: 'share', text: 'Tap the Share icon top right' },
-            { icon: 'chevron', text: 'Tap "See more" (En voir plus)' },
+            { icon: 'share', text: 'Tap "Share" top right' },
+            { icon: 'chevron', text: 'Tap "More" to see more options' },
             { icon: 'plus', text: 'Tap "Add to Home Screen"' },
             { icon: 'tap', text: 'Tap "Add" to confirm' },
         ],
@@ -270,14 +269,14 @@ const labels = {
         chromeLabel: 'Chrome',
         safariSteps: [
             { icon: 'dots', text: 'اضغط ••• (ثلاث نقاط) أسفل اليمين' },
-            { icon: 'chevron', text: 'اضغط "عرض المزيد" (En voir plus)' },
-            { icon: 'plus', text: 'اضغط "إضافة إلى الشاشة الرئيسية"' },
+            { icon: 'chevron', text: 'اضغط "المزيد" لعرض المزيد من الخيارات' },
+            { icon: 'plus', text: 'اضغط "أضف إلى الشاشة الرئيسية"' },
             { icon: 'tap', text: 'اضغط "إضافة" للتأكيد' },
         ],
         chromeSteps: [
-            { icon: 'share', text: 'اضغط أيقونة المشاركة أعلى اليمين' },
-            { icon: 'chevron', text: 'اضغط "عرض المزيد" (En voir plus)' },
-            { icon: 'plus', text: 'اضغط "إضافة إلى الشاشة الرئيسية"' },
+            { icon: 'share', text: 'اضغط "مشاركة" أعلى اليمين' },
+            { icon: 'chevron', text: 'اضغط "المزيد" لعرض المزيد من الخيارات' },
+            { icon: 'plus', text: 'اضغط "أضف إلى الشاشة الرئيسية"' },
             { icon: 'tap', text: 'اضغط "إضافة" للتأكيد' },
         ],
     },
