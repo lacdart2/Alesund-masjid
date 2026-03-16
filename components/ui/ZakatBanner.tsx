@@ -1,7 +1,6 @@
 'use client'
 
 import { useLang } from '@/lib/context'
-import { translations } from '@/lib/translations'
 
 const EID_DATE = new Date('2026-03-21T00:00:00')
 
@@ -50,7 +49,8 @@ export default function ZakatBanner() {
     return (
         <div style={{
             maxWidth: '1120px',
-            margin: '0 auto',
+            margin: '32px auto',
+            padding: '0 20px',
             direction: isRTL ? 'rtl' : 'ltr',
         }}
             className="px-5 md:px-10"

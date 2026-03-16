@@ -198,22 +198,34 @@ export default function HomePage({ navigate }: HomePageProps) {
                     <span style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8' }}>{t.events.title}</span>
                     <button onClick={() => navigate('events')} style={{ fontSize: '13px', fontWeight: 600, color: '#22a052', background: 'none', border: 'none', cursor: 'pointer' }}>{t.events.seeAll}</button>
                 </div>
+
                 <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(270px, 1fr))', gap: '13px' }}>
                     {EVENTS.slice(0, 2).map(ev => (
                         <div
                             key={ev.id}
-                            style={{ background: '#111e2d', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '24px', overflow: 'hidden', cursor: 'pointer', transition: 'all 0.25s' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(22,101,52,0.28)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}
+                            style={{
+                                background: '#111e2d',
+                                border: `1px solid ${ev.tentative ? 'rgba(234,179,8,0.2)' : 'rgba(255,255,255,0.06)'}`,
+                                borderRadius: '24px', overflow: 'hidden', cursor: 'pointer', transition: 'all 0.25s'
+                            }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = ev.tentative ? 'rgba(234,179,8,0.4)' : 'rgba(22,101,52,0.28)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = ev.tentative ? 'rgba(234,179,8,0.2)' : 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}
                         >
                             <div style={{ background: 'linear-gradient(135deg, rgba(22,101,52,0.1), rgba(22,101,52,0.03))', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 22px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                                 <div>
                                     <div style={{ fontSize: '30px', fontWeight: 800, color: '#22a052', lineHeight: 1, letterSpacing: '-1px' }}>{ev.day}</div>
                                     <div style={{ fontSize: '11px', fontWeight: 600, color: '#607080', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{ev.month}</div>
                                 </div>
-                                <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', color: '#22a052', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', padding: '4px 10px', borderRadius: '20px' }}>
-                                    {ev.type[lang]}
-                                </span>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+                                    <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', color: '#22a052', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', padding: '4px 10px', borderRadius: '20px' }}>
+                                        {ev.type[lang]}
+                                    </span>
+                                    {ev.tentative && (
+                                        <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.6px', textTransform: 'uppercase', color: '#eab308', background: 'rgba(234,179,8,0.1)', border: '1px solid rgba(234,179,8,0.25)', padding: '4px 10px', borderRadius: '20px' }}>
+                                            {lang === 'ar' ? 'غير مؤكد' : lang === 'no' ? 'Tentativt' : 'Tentative'}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                             <div style={{ padding: '16px 22px' }}>
                                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8', marginBottom: '9px' }}>{ev.name[lang]}</div>
@@ -225,6 +237,11 @@ export default function HomePage({ navigate }: HomePageProps) {
                                         <IconMapPin size={14} /> {ev.location}
                                     </span>
                                 </div>
+                                {ev.tentative && ev.tentativeNote && (
+                                    <div style={{ marginTop: '10px', padding: '7px 10px', background: 'rgba(234,179,8,0.07)', border: '1px solid rgba(234,179,8,0.15)', borderRadius: '10px', fontSize: '12px', color: '#eab308' }}>
+                                        ⚠️ {ev.tentativeNote[lang]}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
