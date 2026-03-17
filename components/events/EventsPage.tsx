@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
-import { EVENTS } from '@/lib/data'
+import { getUpcomingEvents } from '@/lib/data'
 import { IconClock, IconMapPin } from '@/components/ui/Icons'
 
 export default function EventsPage() {
@@ -28,7 +28,7 @@ export default function EventsPage() {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(300px, 1fr))', gap: '16px' }}>
-                {EVENTS.map(ev => (
+                {getUpcomingEvents().map(ev => (
                     <div
                         key={ev.id}
                         style={{

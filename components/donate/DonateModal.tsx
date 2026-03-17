@@ -67,10 +67,6 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
         }
     }
 
-    /*   const handleOpenVipps = () => {
-          window.location.href = 'vipps://'
-          setTimeout(() => alert(m.fallback), 1500)
-      } */
     const handleOpenVipps = () => {
         window.location.href = 'vipps://'
         setTimeout(() => {

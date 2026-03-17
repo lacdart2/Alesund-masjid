@@ -26,6 +26,7 @@ export type MasjidEvent = {
     id: string
     day: string
     month: string
+    year?: number
     type: Record<Lang, string>
     name: Record<Lang, string>
     time: string

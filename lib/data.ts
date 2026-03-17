@@ -41,7 +41,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
 export const EVENTS: MasjidEvent[] = [
     {
         id: '1',
-        day: '20', month: 'Mar',
+        day: '20', month: 'Mar', year: 2026,
         type: { no: 'Ramadan', en: 'Ramadan', ar: 'رمضان' },
         name: { no: 'Siste Ramadan-dag', en: 'Last Day of Ramadan', ar: 'آخر يوم من رمضان' },
         time: '—',
@@ -51,7 +51,7 @@ export const EVENTS: MasjidEvent[] = [
     },
     {
         id: '2',
-        day: '21', month: 'Mar',
+        day: '21', month: 'Mar', year: 2026,
         type: { no: 'Eid', en: 'Eid', ar: 'عيد' },
         name: { no: 'Eid Al-Fitr 1447', en: 'Eid Al-Fitr 1447', ar: 'عيد الفطر 1447' },
         time: '08:00',
@@ -61,7 +61,7 @@ export const EVENTS: MasjidEvent[] = [
     },
     {
         id: '3',
-        day: '20', month: 'Mar',
+        day: '20', month: 'Mar', year: 2026,
         type: { no: 'Eid-bønn', en: 'Eid Prayer', ar: 'صلاة العيد' },
         name: { no: 'Eid Al-Fitr bønn 1447', en: 'Eid Al-Fitr Prayer 1447', ar: 'صلاة عيد الفطر 1447' },
         time: '—',
@@ -75,10 +75,29 @@ export const EVENTS: MasjidEvent[] = [
     },
     {
         id: '4',
-        day: '28', month: 'Mar',
+        day: '28', month: 'Mar', year: 2026,
         type: { no: 'Fellesskap', en: 'Community', ar: 'مجتمع' },
         name: { no: 'Fellesskapets iftaar-middag', en: 'Community Iftaar Dinner', ar: 'عشاء إفطار المجتمع' },
         time: '18:30',
         location: 'Fellesskapsrom',
     },
 ]
+
+// Month name to number map
+const MONTH_MAP: Record<string, number> = {
+    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+    Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+}
+
+export function getUpcomingEvents(): MasjidEvent[] {
+    const now = new Date()
+    // Set to start of today
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+    return EVENTS.filter(ev => {
+        const year = ev.year ?? now.getFullYear()
+        const month = MONTH_MAP[ev.month] ?? 0
+        const eventDate = new Date(year, month, parseInt(ev.day))
+        return eventDate >= today
+    })
+}

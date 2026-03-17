@@ -51,15 +51,6 @@ export function toMinutes(time: string): number {
     return h * 60 + m
 }
 
-/* export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string } {
-    const now = new Date()
-    const current = now.getHours() * 60 + now.getMinutes()
-    const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
-    const found = keys.find(k => toMinutes(data[k]) > current)
-    const key = found ?? keys[0]
-    return { key, time: data[key] }
-}
- */
 const IQAMA_MINUTES = 10
 
 export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isNow?: boolean } {

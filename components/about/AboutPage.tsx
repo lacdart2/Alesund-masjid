@@ -98,10 +98,40 @@ export default function AboutPage() {
                         ))}
                     </div>
                 </div>
-                <div style={{ background: '#111e2d', border: '1px solid rgba(22,101,52,0.28)', borderRadius: '24px', minHeight: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', padding: '40px' }}>
-                    <img src="/logo.png" alt="Ålesund Masjid" style={{ width: '150px', height: '150px', objectFit: 'contain', opacity: 1, filter: 'brightness(1.4) contrast(1.1)' }} />
-                    <div style={{ fontFamily: "'Noto Sans Arabic', sans-serif", fontSize: '17px', color: '#22a052', opacity: 0.7, letterSpacing: '2px' }}>
-                        بسم الله الرحمن الرحيم
+                <div style={{ borderRadius: '24px', overflow: 'hidden', position: 'relative', minHeight: '340px', maxHeight: isMobile ? 'none' : '380px' }}>
+                    <img
+                        src="/images/prayer-hall.jpg"
+                        alt="Ålesund Masjid prayer hall"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            minHeight: '340px',
+                            maxHeight: isMobile ? 'none' : '380px',
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                            display: 'block',
+                        }}
+                    />
+                    {/* Subtle overlay with Basmala */}
+                    <div style={{
+                        position: 'absolute',
+                        bottom: 0, left: 0, right: 0,
+                        height: '60%',
+                        background: 'linear-gradient(to top, rgba(11,21,32,0.9), transparent)',
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        justifyContent: 'center',
+                        paddingBottom: '20px',
+                    }}>
+                        <div style={{
+                            fontFamily: "'Noto Sans Arabic', sans-serif",
+                            fontSize: '26px',
+                            color: 'rgba(200,169,107,0.55)',
+                            letterSpacing: '3px',
+                            textShadow: '0 2px 12px rgba(0,0,0,0.6)',
+                        }}>
+                            بسم الله الرحمن الرحيم
+                        </div>
                     </div>
                 </div>
             </div>

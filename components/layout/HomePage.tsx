@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
 import { getTodayPrayers } from '@/lib/prayer'
-import { ANNOUNCEMENTS, EVENTS } from '@/lib/data'
+import { ANNOUNCEMENTS, EVENTS, getUpcomingEvents } from '@/lib/data'
 import { PageKey } from '@/app/page'
 import PrayerGrid from '@/components/prayer/PrayerGrid'
 import PhoneMockup from '@/components/prayer/PhoneMockup'
@@ -201,7 +201,7 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(270px, 1fr))', gap: '13px' }}>
-                    {EVENTS.slice(0, 2).map(ev => (
+                    {getUpcomingEvents().slice(0, 2).map(ev => (
                         <div
                             key={ev.id}
                             style={{
