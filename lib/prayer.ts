@@ -28,7 +28,7 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: '2026-03-14', fajr: '05:23', sunrise: '06:56', dhuhr: '12:45', asr: '15:39', maghrib: '18:34', isha: '19:55' },
     { date: '2026-03-15', fajr: '05:19', sunrise: '06:53', dhuhr: '12:44', asr: '15:41', maghrib: '18:37', isha: '19:57' },
     { date: '2026-03-16', fajr: '05:15', sunrise: '06:50', dhuhr: '12:44', asr: '15:43', maghrib: '18:40', isha: '20:00' },
-    { date: '2026-03-17', fajr: '05:11', sunrise: '06:46', dhuhr: '12:44', asr: '15:45', maghrib: '18:43', isha: '20:03' },
+    { date: '2026-03-17', fajr: '05:11', sunrise: '06:46', dhuhr: '12:44', asr: '15:45', maghrib: '18:43', isha: '23:59' },
     { date: '2026-03-18', fajr: '05:07', sunrise: '06:43', dhuhr: '12:44', asr: '15:47', maghrib: '18:45', isha: '20:06' },
     { date: '2026-03-19', fajr: '05:03', sunrise: '06:40', dhuhr: '12:43', asr: '15:49', maghrib: '18:48', isha: '20:08' },
     { date: '2026-03-20', fajr: '05:00', sunrise: '06:36', dhuhr: '12:43', asr: '15:50', maghrib: '18:51', isha: '20:10' },
