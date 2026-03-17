@@ -257,22 +257,6 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                     </div>
                     <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '7px', letterSpacing: '-0.4px' }}>{t.donate.title}</div>
                     <div style={{ fontSize: '14px', color: '#a8b8c8', lineHeight: 1.7, maxWidth: '520px', marginBottom: '22px' }}>{t.donate.sub}</div>
-                    {/*  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                        {[
-                            { label: t.donate.bank, primary: true },
-                            { label: t.donate.vipps, primary: false },
-                            { label: t.donate.monthly, primary: false },
-                        ].map(btn => (
-                            <button
-                                key={btn.label}
-                                style={{ background: btn.primary ? '#166534' : '#162538', color: btn.primary ? '#fff' : '#a8b8c8', fontSize: '13px', fontWeight: 600, padding: '11px 22px', borderRadius: '10px', border: btn.primary ? 'none' : '1px solid rgba(255,255,255,0.06)', cursor: 'pointer', transition: 'all 0.2s' }}
-                                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; if (btn.primary) e.currentTarget.style.background = '#1a7a40' }}
-                                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; if (btn.primary) e.currentTarget.style.background = '#166534' }}
-                            >
-                                {btn.label}
-                            </button>
-                        ))}
-                    </div> */}
 
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                         {/* Bank button */}

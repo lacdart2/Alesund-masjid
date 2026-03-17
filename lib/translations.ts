@@ -136,7 +136,6 @@ export const translations = {
         contact: { title: 'اتصل بنا والموقع', findUs: 'موقعنا', address: 'Latinskolegata 1, 6004 Ålesund', hours: 'مفتوح للصلوات الخمس', openMap: 'فتح في خرائط جوجل', getInTouch: 'تواصل معنا', whatsapp: 'واتساب متاح', phone: '48 29 27 63', email: 'info@alesundmasjid.no' },
         footer: { desc: 'مسجد جامع أولسند — Latinskolegata 1, 6004 Ålesund', navigation: 'التنقل', more: 'المزيد', prayersToday: 'صلوات اليوم', copy: 'بُني بعناية لخدمة المجتمع.' },
     },
-    /* } satisfies Record<Lang, unknown> */
 }
 export type T = typeof translations.no
 
