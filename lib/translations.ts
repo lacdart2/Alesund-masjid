@@ -23,7 +23,26 @@ export const translations = {
         announcements: { title: 'Kunngjøringer', seeAll: 'Se alle →' },
         events: { title: 'Kommende arrangementer', seeAll: 'Se alle →' },
         quickLinks: { title: 'Hurtigtilgang', prayers: 'Bønnetider', announcements: 'Kunngjøringer', events: 'Arrangementer', location: 'Plassering' },
-        donate: { title: 'Støtt moskéen', sub: 'Ditt bidrag hjelper oss å vedlikeholde fasiliteter og tjene fellesskapet. Hvert bidrag teller.', bank: 'Konto: 6550.05.90771', vipps: 'Vipps: 553705', monthly: 'Fast månedlig gave' },
+        /*         donate: { title: 'Støtt moskéen', sub: 'Ditt bidrag hjelper oss å vedlikeholde fasiliteter og tjene fellesskapet. Hvert bidrag teller.', bank: 'Konto: 6550.05.90771', vipps: 'Vipps: 553705', monthly: 'Fast månedlig gave' }, */
+        donate: {
+            title: 'Støtt moskéen',
+            sub: 'Ditt bidrag hjelper oss å vedlikeholde fasiliteter og tjene fellesskapet. Hvert bidrag teller.',
+            bank: 'Konto: 6550.05.90771',
+            vipps: 'Vipps: 553705',
+            monthly: 'Fast månedlig gave',
+            modal: {
+                title: 'Støtt moskéen ❤️',
+                sub: 'Selv 50 kr hjelper — det er prisen på en kaffe ☕',
+                vippsNumber: 'Vipps-nummer: 553705',
+                selectAmount: 'Velg beløp',
+                custom: 'Annet beløp',
+                selected: (amount: string) => `Du valgte ${amount} kr`,
+                instruction: (amount: string) => `Vipps åpnes nå. Send ${amount} kr til 553705.`,
+                openVipps: 'Åpne Vipps',
+                fallback: 'Sørg for at Vipps er installert på enheten din.',
+                close: 'Lukk',
+            },
+        },
         about: { title: 'Om Ålesund Masjid', p1: 'Ålesund Jamii Islamic Center er et åndelig hjem og fellesskapssenter for muslimer i og rundt Ålesund, Norge.', p2: 'Vi tilbyr daglige bønner, fredagstjenester, Korankurs for barn og voksne, og fellesskapsarrangementer.', p3: 'Vi ønsker besøkende fra alle bakgrunner velkommen.', s1: 'Daglige bønner', s2: 'Dager i uken', s3: 'Google-vurdering' },
         contact: { title: 'Kontakt og beliggenhet', findUs: 'Finn oss', address: 'Latinskolegata 1, 6004 Ålesund', hours: 'Åpen for alle 5 daglige bønner', openMap: 'Åpne i Google Maps', getInTouch: 'Ta kontakt', whatsapp: 'WhatsApp tilgjengelig', phone: '48 29 27 63', email: 'info@alesundmasjid.no' },
         footer: { desc: 'Ålesund Jamii Islamic Center — Latinskolegata 1, 6004 Ålesund', navigation: 'Navigasjon', more: 'Mer', prayersToday: 'Bønner i dag', copy: 'Bygget med omsorg for fellesskapet.' },
@@ -50,7 +69,26 @@ export const translations = {
         announcements: { title: 'Announcements', seeAll: 'See all →' },
         events: { title: 'Upcoming Events', seeAll: 'See all →' },
         quickLinks: { title: 'Quick Access', prayers: 'Prayer Times', announcements: 'Announcements', events: 'Events', location: 'Location' },
-        donate: { title: 'Support the Mosque', sub: 'Your contribution helps maintain our facilities and serve the community. Every donation matters.', bank: 'Account: 6550.05.90771', vipps: 'Vipps: 553705', monthly: 'Monthly Giving' },
+        /*         donate: { title: 'Support the Mosque', sub: 'Your contribution helps maintain our facilities and serve the community. Every donation matters.', bank: 'Account: 6550.05.90771', vipps: 'Vipps: 553705', monthly: 'Monthly Giving' }, */
+        donate: {
+            title: 'Support the Mosque',
+            sub: 'Your contribution helps maintain our facilities and serve the community. Every donation matters.',
+            bank: 'Account: 6550.05.90771',
+            vipps: 'Vipps: 553705',
+            monthly: 'Monthly Giving',
+            modal: {
+                title: 'Support the Mosque ❤️',
+                sub: "Even 50 kr helps — that's the price of a coffee ☕",
+                vippsNumber: 'Vipps number: 553705',
+                selectAmount: 'Select amount',
+                custom: 'Custom amount',
+                selected: (amount: string) => `You selected ${amount} kr`,
+                instruction: (amount: string) => `Vipps will open now. Please send ${amount} kr to 553705.`,
+                openVipps: 'Open Vipps',
+                fallback: 'Please make sure Vipps is installed on your device.',
+                close: 'Close',
+            },
+        },
         about: { title: 'About Ålesund Masjid', p1: 'Ålesund Jamii Islamic Center is a spiritual home and community center for Muslims in Ålesund, Norway.', p2: 'We offer daily prayers, Friday Jumu\'ah, Quran classes, and community events.', p3: 'We welcome visitors of all backgrounds.', s1: 'Daily Prayers', s2: 'Days a Week', s3: 'Google Rating' },
         contact: { title: 'Contact & Location', findUs: 'Find Us', address: 'Latinskolegata 1, 6004 Ålesund', hours: 'Open for all 5 daily prayers', openMap: 'Open in Google Maps', getInTouch: 'Get in Touch', whatsapp: 'WhatsApp available', phone: '48 29 27 63', email: 'info@alesundmasjid.no' },
         footer: { desc: 'Ålesund Jamii Islamic Center — Latinskolegata 1, 6004 Ålesund', navigation: 'Navigation', more: 'More', prayersToday: 'Prayers Today', copy: 'Built with care for the community.' },
@@ -77,13 +115,32 @@ export const translations = {
         announcements: { title: 'الإعلانات', seeAll: 'عرض الكل →' },
         events: { title: 'الفعاليات القادمة', seeAll: 'عرض الكل →' },
         quickLinks: { title: 'وصول سريع', prayers: 'مواقيت الصلاة', announcements: 'الإعلانات', events: 'الفعاليات', location: 'الموقع' },
-        donate: { title: 'دعم المسجد', sub: 'مساهمتك تساعد في صيانة مرافقنا وخدمة المجتمع.', bank: 'حساب: 6550.05.90771', vipps: 'فيبس: 553705', monthly: 'تبرع شهري' },
+        /*         donate: { title: 'دعم المسجد', sub: 'مساهمتك تساعد في صيانة مرافقنا وخدمة المجتمع.', bank: 'حساب: 6550.05.90771', vipps: 'فيبس: 553705', monthly: 'تبرع شهري' }, */
+        donate: {
+            title: 'دعم المسجد',
+            sub: 'مساهمتك تساعد في صيانة مرافقنا وخدمة المجتمع.',
+            bank: 'حساب: 6550.05.90771',
+            vipps: 'فيبس: 553705',
+            monthly: 'تبرع شهري',
+            modal: {
+                title: 'ادعم المسجد ❤️',
+                sub: 'حتى 50 كرون يساعد — بسعر فنجان قهوة ☕',
+                vippsNumber: 'رقم Vipps: 553705',
+                selectAmount: 'اختر المبلغ',
+                custom: 'مبلغ آخر',
+                selected: (amount: string) => `اخترت ${amount} كرون`,
+                instruction: (amount: string) => `سيفتح Vipps الآن. يرجى إرسال ${amount} كرون إلى 553705.`,
+                openVipps: 'فتح Vipps',
+                fallback: 'يرجى التأكد من تثبيت تطبيق Vipps على جهازك.',
+                close: 'إغلاق',
+            },
+        },
         about: { title: 'عن مسجد أولسند', p1: 'مسجد جامع أولسند هو بيت روحي ومركز مجتمعي للمسلمين في أولسند، النرويج.', p2: 'يقدم مسجدنا الصلوات اليومية وصلاة الجمعة وفصول القرآن والفعاليات المجتمعية.', p3: 'نرحب بالزوار من جميع الخلفيات.', s1: 'صلوات يومية', s2: 'أيام في الأسبوع', s3: 'تقييم جوجل' },
         contact: { title: 'اتصل بنا والموقع', findUs: 'موقعنا', address: 'Latinskolegata 1, 6004 Ålesund', hours: 'مفتوح للصلوات الخمس', openMap: 'فتح في خرائط جوجل', getInTouch: 'تواصل معنا', whatsapp: 'واتساب متاح', phone: '48 29 27 63', email: 'info@alesundmasjid.no' },
         footer: { desc: 'مسجد جامع أولسند — Latinskolegata 1, 6004 Ålesund', navigation: 'التنقل', more: 'المزيد', prayersToday: 'صلوات اليوم', copy: 'بُني بعناية لخدمة المجتمع.' },
     },
-} satisfies Record<Lang, unknown>
-
+    /* } satisfies Record<Lang, unknown> */
+}
 export type T = typeof translations.no
 
 export function tr(lang: Lang, path: string): string {

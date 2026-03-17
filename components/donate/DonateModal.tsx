@@ -1,0 +1,250 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useLang } from '@/lib/context'
+import { translations } from '@/lib/translations'
+
+interface DonateModalProps {
+    isOpen: boolean
+    onClose: () => void
+}
+
+const AMOUNTS = [50, 100, 200]
+const VIPPS_NUMBER = '553705'
+
+export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
+    const { lang } = useLang()
+    const m = translations[lang].donate.modal
+    const isRtl = lang === 'ar'
+
+    const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
+    const [customAmount, setCustomAmount] = useState('')
+
+    // Reset state when modal opens
+    useEffect(() => {
+        if (isOpen) {
+            setSelectedAmount(null)
+            setCustomAmount('')
+        }
+    }, [isOpen])
+
+    // Close on Escape key
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+        window.addEventListener('keydown', onKey)
+        return () => window.removeEventListener('keydown', onKey)
+    }, [onClose])
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => { document.body.style.overflow = '' }
+    }, [isOpen])
+
+    if (!isOpen) return null
+
+    // Determine active amount (custom or selected)
+    const activeAmount = customAmount ? customAmount : selectedAmount?.toString() ?? null
+
+    const handleOpenVipps = () => {
+        // Try to open Vipps app
+        window.location.href = `vipps://`
+        // Fallback after 1.5s if app doesn't open
+        setTimeout(() => {
+            alert(m.fallback)
+        }, 1500)
+    }
+
+    return (
+        // Backdrop
+        <div
+            onClick={onClose}
+            style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 5000,
+                background: 'rgba(0,0,0,0.7)',
+                backdropFilter: 'blur(6px)',
+                WebkitBackdropFilter: 'blur(6px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px',
+            }}
+        >
+            {/* Modal box — stop click propagation so clicking inside doesn't close */}
+            <div
+                onClick={e => e.stopPropagation()}
+                style={{
+                    background: '#111e2d',
+                    border: '1px solid rgba(22,101,52,0.25)',
+                    borderRadius: '24px',
+                    padding: '32px 28px',
+                    width: '100%',
+                    maxWidth: '420px',
+                    position: 'relative',
+                    direction: isRtl ? 'rtl' : 'ltr',
+                    boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
+                }}
+            >
+                {/* Close button */}
+                <button
+                    onClick={onClose}
+                    style={{
+                        position: 'absolute',
+                        top: '16px',
+                        right: isRtl ? 'unset' : '16px',
+                        left: isRtl ? '16px' : 'unset',
+                        background: 'rgba(255,255,255,0.06)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: '50%',
+                        width: '32px',
+                        height: '32px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        color: '#a8b8c8',
+                        fontSize: '16px',
+                        lineHeight: 1,
+                    }}
+                >
+                    ✕
+                </button>
+
+                {/* Title */}
+                <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '8px', paddingRight: isRtl ? '0' : '40px', paddingLeft: isRtl ? '40px' : '0' }}>
+                    {m.title}
+                </div>
+
+                {/* Subtitle */}
+                <div style={{ fontSize: '14px', color: '#a8b8c8', lineHeight: 1.6, marginBottom: '24px' }}>
+                    {m.sub}
+                </div>
+
+                {/* Vipps number badge */}
+                <div style={{
+                    background: 'rgba(255,91,36,0.1)',
+                    border: '1px solid rgba(255,91,36,0.25)',
+                    borderRadius: '10px',
+                    padding: '10px 16px',
+                    marginBottom: '24px',
+                    fontSize: '15px',
+                    fontWeight: 700,
+                    color: '#FF5B24',
+                    textAlign: 'center',
+                    letterSpacing: '0.5px',
+                }}>
+                    {m.vippsNumber}
+                </div>
+
+                {/* Amount label */}
+                <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#607080', marginBottom: '12px' }}>
+                    {m.selectAmount}
+                </div>
+
+                {/* Amount buttons */}
+                <div style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
+                    {AMOUNTS.map(amount => (
+                        <button
+                            key={amount}
+                            onClick={() => { setSelectedAmount(amount); setCustomAmount('') }}
+                            style={{
+                                flex: 1,
+                                padding: '12px 8px',
+                                borderRadius: '12px',
+                                border: selectedAmount === amount && !customAmount
+                                    ? '2px solid #166534'
+                                    : '1px solid rgba(255,255,255,0.08)',
+                                background: selectedAmount === amount && !customAmount
+                                    ? 'rgba(22,101,52,0.2)'
+                                    : '#162538',
+                                color: selectedAmount === amount && !customAmount ? '#fff' : '#a8b8c8',
+                                fontSize: '16px',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                transition: 'all 0.2s',
+                            }}
+                        >
+                            {amount} kr
+                        </button>
+                    ))}
+                </div>
+
+                {/* Custom amount input */}
+                <input
+                    type="number"
+                    placeholder={m.custom}
+                    value={customAmount}
+                    onChange={e => { setCustomAmount(e.target.value); setSelectedAmount(null) }}
+                    style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: customAmount
+                            ? '2px solid #166534'
+                            : '1px solid rgba(255,255,255,0.08)',
+                        background: '#162538',
+                        color: '#f0f4f8',
+                        fontSize: '15px',
+                        marginBottom: '20px',
+                        outline: 'none',
+                        boxSizing: 'border-box',
+                        textAlign: isRtl ? 'right' : 'left',
+                    }}
+                />
+
+                {/* Dynamic message — only show when amount is selected */}
+                {activeAmount && (
+                    <div style={{
+                        background: 'rgba(22,101,52,0.1)',
+                        border: '1px solid rgba(22,101,52,0.2)',
+                        borderRadius: '12px',
+                        padding: '14px 16px',
+                        marginBottom: '20px',
+                    }}>
+                        <div style={{ fontSize: '14px', fontWeight: 700, color: '#22a052', marginBottom: '4px' }}>
+                            {m.selected(activeAmount)}
+                        </div>
+                        <div style={{ fontSize: '13px', color: '#a8b8c8', lineHeight: 1.5 }}>
+                            {m.instruction(activeAmount)}
+                        </div>
+                    </div>
+                )}
+
+                {/* Open Vipps button */}
+                <button
+                    onClick={handleOpenVipps}
+                    disabled={!activeAmount}
+                    style={{
+                        width: '100%',
+                        padding: '16px',
+                        borderRadius: '14px',
+                        border: 'none',
+                        background: activeAmount ? '#FF5B24' : 'rgba(255,255,255,0.06)',
+                        color: activeAmount ? '#fff' : '#607080',
+                        fontSize: '16px',
+                        fontWeight: 700,
+                        cursor: activeAmount ? 'pointer' : 'not-allowed',
+                        transition: 'all 0.2s',
+                        letterSpacing: '-0.2px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '10px',
+                    }}
+                >
+                    {/* Vipps wordmark */}
+                    <span style={{ fontSize: '18px', fontWeight: 900, letterSpacing: '-1px', fontStyle: 'italic' }}>
+                        vipps
+                    </span>
+                    <span>— {m.openVipps}</span>
+                </button>
+            </div>
+        </div>
+    )
+}
