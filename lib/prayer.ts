@@ -34,11 +34,17 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: '2026-03-20', fajr: '05:00', sunrise: '06:36', dhuhr: '12:43', asr: '15:50', maghrib: '18:51', isha: '20:10' },
 ]
 
-export function getTodayPrayers(): Omit<PrayerTime, 'id'> {
-    const today = new Date().toISOString().split('T')[0]
-    return PRAYER_TIMES.find(p => p.date === today) ?? PRAYER_TIMES[PRAYER_TIMES.length - 1]
+
+function getLocalDateString(): string {
+    // Use Norway timezone explicitly — works correctly after midnight
+    return new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Oslo' })
+    // en-CA gives us YYYY-MM-DD format natively
 }
 
+export function getTodayPrayers(): Omit<PrayerTime, 'id'> {
+    const today = getLocalDateString()
+    return PRAYER_TIMES.find(p => p.date === today) ?? PRAYER_TIMES[PRAYER_TIMES.length - 1]
+}
 export function toMinutes(time: string): number {
     if (!time || time === '--:--') return 9999
     const [h, m] = time.split(':').map(Number)

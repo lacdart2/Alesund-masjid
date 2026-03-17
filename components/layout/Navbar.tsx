@@ -1,3 +1,4 @@
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -65,6 +66,9 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
         { key: 'about', label: n.about },
         { key: 'contact', label: n.contact },
     ]
+
+    // ✅ Reverse link order for Arabic (RTL reading — Home should be on the right)
+    const displayLinks = lang === 'ar' ? [...navLinks].reverse() : navLinks
 
     const handleNav = (page: PageKey) => {
         navigate(page)
@@ -166,9 +170,9 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                     </div>
                 </button>
 
-                {/* Desktop nav links */}
+                {/* Desktop nav links — reversed for Arabic */}
                 <div style={{ display: isMobile ? 'none' : 'flex', gap: '2px', marginLeft: 'auto', marginRight: 'auto' }}>
-                    {navLinks.map(link => (
+                    {displayLinks.map(link => (
                         <button
                             key={link.key}
                             onClick={() => handleNav(link.key)}
