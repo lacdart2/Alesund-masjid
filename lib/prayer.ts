@@ -51,7 +51,7 @@ export function toMinutes(time: string): number {
     return h * 60 + m
 }
 
-export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string } {
+/* export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string } {
     const now = new Date()
     const current = now.getHours() * 60 + now.getMinutes()
     const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
@@ -59,7 +59,35 @@ export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; t
     const key = found ?? keys[0]
     return { key, time: data[key] }
 }
+ */
+const IQAMA_MINUTES = 10
 
+export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isNow?: boolean } {
+    const now = new Date()
+    const current = now.getHours() * 60 + now.getMinutes()
+    const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
+
+    // Check if we're inside any prayer's 10 min window
+    for (const key of keys) {
+        const prayerMin = toMinutes(data[key])
+        if (current >= prayerMin && current < prayerMin + IQAMA_MINUTES) {
+            // ✅ We're in the "Now" window for this prayer
+            return { key, time: data[key], isNow: true }
+        }
+    }
+
+    // Special case: after Fajr iqama window → show Shurooq as next
+    const fajrEnd = toMinutes(data.fajr) + IQAMA_MINUTES
+    const sunriseMin = toMinutes(data.sunrise)
+    if (current >= fajrEnd && current < sunriseMin) {
+        return { key: 'sunrise', time: data.sunrise }
+    }
+
+    // Normal case: find next upcoming prayer
+    const found = keys.find(k => toMinutes(data[k]) > current)
+    const key = found ?? keys[0]
+    return { key, time: data[key] }
+}
 export function formatCountdown(targetTime: string): string {
     const now = new Date()
     const current = now.getHours() * 60 + now.getMinutes()

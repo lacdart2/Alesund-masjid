@@ -90,28 +90,41 @@ export default function PhoneMockup() {
 
                 <div className="phone-scroll" style={{ flex: 1, overflowY: 'auto', padding: '13px', display: 'flex', flexDirection: 'column', gap: '9px' }}>
                     <div style={{ background: 'linear-gradient(135deg, #166534, #0e5027)', borderRadius: '14px', padding: '16px', border: '1px solid rgba(22,101,52,0.4)', direction: isRTL ? 'rtl' : 'ltr' }}>
-                        <div style={{ ...text.labelCaps, color: 'rgba(255,255,255,0.45)', marginBottom: '4px' }}>
-                            {t.phone.next}
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '12px' }}>
-                            <div style={{ fontSize: '22px', fontWeight: 700, color: '#fff', letterSpacing: '-0.5px' }}>
-                                {t.prayers.names[next.key]}
+                        {/* Top row — NOW/NEXT label + countdown */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                            <div style={{ ...text.labelCaps, color: 'rgba(255,255,255,0.45)' }}>
+                                {next.isNow
+                                    ? (lang === 'ar' ? 'الآن' : lang === 'no' ? 'NÅ' : 'NOW')
+                                    : t.phone.next
+                                }
                             </div>
                             <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '7px', padding: '4px 8px', fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
                                 {countdown}
                             </div>
                         </div>
-                        <div style={{ ...text.labelCaps, color: 'rgba(255,255,255,0.4)', marginBottom: '3px' }}>
-                            {t.phone.highlight}
+
+                        {/* Prayer name — smaller, lighter */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                            <div style={{ fontSize: '16px', fontWeight: 500, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.2px' }}>
+                                {t.prayers.names[next.key]}
+                            </div>
+                            {next.isNow && (
+                                <span style={{ fontSize: '11px', fontWeight: 700, background: 'rgba(255,255,255,0.15)', borderRadius: '6px', padding: '3px 8px', letterSpacing: '0.5px', color: '#fff' }}>
+                                    {lang === 'ar' ? 'الآن' : lang === 'no' ? 'Nå' : 'Now'}
+                                </span>
+                            )}
                         </div>
-                        <div style={{ fontSize: '36px', fontWeight: 700, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1 }}>
+
+                        {/* Time — big and dominant */}
+                        <div style={{ fontSize: '50px', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1, marginBottom: '8px' }}>
                             {next.time}
                         </div>
-                        <div style={{ ...text.label, color: 'rgba(255,255,255,0.4)', marginTop: '3px' }}>
+
+                        {/* Mosque name */}
+                        <div style={{ ...text.label, color: 'rgba(255,255,255,0.4)' }}>
                             {t.phone.sub}
                         </div>
                     </div>
-
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#162538', borderRadius: '10px', padding: '8px 10px', border: '1px solid rgba(255,255,255,0.06)', direction: 'ltr' }}>
                         <button
                             onClick={() => handleNav(isRTL ? 1 : -1)}
