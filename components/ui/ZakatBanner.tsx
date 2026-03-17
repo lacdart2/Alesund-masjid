@@ -1,9 +1,9 @@
 
 'use client'
 
-import { useState } from 'react'
-import { useLang } from '@/lib/context'
 
+import { useLang } from '@/lib/context'
+import { useState, useEffect } from 'react'
 const EID_DATE = new Date('2026-03-21T00:00:00')
 const ZAKAT_VIPPS = '91155143'
 const ACCOUNT = '6550.05.90771'
@@ -60,9 +60,16 @@ export default function ZakatBanner() {
     const { lang } = useLang()
     const isRTL = lang === 'ar'
     const z = zakatText[lang]
-
+    const [isMobile, setIsMobile] = useState(false)
     const [copiedVipps, setCopiedVipps] = useState(false)
     const [copiedAccount, setCopiedAccount] = useState(false)
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 1024)
+        check()
+        window.addEventListener('resize', check)
+        return () => window.removeEventListener('resize', check)
+    }, [])
 
     const now = new Date()
     if (now >= EID_DATE) return null
@@ -86,10 +93,6 @@ export default function ZakatBanner() {
         }
     }
 
-    /*   const handleVipps = () => {
-          window.location.href = 'vipps://'
-          setTimeout(() => alert(z.fallback), 1500)
-      } */
     const handleVipps = () => {
         window.location.href = 'vipps://'
         setTimeout(() => {
@@ -118,7 +121,7 @@ export default function ZakatBanner() {
                 </div>
 
                 {/* Main content */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '20px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: '20px' }}>
                     <div style={{ flex: 1, minWidth: '200px' }}>
                         <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#c8a96b', letterSpacing: '-0.4px', marginBottom: '6px' }}>{z.title}</h3>
                         <div style={{ fontSize: '28px', fontWeight: 800, color: '#f0f4f8', letterSpacing: '-1px', marginBottom: '8px', lineHeight: 1 }}>{z.amount}</div>
@@ -146,7 +149,7 @@ export default function ZakatBanner() {
                     </div>
 
                     {/* Payment info box */}
-                    <div style={{ background: 'rgba(11,21,32,0.6)', border: '1px solid rgba(200,169,107,0.2)', borderRadius: '14px', padding: '16px 20px', flexShrink: 0, minWidth: '200px' }}>
+                    <div style={{ background: 'rgba(11,21,32,0.6)', border: '1px solid rgba(200,169,107,0.2)', borderRadius: '14px', padding: '16px 20px', width: isMobile ? '100%' : 'auto', minWidth: isMobile ? 'unset' : '380px', flexShrink: 0, boxSizing: 'border-box' }}>
                         <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#607080', marginBottom: '12px' }}>
                             {z.paymentInfo}
                         </div>
