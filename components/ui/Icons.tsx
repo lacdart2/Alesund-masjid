@@ -13,6 +13,9 @@ const ic = (size: number, cls: string) => ({
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
 })
+export function IconCoffee({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M3 8h13v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6V8z" /><path d="M16 8a4 4 0 0 1 0 8" /><path d="M6 2v3M9 2v3M12 2v3" /></svg>
+}
 export function IconUsers({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
 }
@@ -20,7 +23,11 @@ export function IconUsers({ size = 24, className = '' }: IconProps) {
 export function IconDroplet({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" /></svg>
 }
-
+export function IconHeartFilled({ size = 24, className = '' }: IconProps) {
+    return <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="#ef4444" stroke="none">
+        <path d="M19.5 12.572 12 20l-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 6.572" />
+    </svg>
+}
 export function IconDoor({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><circle cx="14" cy="13" r="1" fill="currentColor" /></svg>
 }

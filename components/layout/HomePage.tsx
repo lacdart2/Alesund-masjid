@@ -14,9 +14,10 @@ import ZakatBanner from '@/components/ui/ZakatBanner'
 
 interface HomePageProps {
     navigate: (page: PageKey) => void
+    openModal: () => void
 }
 
-export default function HomePage({ navigate }: HomePageProps) {
+export default function HomePage({ navigate, openModal }: HomePageProps) {
     const { lang } = useLang()
     const t = translations[lang]
     const today = getTodayPrayers()
@@ -256,7 +257,7 @@ export default function HomePage({ navigate }: HomePageProps) {
                     </div>
                     <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '7px', letterSpacing: '-0.4px' }}>{t.donate.title}</div>
                     <div style={{ fontSize: '14px', color: '#a8b8c8', lineHeight: 1.7, maxWidth: '520px', marginBottom: '22px' }}>{t.donate.sub}</div>
-                    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    {/*  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                         {[
                             { label: t.donate.bank, primary: true },
                             { label: t.donate.vipps, primary: false },
@@ -271,6 +272,36 @@ export default function HomePage({ navigate }: HomePageProps) {
                                 {btn.label}
                             </button>
                         ))}
+                    </div> */}
+
+                    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                        {/* Bank button */}
+                        <button
+                            style={{ background: '#166534', color: '#fff', fontSize: '13px', fontWeight: 600, padding: '11px 22px', borderRadius: '10px', border: 'none', cursor: 'pointer', transition: 'all 0.2s' }}
+                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = '#1a7a40' }}
+                            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.background = '#166534' }}
+                        >
+                            {t.donate.bank}
+                        </button>
+
+                        {/* ✅ Vipps button — orange + triggers modal */}
+                        <button
+                            onClick={openModal}
+                            style={{ background: '#FF5B24', color: '#fff', fontSize: '13px', fontWeight: 700, padding: '11px 22px', borderRadius: '10px', border: 'none', cursor: 'pointer', transition: 'all 0.2s', fontStyle: 'italic', letterSpacing: '-0.3px' }}
+                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(255,91,36,0.4)' }}
+                            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
+                        >
+                            vipps →
+                        </button>
+
+                        {/* Monthly button */}
+                        <button
+                            style={{ background: '#162538', color: '#a8b8c8', fontSize: '13px', fontWeight: 600, padding: '11px 22px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.06)', cursor: 'pointer', transition: 'all 0.2s' }}
+                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.borderColor = 'rgba(22,101,52,0.28)' }}
+                            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)' }}
+                        >
+                            {t.donate.monthly}
+                        </button>
                     </div>
                 </div>
             </div>

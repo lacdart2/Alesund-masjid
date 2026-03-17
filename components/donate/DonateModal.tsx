@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
+import { IconCoffee, IconHeartFilled } from '@/components/ui/Icons'
 
 interface DonateModalProps {
     isOpen: boolean
@@ -117,13 +118,17 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
                 </button>
 
                 {/* Title */}
-                <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '8px', paddingRight: isRtl ? '0' : '40px', paddingLeft: isRtl ? '40px' : '0' }}>
+                {/*   <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '8px', paddingRight: isRtl ? '0' : '40px', paddingLeft: isRtl ? '40px' : '0' }}>
                     {m.title}
+                </div> */}
+                <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '8px', paddingRight: isRtl ? '0' : '40px', paddingLeft: isRtl ? '40px' : '0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {m.title}
+                    <IconHeartFilled size={20} />
                 </div>
-
                 {/* Subtitle */}
-                <div style={{ fontSize: '14px', color: '#a8b8c8', lineHeight: 1.6, marginBottom: '24px' }}>
+                <div style={{ fontSize: '14px', color: '#a8b8c8', lineHeight: 1.6, marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     {m.sub}
+                    <IconCoffee size={16} />
                 </div>
 
                 {/* Vipps number badge */}

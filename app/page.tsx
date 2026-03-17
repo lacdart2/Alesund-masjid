@@ -78,7 +78,7 @@ export default function App() {
       <div className="geo-pattern" />
       <Navbar currentPage={page} navigate={navigate} />
       <main style={{ position: 'relative', zIndex: 1, paddingTop: '64px' }}>
-        {page === 'home' && <HomePage navigate={navigate} />}
+        {page === 'home' && <HomePage navigate={navigate} openModal={() => setDonateModalOpen(true)} />}
         {page === 'prayers' && <PrayersPage />}
         {page === 'announcements' && <AnnouncementsPage />}
         {page === 'events' && <EventsPage />}

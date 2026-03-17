@@ -23,7 +23,6 @@ export const translations = {
         announcements: { title: 'Kunngjøringer', seeAll: 'Se alle →' },
         events: { title: 'Kommende arrangementer', seeAll: 'Se alle →' },
         quickLinks: { title: 'Hurtigtilgang', prayers: 'Bønnetider', announcements: 'Kunngjøringer', events: 'Arrangementer', location: 'Plassering' },
-        /*         donate: { title: 'Støtt moskéen', sub: 'Ditt bidrag hjelper oss å vedlikeholde fasiliteter og tjene fellesskapet. Hvert bidrag teller.', bank: 'Konto: 6550.05.90771', vipps: 'Vipps: 553705', monthly: 'Fast månedlig gave' }, */
         donate: {
             title: 'Støtt moskéen',
             sub: 'Ditt bidrag hjelper oss å vedlikeholde fasiliteter og tjene fellesskapet. Hvert bidrag teller.',
@@ -32,7 +31,7 @@ export const translations = {
             monthly: 'Fast månedlig gave',
             modal: {
                 title: 'Støtt moskéen ❤️',
-                sub: 'Selv 50 kr hjelper — det er prisen på en kaffe ☕',
+                sub: 'Selv 50 kr hjelper — det er prisen på en kaffe',
                 vippsNumber: 'Vipps-nummer: 553705',
                 selectAmount: 'Velg beløp',
                 custom: 'Annet beløp',
@@ -69,7 +68,6 @@ export const translations = {
         announcements: { title: 'Announcements', seeAll: 'See all →' },
         events: { title: 'Upcoming Events', seeAll: 'See all →' },
         quickLinks: { title: 'Quick Access', prayers: 'Prayer Times', announcements: 'Announcements', events: 'Events', location: 'Location' },
-        /*         donate: { title: 'Support the Mosque', sub: 'Your contribution helps maintain our facilities and serve the community. Every donation matters.', bank: 'Account: 6550.05.90771', vipps: 'Vipps: 553705', monthly: 'Monthly Giving' }, */
         donate: {
             title: 'Support the Mosque',
             sub: 'Your contribution helps maintain our facilities and serve the community. Every donation matters.',
@@ -77,8 +75,8 @@ export const translations = {
             vipps: 'Vipps: 553705',
             monthly: 'Monthly Giving',
             modal: {
-                title: 'Support the Mosque ❤️',
-                sub: "Even 50 kr helps — that's the price of a coffee ☕",
+                title: 'Support the Mosque',
+                sub: "Even 50 kr helps — that's the price of a coffee",
                 vippsNumber: 'Vipps number: 553705',
                 selectAmount: 'Select amount',
                 custom: 'Custom amount',
@@ -115,7 +113,6 @@ export const translations = {
         announcements: { title: 'الإعلانات', seeAll: 'عرض الكل →' },
         events: { title: 'الفعاليات القادمة', seeAll: 'عرض الكل →' },
         quickLinks: { title: 'وصول سريع', prayers: 'مواقيت الصلاة', announcements: 'الإعلانات', events: 'الفعاليات', location: 'الموقع' },
-        /*         donate: { title: 'دعم المسجد', sub: 'مساهمتك تساعد في صيانة مرافقنا وخدمة المجتمع.', bank: 'حساب: 6550.05.90771', vipps: 'فيبس: 553705', monthly: 'تبرع شهري' }, */
         donate: {
             title: 'دعم المسجد',
             sub: 'مساهمتك تساعد في صيانة مرافقنا وخدمة المجتمع.',
@@ -123,8 +120,8 @@ export const translations = {
             vipps: 'فيبس: 553705',
             monthly: 'تبرع شهري',
             modal: {
-                title: 'ادعم المسجد ❤️',
-                sub: 'حتى 50 كرون يساعد — بسعر فنجان قهوة ☕',
+                title: 'ادعم المسجد',
+                sub: 'حتى 50 كرون يساعد — بسعر فنجان قهوة',
                 vippsNumber: 'رقم Vipps: 553705',
                 selectAmount: 'اختر المبلغ',
                 custom: 'مبلغ آخر',
