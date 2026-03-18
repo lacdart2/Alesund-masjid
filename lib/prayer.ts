@@ -51,34 +51,6 @@ export function toMinutes(time: string): number {
     return h * 60 + m
 }
 
-//const IQAMA_MINUTES = 10
-
-/* export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isNow?: boolean } {
-    const now = new Date()
-    const current = now.getHours() * 60 + now.getMinutes()
-    const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
-
-    // Check if we're inside any prayer's 10 min window
-    for (const key of keys) {
-        const prayerMin = toMinutes(data[key])
-        if (current >= prayerMin && current < prayerMin + IQAMA_MINUTES) {
-            // ✅ We're in the "Now" window for this prayer
-            return { key, time: data[key], isNow: true }
-        }
-    }
-
-    // Special case: after Fajr iqama window → show Shurooq as next
-    const fajrEnd = toMinutes(data.fajr) + IQAMA_MINUTES
-    const sunriseMin = toMinutes(data.sunrise)
-    if (current >= fajrEnd && current < sunriseMin) {
-        return { key: 'sunrise', time: data.sunrise }
-    }
-
-    // Normal case: find next upcoming prayer
-    const found = keys.find(k => toMinutes(data[k]) > current)
-    const key = found ?? keys[0]
-    return { key, time: data[key] }
-} */
 export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isNow?: boolean } {
     const now = new Date()
     const current = now.getHours() * 60 + now.getMinutes()
@@ -96,36 +68,15 @@ export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; t
     const key = found ?? keys[0]
     return { key, time: data[key] }
 }
-/* export function formatCountdown(targetTime: string): string {
-const now = new Date()
-const current = now.getHours() * 60 + now.getMinutes()
-let diff = toMinutes(targetTime) - current
-if (diff < 0) diff += 24 * 60
-const h = Math.floor(diff / 60)
-const m = diff % 60
-const s = 59 - now.getSeconds()
-return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-} */
 
-export function formatCountdown(targetTime: string, isNow?: boolean): string {
+
+export function formatCountdown(targetTime: string): string {
     const now = new Date()
     const current = now.getHours() * 60 + now.getMinutes()
-    const s = 59 - now.getSeconds()
-
-    if (isNow) {
-        // Count down remaining iqama time
-        const prayerMin = toMinutes(targetTime)
-        const iqamaEnd = prayerMin + IQAMA_MINUTES
-        let diff = iqamaEnd - current
-        if (diff < 0) diff = 0
-        const h = Math.floor(diff / 60)
-        const m = diff % 60
-        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-    }
-
     let diff = toMinutes(targetTime) - current
     if (diff < 0) diff += 24 * 60
     const h = Math.floor(diff / 60)
     const m = diff % 60
+    const s = 59 - now.getSeconds()
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
