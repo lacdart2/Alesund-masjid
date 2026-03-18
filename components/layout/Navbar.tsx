@@ -18,8 +18,21 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
     const [scrolled, setScrolled] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
     const [isMobile, setIsMobile] = useState<boolean | null>(null)
+    const [isNative, setIsNative] = useState(false)
+
     const n = translations[lang].nav
 
+    useEffect(() => {
+        const checkNative = async () => {
+            try {
+                const { Capacitor } = await import('@capacitor/core')
+                setIsNative(Capacitor.isNativePlatform())
+            } catch {
+                setIsNative(false)
+            }
+        }
+        checkNative()
+    }, [])
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 10)
         window.addEventListener('scroll', onScroll)
@@ -81,7 +94,8 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
     }
 
     const langButtons: Lang[] = ['no', 'en', 'ar']
-    const NAVBAR_HEIGHT = isMobile ? 70 : 64
+
+    const NAVBAR_HEIGHT = isNative ? 100 : isMobile ? 70 : 64
 
     if (isMobile === null) return (
         <>
@@ -147,11 +161,13 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 height: `${NAVBAR_HEIGHT}px`,
-                padding: isMobile ? '0 16px' : '0 28px',
+                paddingTop: isNative ? 'max(env(safe-area-inset-top), 35px)' : '0',
+                paddingLeft: isMobile ? '16px' : '28px',
+                paddingRight: isMobile ? '16px' : '28px',
+                paddingBottom: '0',
                 boxShadow: scrolled ? '0 4px 40px rgba(0,0,0,0.8)' : 'none',
                 transition: 'all 0.3s',
             }}>
-
                 {/* Logo */}
                 <button
                     onClick={() => handleNav('home')}

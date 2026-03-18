@@ -115,7 +115,7 @@ export default function App() {
       <AdhanBanner banner={banner} onClose={() => setBanner(null)} />
 
       <Navbar currentPage={page} navigate={navigate} />
-      <main style={{ position: 'relative', zIndex: 1, paddingTop: '64px' }}>
+      <main style={{ position: 'relative', zIndex: 1, paddingTop: 'calc(64px + env(safe-area-inset-top))' }}>
         {page === 'home' && <HomePage navigate={navigate} openModal={() => setDonateModalOpen(true)} />}
         {page === 'prayers' && <PrayersPage />}
         {page === 'announcements' && <AnnouncementsPage />}

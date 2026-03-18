@@ -6,6 +6,11 @@ const config: CapacitorConfig = {
   webDir: 'out',
   ios: {
     contentInset: 'always'
+  },
+  plugins: {
+    StatusBar: {
+      overlaysWebView: false,
+    }
   }
 };
 

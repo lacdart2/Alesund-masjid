@@ -2,6 +2,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { LangProvider } from '@/lib/context'
+import StatusBarInit from '@/components/StatusBarInit'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="no" dir="ltr">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Ålesund Masjid" />
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <LangProvider>
+          <StatusBarInit />
           {children}
         </LangProvider>
       </body>

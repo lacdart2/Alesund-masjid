@@ -38,7 +38,8 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   min-height: 100vh;
-  padding-top: env(safe-area-inset-top);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 
