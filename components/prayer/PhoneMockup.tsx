@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -34,14 +33,12 @@ export default function PhoneMockup() {
     const next = getNextPrayer(todayData)
 
     useEffect(() => {
-        //const tick = () => setCountdown(formatCountdown(next.time))
-        const tick = () => setCountdown(formatCountdown(next.time, next.isNow))
+        const tick = () => setCountdown(formatCountdown(next.time))
         tick()
         const id = setInterval(tick, 1000)
         return () => clearInterval(id)
     }, [next.time])
 
-    // Render nothing until we know screen size
     if (isMobile === null) return <div style={{ width: '300px', height: '560px', background: '#111e2d', borderRadius: '38px' }} />
 
     const todayIndex = PRAYER_TIMES.findIndex(p => p.date === todayData.date)
@@ -90,34 +87,26 @@ export default function PhoneMockup() {
                 <div style={{ width: '84px', height: '22px', background: '#0b1520', borderRadius: '0 0 14px 14px', margin: '0 auto', flexShrink: 0 }} />
 
                 <div className="phone-scroll" style={{ flex: 1, overflowY: 'auto', padding: '13px', display: 'flex', flexDirection: 'column', gap: '9px' }}>
+
+                    {/* Green card */}
                     <div style={{ background: 'linear-gradient(135deg, #166534, #0e5027)', borderRadius: '14px', padding: '16px', border: '1px solid rgba(22,101,52,0.4)', direction: isRTL ? 'rtl' : 'ltr' }}>
-                        {/* Top row — NOW/NEXT label + countdown */}
+                        {/* Top row — label + countdown */}
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
                             <div style={{ ...text.labelCaps, color: 'rgba(255,255,255,0.45)' }}>
-                                {next.isNow
-                                    ? (lang === 'ar' ? 'الآن' : lang === 'no' ? 'NÅ' : 'NOW')
-                                    : t.phone.next
-                                }
+                                {t.phone.next}
                             </div>
                             <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '7px', padding: '4px 8px', fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
                                 {countdown}
                             </div>
                         </div>
 
-                        {/* Prayer name — smaller, lighter */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                            <div style={{ fontSize: '16px', fontWeight: 500, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.2px' }}>
-                                {t.prayers.names[next.key]}
-                            </div>
-                            {next.isNow && (
-                                <span style={{ fontSize: '11px', fontWeight: 700, background: 'rgba(255,255,255,0.15)', borderRadius: '6px', padding: '3px 8px', letterSpacing: '0.5px', color: '#fff' }}>
-                                    {lang === 'ar' ? 'الآن' : lang === 'no' ? 'Nå' : 'Now'}
-                                </span>
-                            )}
+                        {/* Prayer name */}
+                        <div style={{ fontSize: '15px', fontWeight: 500, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.2px', marginBottom: '4px' }}>
+                            {t.prayers.names[next.key]}
                         </div>
 
-                        {/* Time — big and dominant */}
-                        <div style={{ fontSize: '50px', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1, marginBottom: '8px' }}>
+                        {/* Prayer time — dominant */}
+                        <div style={{ fontSize: '52px', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1, marginBottom: '8px' }}>
                             {next.time}
                         </div>
 
@@ -126,6 +115,8 @@ export default function PhoneMockup() {
                             {t.phone.sub}
                         </div>
                     </div>
+
+                    {/* Date navigator */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#162538', borderRadius: '10px', padding: '8px 10px', border: '1px solid rgba(255,255,255,0.06)', direction: 'ltr' }}>
                         <button
                             onClick={() => handleNav(isRTL ? 1 : -1)}
@@ -153,6 +144,7 @@ export default function PhoneMockup() {
                         </button>
                     </div>
 
+                    {/* Prayer rows */}
                     {PRAYER_ROWS.map(key => {
                         const isNext = key === next.key && isToday
                         return (
