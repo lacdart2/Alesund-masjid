@@ -34,7 +34,8 @@ export default function PhoneMockup() {
     const next = getNextPrayer(todayData)
 
     useEffect(() => {
-        const tick = () => setCountdown(formatCountdown(next.time))
+        //const tick = () => setCountdown(formatCountdown(next.time))
+        const tick = () => setCountdown(formatCountdown(next.time, next.isNow))
         tick()
         const id = setInterval(tick, 1000)
         return () => clearInterval(id)
