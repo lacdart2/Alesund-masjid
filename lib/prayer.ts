@@ -51,7 +51,6 @@ export function toMinutes(time: string): number {
     return h * 60 + m
 }
 
-
 export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isNow?: boolean } {
     const now = new Date()
     const current = now.getHours() * 60 + now.getMinutes()
@@ -69,8 +68,18 @@ export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; t
     const key = found ?? keys[0]
     return { key, time: data[key] }
 }
+/* export function formatCountdown(targetTime: string): string {
+const now = new Date()
+const current = now.getHours() * 60 + now.getMinutes()
+let diff = toMinutes(targetTime) - current
+if (diff < 0) diff += 24 * 60
+const h = Math.floor(diff / 60)
+const m = diff % 60
+const s = 59 - now.getSeconds()
+return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+} */
 
-export function formatCountdown(targetTime: string): string {
+export function formatCountdown(targetTime: string, isNow?: boolean): string {
     const now = new Date()
     const current = now.getHours() * 60 + now.getMinutes()
     let diff = toMinutes(targetTime) - current
