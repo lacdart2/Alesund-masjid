@@ -94,6 +94,7 @@ export default function PrayerNotification() {
         return () => { document.body.style.overflow = '' }
     }, [modalOpen])
     const requestPermission = async () => {
+        alert('Button tapped! Permission: ' + (typeof Notification !== 'undefined' ? Notification.permission : 'undefined'))
         if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
             setEnabled(true)
             localStorage.setItem('prayerNotifications', 'true')
