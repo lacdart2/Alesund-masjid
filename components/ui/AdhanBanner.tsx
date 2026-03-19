@@ -38,7 +38,7 @@ export default function AdhanBanner({ banner, onClose }: AdhanBannerProps) {
         if (banner) {
             // Play adhan
             if (!audioRef.current) {
-                audioRef.current = new Audio('/adhan.mp3')
+                audioRef.current = new Audio('/adhan/adhan-1.mp3')
             }
             audioRef.current.currentTime = 0
             audioRef.current.play().catch(() => { })

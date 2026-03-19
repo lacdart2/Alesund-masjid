@@ -19,6 +19,9 @@ export function IconCoffee({ size = 24, className = '' }: IconProps) {
 export function IconUsers({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
 }
+export function IconSettings({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 0 0 2.572-1.065z" /><circle cx="12" cy="12" r="3" /></svg>
+}
 
 export function IconDroplet({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" /></svg>
