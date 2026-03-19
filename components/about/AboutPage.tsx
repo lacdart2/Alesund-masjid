@@ -4,16 +4,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
-import { IconMosque, IconBook, IconCalendar } from '@/components/ui/Icons'
-
-// Local icons not in Icons.tsx
-const IconUsers = ({ size = 24 }: { size?: number }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-)
+import { IconMosque, IconBook, IconCalendar, IconLock, IconUsers } from '@/components/ui/Icons'
 
 const IconDroplet = ({ size = 24 }: { size?: number }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -71,6 +62,35 @@ export default function AboutPage() {
         ],
     }
 
+    const community = {
+        no: {
+            sectionTitle: 'Fellesskap',
+            name: 'Muslimske søstre i Ålesund og omegn',
+            badge: 'Kun for kvinner',
+            members: '85 medlemmer',
+            desc: 'En privat gruppe for muslimske kvinner i Ålesund og omegn. Her kan du få informasjon om aktiviteter, bli kjent med søstre og dele erfaringer. Målet er å bygge fellesskap og gjøre det enklere å delta i muslimsk liv i Ålesund.',
+            btn: 'Se gruppe på Facebook',
+        },
+        en: {
+            sectionTitle: 'Community',
+            name: 'Muslim Sisters in Ålesund and surroundings',
+            badge: 'Women only',
+            members: '85 members',
+            desc: 'A private group for Muslim women in Ålesund and the surrounding area. Get information about activities, connect with sisters, and share experiences. The goal is to build community and make it easier to participate in Muslim life in Ålesund.',
+            btn: 'View group on Facebook',
+        },
+        ar: {
+            sectionTitle: 'المجتمع',
+            name: 'الأخوات المسلمات في أولسند والمناطق المحيطة',
+            badge: 'للنساء فقط',
+            members: '85 عضوة',
+            desc: 'مجموعة خاصة للمرأة المسلمة في أولسند والمناطق المجاورة. احصلي على معلومات عن الأنشطة، وتعرفي على الأخوات، وشاركي تجاربك. الهدف بناء مجتمع وتسهيل المشاركة في الحياة الإسلامية في أولسند.',
+            btn: 'عرض المجموعة على فيسبوك',
+        },
+    }
+
+    const c = community[lang]
+
     return (
         <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '40px 20px' : '64px 40px' }}>
             <div style={{ textAlign: 'center', marginBottom: '44px' }}>
@@ -102,34 +122,10 @@ export default function AboutPage() {
                     <img
                         src="/images/prayer-hall.jpg"
                         alt="Ålesund Masjid prayer hall"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            minHeight: '340px',
-                            maxHeight: isMobile ? 'none' : '380px',
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            display: 'block',
-                        }}
+                        style={{ width: '100%', height: '100%', minHeight: '340px', maxHeight: isMobile ? 'none' : '380px', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
                     />
-                    {/* Subtle overlay with Basmala */}
-                    <div style={{
-                        position: 'absolute',
-                        bottom: 0, left: 0, right: 0,
-                        height: '60%',
-                        background: 'linear-gradient(to top, rgba(11,21,32,0.9), transparent)',
-                        display: 'flex',
-                        alignItems: 'flex-end',
-                        justifyContent: 'center',
-                        paddingBottom: '20px',
-                    }}>
-                        <div style={{
-                            fontFamily: "'Noto Sans Arabic', sans-serif",
-                            fontSize: '26px',
-                            color: 'rgba(200,169,107,0.55)',
-                            letterSpacing: '3px',
-                            textShadow: '0 2px 12px rgba(0,0,0,0.6)',
-                        }}>
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60%', background: 'linear-gradient(to top, rgba(11,21,32,0.9), transparent)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '20px' }}>
+                        <div style={{ fontFamily: "'Noto Sans Arabic', sans-serif", fontSize: '26px', color: 'rgba(200,169,107,0.55)', letterSpacing: '3px', textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
                             بسم الله الرحمن الرحيم
                         </div>
                     </div>
@@ -141,32 +137,60 @@ export default function AboutPage() {
                 <div style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px', marginBottom: '20px', direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
                     {lang === 'ar' ? 'الخدمات والمرافق' : lang === 'no' ? 'Tjenester og fasiliteter' : 'Services & Facilities'}
                 </div>
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)',
-                    gap: '10px',
-                    direction: lang === 'ar' ? 'rtl' : 'ltr',
-                }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '10px', direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
                     {facilities[lang].map((f, i) => (
                         <div
                             key={i}
-                            style={{
-                                background: '#111e2d',
-                                border: '1px solid rgba(255,255,255,0.06)',
-                                borderRadius: '14px',
-                                padding: '16px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px',
-                                transition: 'all 0.2s',
-                            }}
+                            style={{ background: '#111e2d', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '14px', padding: '16px', display: 'flex', alignItems: 'center', gap: '10px', transition: 'all 0.2s' }}
                             onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(22,101,52,0.28)'}
                             onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'}
                         >
-                            <span style={{ color: '#22a052', flexShrink: 0 }}>{f.icon}</span>
+
+                            <span style={{ color: '#22a052', flexShrink: 0, alignSelf: 'center', display: 'flex' }}>{f.icon}</span>
                             <span style={{ fontSize: '13px', color: '#a8b8c8', lineHeight: 1.4 }}>{f.label}</span>
                         </div>
                     ))}
+                </div>
+            </div>
+
+            {/* Community Groups */}
+            <div style={{ marginTop: '56px', direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
+                <div style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px', marginBottom: '20px' }}>
+                    {c.sectionTitle}
+                </div>
+                <div
+                    style={{ background: '#111e2d', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '20px', overflow: 'hidden', display: 'flex', flexDirection: isMobile ? 'column' : 'row', transition: 'all 0.2s' }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(22,101,52,0.28)'}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'}
+                >
+                    <div style={{ width: isMobile ? '100%' : '200px', height: isMobile ? '160px' : 'auto', flexShrink: 0 }}>
+                        <img
+                            src="/images/womens-group.png"
+                            alt="Muslimske søstre"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                        />
+                    </div>
+                    <div style={{ padding: '20px 24px', flex: 1 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '10px' }}>
+                            <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', color: '#22a052', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', padding: '4px 10px', borderRadius: '20px' }}>
+                                {c.members}
+                            </span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '10px', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', color: '#607080', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', padding: '4px 10px', borderRadius: '20px' }}>
+                                <IconLock size={11} />
+                                {c.badge}
+                            </span>
+                        </div>
+                        <div style={{ fontSize: '16px', fontWeight: 700, color: '#f0f4f8', marginBottom: '8px' }}>{c.name}</div>
+                        <p style={{ fontSize: '13px', color: '#a8b8c8', lineHeight: 1.65, marginBottom: '16px' }}>{c.desc}</p>
+                        <a href="https://www.facebook.com/groups/902368229190714"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', color: '#22a052', fontSize: '13px', fontWeight: 700, padding: '9px 16px', borderRadius: '10px', textDecoration: 'none' }}
+                        >
+                            <IconUsers size={15} />
+                            {c.btn}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

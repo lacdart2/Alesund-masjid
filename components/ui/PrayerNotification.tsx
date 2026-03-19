@@ -213,7 +213,7 @@ export default function PrayerNotification() {
                         {/* Enable toggle */}
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#162538', borderRadius: '14px', padding: '16px', marginBottom: '16px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <span style={{ color: enabled ? '#22a052' : '#607080' }}><IconBell size={20} /></span>
+                                <span style={{ color: enabled ? '#22a052' : '#607080', display: 'flex' }}><IconBell size={20} /></span>
                                 <span style={{ fontSize: '15px', fontWeight: 600, color: '#f0f4f8' }}>{l.enable}</span>
                             </div>
                             <button
@@ -358,8 +358,8 @@ export default function PrayerNotification() {
                                     }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                             {prayerToggles[key]
-                                                ? <span style={{ color: '#22a052' }}><IconBell size={18} /></span>
-                                                : <span style={{ color: '#607080' }}><IconBellOff size={18} /></span>
+                                                ? <span style={{ color: '#22a052', display: 'flex' }}><IconBell size={18} /></span>
+                                                : <span style={{ color: '#607080', display: 'flex' }}><IconBellOff size={18} /></span>
                                             }
                                             <span style={{ fontSize: '15px', fontWeight: 500, color: '#f0f4f8' }}>
                                                 {l.prayers[key]}
@@ -400,8 +400,9 @@ export default function PrayerNotification() {
                             {l.save}
                         </button>
                     </div>
-                </div>
-            )}
+                </div >
+            )
+            }
         </>
     )
 }
