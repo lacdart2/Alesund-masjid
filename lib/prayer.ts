@@ -32,6 +32,17 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: '2026-03-18', fajr: '05:07', sunrise: '06:43', dhuhr: '12:44', asr: '15:47', maghrib: '18:45', isha: '20:06' },
     { date: '2026-03-19', fajr: '05:03', sunrise: '06:40', dhuhr: '12:43', asr: '15:49', maghrib: '18:48', isha: '20:08' },
     { date: '2026-03-20', fajr: '05:00', sunrise: '06:36', dhuhr: '12:43', asr: '15:50', maghrib: '18:51', isha: '20:10' },
+    { date: '2026-03-21', fajr: '04:55', sunrise: '06:33', dhuhr: '12:43', asr: '15:50', maghrib: '18:53', isha: '20:11' },
+    { date: '2026-03-22', fajr: '04:50', sunrise: '06:30', dhuhr: '12:42', asr: '15:52', maghrib: '18:55', isha: '20:13' },
+    { date: '2026-03-23', fajr: '04:45', sunrise: '06:26', dhuhr: '12:42', asr: '15:54', maghrib: '18:58', isha: '20:15' },
+    { date: '2026-03-24', fajr: '04:41', sunrise: '06:23', dhuhr: '12:42', asr: '15:56', maghrib: '19:01', isha: '20:17' },
+    { date: '2026-03-25', fajr: '04:36', sunrise: '06:20', dhuhr: '12:41', asr: '15:57', maghrib: '19:04', isha: '20:19' },
+    { date: '2026-03-26', fajr: '04:31', sunrise: '06:16', dhuhr: '12:41', asr: '15:59', maghrib: '19:06', isha: '20:22' },
+    { date: '2026-03-27', fajr: '04:27', sunrise: '06:13', dhuhr: '12:41', asr: '16:01', maghrib: '19:09', isha: '20:24' },
+    { date: '2026-03-28', fajr: '04:22', sunrise: '06:10', dhuhr: '12:41', asr: '16:02', maghrib: '19:12', isha: '20:26' },
+    { date: '2026-03-29', fajr: '05:16', sunrise: '07:06', dhuhr: '13:40', asr: '17:04', maghrib: '20:14', isha: '21:28' },
+    { date: '2026-03-30', fajr: '05:11', sunrise: '07:03', dhuhr: '13:40', asr: '17:06', maghrib: '20:17', isha: '21:30' },
+    { date: '2026-03-31', fajr: '05:06', sunrise: '07:00', dhuhr: '13:40', asr: '17:07', maghrib: '20:20', isha: '21:32' },
 ]
 
 
