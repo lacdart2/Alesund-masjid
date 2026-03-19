@@ -85,7 +85,14 @@ export default function PrayerNotification() {
         const savedToggles = localStorage.getItem('prayerToggles')
         if (savedToggles) setPrayerToggles(JSON.parse(savedToggles))
     }, [])
-
+    useEffect(() => {
+        if (modalOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => { document.body.style.overflow = '' }
+    }, [modalOpen])
     const requestPermission = async () => {
         const isCapacitor = typeof (window as any).Capacitor !== 'undefined'
         if (isCapacitor) {
@@ -180,21 +187,31 @@ export default function PrayerNotification() {
 
             {/* Settings Modal */}
             {modalOpen && (
-                <div style={{
-                    position: 'fixed', inset: 0, zIndex: 5000,
-                    background: 'rgba(0,0,0,0.7)',
-                    backdropFilter: 'blur(8px)',
-                    display: 'flex', alignItems: 'flex-end',
-                    justifyContent: 'center',
-                }}>
-                    <div style={{
-                        background: '#111e2d',
-                        borderRadius: '24px 24px 0 0',
-                        width: '100%', maxWidth: '480px',
-                        padding: '24px 20px 80px',
-                        maxHeight: '85vh', overflowY: 'auto',
-                        direction: lang === 'ar' ? 'rtl' : 'ltr',
+                <div
+                    onClick={() => setModalOpen(false)}
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 5000,
+                        background: 'rgba(0,0,0,0.7)',
+                        backdropFilter: 'blur(8px)',
+                        display: 'flex', alignItems: 'flex-end',
+                        justifyContent: 'center',
                     }}>
+
+                    <div
+                        onClick={e => e.stopPropagation()}
+                        onWheel={e => e.stopPropagation()}
+                        style={{
+                            background: '#111e2d',
+                            borderRadius: '24px 24px 0 0',
+                            width: '100%', maxWidth: '480px',
+                            padding: '24px 20px',
+                            paddingBottom: 'max(32px, env(safe-area-inset-bottom, 20px))',
+                            maxHeight: '85vh', overflowY: 'auto',
+                            direction: lang === 'ar' ? 'rtl' : 'ltr',
+                            scrollbarWidth: 'none' as const,
+                            overscrollBehavior: 'contain' as const,
+
+                        }}>
                         {/* Modal header */}
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
                             <div style={{ fontSize: '18px', fontWeight: 700, color: '#f0f4f8' }}>{l.settings}</div>
