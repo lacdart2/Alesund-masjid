@@ -93,35 +93,18 @@ export default function PrayerNotification() {
         }
         return () => { document.body.style.overflow = '' }
     }, [modalOpen])
-    const requestPermission = async () => {
-        alert('Button tapped! Permission: ' + (typeof Notification !== 'undefined' ? Notification.permission : 'undefined'))
-        if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-            setEnabled(true)
-            localStorage.setItem('prayerNotifications', 'true')
-            window.dispatchEvent(new StorageEvent('storage', { key: 'prayerNotifications', newValue: 'true' }))
-            return
-        }
-        const isCapacitor = typeof (window as any).Capacitor !== 'undefined'
-        if (isCapacitor) {
-            try {
-                const { LocalNotifications } = await import('@capacitor/local-notifications')
-                const result = await LocalNotifications.requestPermissions()
-                if (result.display === 'granted') {
-                    setEnabled(true)
-                    setPermission('granted')
-                    localStorage.setItem('prayerNotifications', 'true')
-                    window.dispatchEvent(new StorageEvent('storage', { key: 'prayerNotifications', newValue: 'true' }))
-                }
-            } catch (e) { console.error(e) }
-        } else {
-            const result = await Notification.requestPermission()
+    const requestPermission = () => {
+        if (typeof Notification === 'undefined') return
+
+        // Must call synchronously from user gesture
+        Notification.requestPermission().then(result => {
             setPermission(result)
             if (result === 'granted') {
                 setEnabled(true)
                 localStorage.setItem('prayerNotifications', 'true')
                 window.dispatchEvent(new StorageEvent('storage', { key: 'prayerNotifications', newValue: 'true' }))
             }
-        }
+        })
     }
 
     const handleDisable = () => {
@@ -225,10 +208,6 @@ export default function PrayerNotification() {
                             <button onClick={() => setModalOpen(false)} style={{ background: 'rgba(255,255,255,0.07)', border: 'none', borderRadius: '10px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#a8b8c8' }}>
                                 <IconX size={18} />
                             </button>
-                        </div>
-                        {/* DEBUG - remove after fix */}
-                        <div style={{ fontSize: '11px', color: '#607080', marginBottom: '8px', textAlign: 'center' }}>
-                            Permission: {permission} | Enabled: {String(enabled)} | Notification: {typeof Notification !== 'undefined' ? Notification.permission : 'undefined'}
                         </div>
 
                         {/* Enable toggle */}
