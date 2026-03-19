@@ -1,10 +1,9 @@
 
 'use client'
 
-
 import { useLang } from '@/lib/context'
 import { useState, useEffect } from 'react'
-const EID_DATE = new Date('2026-03-21T00:00:00')
+const EID_DATE = new Date('2026-03-20T00:00:00')
 const ZAKAT_VIPPS = '91155143'
 const ACCOUNT = '6550.05.90771'
 
@@ -16,7 +15,7 @@ const zakatText = {
         deadline: 'Må betales før Eid-bønnen',
         desc: 'Zakat Al-Fitr er obligatorisk for alle muslimer som har råd. Betal på vegne av deg selv og alle i din husstand.',
         note: 'Ønsker du at din Zakat tas ut som mat i Nigeria (slik Profeten befalte), send til Vipps 91155143.',
-        eidNote: 'Eid kan være 20. eller 21. mars — betal i god tid!',
+        eidNote: 'Eid er i morgen 20. mars — betal før Eid-bønnen kl. 10:00!',
         vippsBtn: 'Betal Zakat via Vipps',
         fallback: 'Sørg for at Vipps er installert på enheten din.',
         copy: 'Kopier',
@@ -31,7 +30,7 @@ const zakatText = {
         deadline: 'Must be paid before Eid prayer',
         desc: 'Zakat Al-Fitr is obligatory for every Muslim who is able. Pay on behalf of yourself and every member of your household.',
         note: 'If you want your Zakat distributed as food in Nigeria (as the Prophet commanded), send to Vipps 91155143.',
-        eidNote: 'Eid could be Mar 20 or 21 — pay early to be safe!',
+        eidNote: 'Eid is tomorrow March 20 — pay before the Eid prayer at 10:00!',
         vippsBtn: 'Pay Zakat via Vipps',
         fallback: 'Please make sure Vipps is installed on your device.',
         copy: 'Copy',
@@ -46,7 +45,7 @@ const zakatText = {
         deadline: 'يجب دفعها قبل صلاة العيد',
         desc: 'زكاة الفطر واجبة على كل مسلم مستطيع. ادفع عن نفسك وعن كل أفراد أسرتك.',
         note: 'إذا أردت إخراج زكاتك طعاماً في نيجيريا كما أمر النبي ﷺ، أرسل إلى Vipps 91155143.',
-        eidNote: 'العيد قد يكون 20 أو 21 مارس — ادفع مبكراً!',
+        eidNote: 'العيد غداً 20 مارس — ادفع قبل صلاة العيد الساعة 10:00!',
         vippsBtn: 'دفع الزكاة عبر Vipps',
         fallback: 'يرجى التأكد من تثبيت تطبيق Vipps على جهازك.',
         copy: 'نسخ',

@@ -1,3 +1,4 @@
+
 export type PrayerKey = 'fajr' | 'sunrise' | 'dhuhr' | 'asr' | 'maghrib' | 'isha'
 export type Lang = 'no' | 'en' | 'ar'
 
@@ -20,6 +21,7 @@ export type Announcement = {
     title: Record<Lang, string>
     body: Record<Lang, string>
     date: string
+    mapUrl?: string
 }
 
 export type MasjidEvent = {

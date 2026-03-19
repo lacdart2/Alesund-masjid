@@ -2,6 +2,24 @@ import { Announcement, MasjidEvent } from '@/types'
 
 export const ANNOUNCEMENTS: Announcement[] = [
     {
+        id: '0',
+        icon: 'moon-stars',
+        colorClass: 'gold',
+        tag: 'Eid Al-Fitr',
+        title: {
+            no: '🌙 Eid Al-Fitr — Fredag 20. Mars 2026',
+            en: '🌙 Eid Al-Fitr — Friday March 20, 2026',
+            ar: '🌙 عيد الفطر — الجمعة 20 مارس 2026',
+        },
+        body: {
+            no: 'Tekbirat kl. 09:30 · Eid-bønn kl. 10:00 · Herd Hallen i Moa, Vestmoa 21, 6018 Ålesund. Det blir servert kake og saft. Aktiviteter for barna. Ta gjerne med mat eller søtsaker 😊 Zakat Al-Fitr betales FØR Eid-bønnen.',
+            en: 'Takbeer at 09:30 · Eid prayer at 10:00 · Herd Hallen i Moa, Vestmoa 21, 6018 Ålesund. Cake and juice will be served. Activities for children. Feel free to bring food or sweets 😊 Zakat Al-Fitr must be paid BEFORE the Eid prayer.',
+            ar: 'التكبيرات الساعة 09:30 · صلاة العيد الساعة 10:00 · Herd Hallen i Moa، Vestmoa 21، 6018 Ålesund. ستُقدَّم الكعك والعصير. أنشطة للأطفال. يُرحَّب بإحضار الطعام أو الحلوى 😊 يجب دفع زكاة الفطر قبل صلاة العيد.',
+        },
+        date: '20 mars 2026',
+        mapUrl: 'https://maps.google.com/?q=Vestmoa+21,+6018+%C3%85lesund',
+    },
+    {
         id: '1',
         icon: 'moon-stars',
         colorClass: 'gold',
@@ -35,55 +53,36 @@ export const ANNOUNCEMENTS: Announcement[] = [
         },
         date: 'Mars 2026',
     }
-
 ]
 
 export const EVENTS: MasjidEvent[] = [
-    {
-        id: '1',
-        day: '20', month: 'Mar', year: 2026,
-        type: { no: 'Ramadan', en: 'Ramadan', ar: 'رمضان' },
-        name: { no: 'Siste Ramadan-dag', en: 'Last Day of Ramadan', ar: 'آخر يوم من رمضان' },
-        time: '—',
-        location: 'Ålesund Masjid',
-        tentative: true,
-        tentativeNote: { no: 'Dato ikke bekreftet', en: 'Date not confirmed', ar: 'التاريخ غير مؤكد' },
-    },
+    // Mar 20 first — Eid is the main event
     {
         id: '2',
-        day: '21', month: 'Mar', year: 2026,
-        type: { no: 'Eid', en: 'Eid', ar: 'عيد' },
-        name: { no: 'Eid Al-Fitr 1447', en: 'Eid Al-Fitr 1447', ar: 'عيد الفطر 1447' },
-        time: '08:00',
-        location: 'Ålesund Masjid',
-        tentative: true,
-        tentativeNote: { no: 'Kan være 20. eller 21. mars', en: 'Could be Mar 20 or 21', ar: 'قد يكون 20 أو 21 مارس' },
+        day: '20', month: 'Mar', year: 2026,
+        type: { no: 'Eid Al-Fitr', en: 'Eid Al-Fitr', ar: 'عيد الفطر' },
+        name: { no: 'Eid Al-Fitr 1447 🎉', en: 'Eid Al-Fitr 1447 🎉', ar: 'عيد الفطر 1447 🎉' },
+        time: 'Tekbirat 09:30 · Bønn 10:00',
+        location: 'Herd Hallen i Moa',
     },
     {
         id: '3',
         day: '20', month: 'Mar', year: 2026,
         type: { no: 'Eid-bønn', en: 'Eid Prayer', ar: 'صلاة العيد' },
         name: { no: 'Eid Al-Fitr bønn 1447', en: 'Eid Al-Fitr Prayer 1447', ar: 'صلاة عيد الفطر 1447' },
-        time: '—',
-        location: '—',
-        tentative: true,
-        tentativeNote: {
-            no: 'Kan være 20. eller 21. mars — Sted og tid kommer snart',
-            en: 'Could be Mar 20 or 21 — Location and time coming soon',
-            ar: 'قد يكون 20 أو 21 مارس — المكان والوقت قريباً'
-        },
+        time: '10:00',
+        location: 'Herd Hallen i Moa',
     },
     {
-        id: '4',
-        day: '28', month: 'Mar', year: 2026,
-        type: { no: 'Fellesskap', en: 'Community', ar: 'مجتمع' },
-        name: { no: 'Fellesskapets iftaar-middag', en: 'Community Iftaar Dinner', ar: 'عشاء إفطار المجتمع' },
-        time: '18:30',
-        location: 'Fellesskapsrom',
+        id: '1',
+        day: '19', month: 'Mar', year: 2026,
+        type: { no: 'Ramadan', en: 'Ramadan', ar: 'رمضان' },
+        name: { no: 'Siste dag av Ramadan', en: 'Last Day of Ramadan', ar: 'آخر يوم من رمضان' },
+        time: '—',
+        location: 'Ålesund Masjid',
     },
 ]
 
-// Month name to number map
 const MONTH_MAP: Record<string, number> = {
     Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
     Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
@@ -91,7 +90,6 @@ const MONTH_MAP: Record<string, number> = {
 
 export function getUpcomingEvents(): MasjidEvent[] {
     const now = new Date()
-    // Set to start of today
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
 
     return EVENTS.filter(ev => {

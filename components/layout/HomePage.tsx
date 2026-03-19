@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -11,6 +10,7 @@ import PrayerGrid from '@/components/prayer/PrayerGrid'
 import PhoneMockup from '@/components/prayer/PhoneMockup'
 import { IconMosque, IconSpeakerphone, IconCalendar, IconMapPin, IconHeart, AnnouncementIcon, IconClock } from '@/components/ui/Icons'
 import ZakatBanner from '@/components/ui/ZakatBanner'
+import EidBanner from '@/components/ui/EidBanner'
 
 interface HomePageProps {
     navigate: (page: PageKey) => void
@@ -30,7 +30,6 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
         return () => window.removeEventListener('resize', check)
     }, [])
 
-    // Hold just the hero until we know screen size — footer stays down
     if (isMobile === null) return (
         <div style={{ minHeight: '100vh', background: '#0b1520' }} />
     )
@@ -114,6 +113,9 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                 </section>
             )}
 
+            {/* ✅ Eid Banner — shows Mar 19-21 only, auto-hides after */}
+            <EidBanner />
+
             <ZakatBanner />
 
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '0 20px' : '0 40px' }}>
@@ -183,16 +185,42 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                             <div style={{ width: '44px', height: '44px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: '#22a052', background: a.colorClass === 'gold' ? 'rgba(200,169,107,0.1)' : a.colorClass === 'green' ? 'rgba(22,101,52,0.12)' : 'rgba(59,130,246,0.1)' }}>
                                 <AnnouncementIcon icon={a.icon} size={20} />
                             </div>
-                            <div>
+                            <div style={{ flex: 1 }}>
                                 <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#22a052', marginBottom: '3px' }}>{a.tag}</div>
                                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8', marginBottom: '3px' }}>{a.title[lang]}</div>
                                 <div style={{ fontSize: '13px', color: '#a8b8c8', lineHeight: 1.65 }}>{a.body[lang]}</div>
                                 <div style={{ fontSize: '11px', color: '#607080', marginTop: '7px' }}>{a.date}</div>
+
+                                {/* ✅ Google Maps button — only for announcements with mapUrl */}
+                                {a.mapUrl && (
+                                    <a href={a.mapUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '6px',
+                                            marginTop: '12px',
+                                            background: 'rgba(22,101,52,0.14)',
+                                            border: '1px solid rgba(22,101,52,0.28)',
+                                            color: '#22a052',
+                                            fontSize: '12px',
+                                            fontWeight: 700,
+                                            padding: '7px 14px',
+                                            borderRadius: '8px',
+                                            textDecoration: 'none',
+                                        }}
+                                    >
+                                        <IconMapPin size={14} />
+                                        {lang === 'ar' ? 'الاتجاهات' : lang === 'no' ? 'Veibeskrivelse' : 'Get Directions'}
+                                    </a>
+                                )}
                             </div>
                         </div>
                     ))}
                 </div>
-            </div>
+            </div >
 
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px 0' : '48px 40px 0' }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
@@ -206,27 +234,20 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                             key={ev.id}
                             style={{
                                 background: '#111e2d',
-                                border: `1px solid ${ev.tentative ? 'rgba(234,179,8,0.2)' : 'rgba(255,255,255,0.06)'}`,
+                                border: '1px solid rgba(255,255,255,0.06)',
                                 borderRadius: '24px', overflow: 'hidden', cursor: 'pointer', transition: 'all 0.25s'
                             }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = ev.tentative ? 'rgba(234,179,8,0.4)' : 'rgba(22,101,52,0.28)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = ev.tentative ? 'rgba(234,179,8,0.2)' : 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(22,101,52,0.28)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}
                         >
                             <div style={{ background: 'linear-gradient(135deg, rgba(22,101,52,0.1), rgba(22,101,52,0.03))', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 22px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                                 <div>
                                     <div style={{ fontSize: '30px', fontWeight: 800, color: '#22a052', lineHeight: 1, letterSpacing: '-1px' }}>{ev.day}</div>
                                     <div style={{ fontSize: '11px', fontWeight: 600, color: '#607080', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{ev.month}</div>
                                 </div>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
-                                    <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', color: '#22a052', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', padding: '4px 10px', borderRadius: '20px' }}>
-                                        {ev.type[lang]}
-                                    </span>
-                                    {ev.tentative && (
-                                        <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.6px', textTransform: 'uppercase', color: '#eab308', background: 'rgba(234,179,8,0.1)', border: '1px solid rgba(234,179,8,0.25)', padding: '4px 10px', borderRadius: '20px' }}>
-                                            {lang === 'ar' ? 'غير مؤكد' : lang === 'no' ? 'Tentativt' : 'Tentative'}
-                                        </span>
-                                    )}
-                                </div>
+                                <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', color: '#22a052', background: 'rgba(22,101,52,0.14)', border: '1px solid rgba(22,101,52,0.28)', padding: '4px 10px', borderRadius: '20px' }}>
+                                    {ev.type[lang]}
+                                </span>
                             </div>
                             <div style={{ padding: '16px 22px' }}>
                                 <div style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8', marginBottom: '9px' }}>{ev.name[lang]}</div>
@@ -238,11 +259,6 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                                         <IconMapPin size={14} /> {ev.location}
                                     </span>
                                 </div>
-                                {ev.tentative && ev.tentativeNote && (
-                                    <div style={{ marginTop: '10px', padding: '7px 10px', background: 'rgba(234,179,8,0.07)', border: '1px solid rgba(234,179,8,0.15)', borderRadius: '10px', fontSize: '12px', color: '#eab308' }}>
-                                        ⚠️ {ev.tentativeNote[lang]}
-                                    </div>
-                                )}
                             </div>
                         </div>
                     ))}
@@ -257,9 +273,7 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                     </div>
                     <div style={{ fontSize: '22px', fontWeight: 700, color: '#f0f4f8', marginBottom: '7px', letterSpacing: '-0.4px' }}>{t.donate.title}</div>
                     <div style={{ fontSize: '14px', color: '#a8b8c8', lineHeight: 1.7, maxWidth: '520px', marginBottom: '22px' }}>{t.donate.sub}</div>
-
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                        {/* Bank button */}
                         <button
                             style={{ background: '#166534', color: '#fff', fontSize: '13px', fontWeight: 600, padding: '11px 22px', borderRadius: '10px', border: 'none', cursor: 'pointer', transition: 'all 0.2s' }}
                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = '#1a7a40' }}
@@ -267,8 +281,6 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                         >
                             {t.donate.bank}
                         </button>
-
-                        {/* ✅ Vipps button — orange + triggers modal */}
                         <button
                             onClick={openModal}
                             style={{ background: '#FF5B24', color: '#fff', fontSize: '13px', fontWeight: 700, padding: '11px 22px', borderRadius: '10px', border: 'none', cursor: 'pointer', transition: 'all 0.2s', fontStyle: 'italic', letterSpacing: '-0.3px' }}
@@ -277,8 +289,6 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                         >
                             vipps →
                         </button>
-
-                        {/* Monthly button */}
                         <button
                             style={{ background: '#162538', color: '#a8b8c8', fontSize: '13px', fontWeight: 600, padding: '11px 22px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.06)', cursor: 'pointer', transition: 'all 0.2s' }}
                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.borderColor = 'rgba(22,101,52,0.28)' }}
