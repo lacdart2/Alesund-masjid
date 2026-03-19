@@ -225,6 +225,10 @@ export default function PrayerNotification() {
                                 <IconX size={18} />
                             </button>
                         </div>
+                        {/* DEBUG - remove after fix */}
+                        <div style={{ fontSize: '11px', color: '#607080', marginBottom: '8px', textAlign: 'center' }}>
+                            Permission: {permission} | Enabled: {String(enabled)} | Notification: {typeof Notification !== 'undefined' ? Notification.permission : 'undefined'}
+                        </div>
 
                         {/* Enable toggle */}
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#162538', borderRadius: '14px', padding: '16px', marginBottom: '16px' }}>
