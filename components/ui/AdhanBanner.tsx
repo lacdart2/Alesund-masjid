@@ -38,7 +38,16 @@ export default function AdhanBanner({ banner, onClose }: AdhanBannerProps) {
         if (banner) {
             // Play adhan
             if (!audioRef.current) {
-                audioRef.current = new Audio('/adhan/adhan-1.mp3')
+                // audioRef.current = new Audio('/adhan/adhan-1.mp3')
+                const savedAdhan = localStorage.getItem('selectedAdhan') ?? 'tamer'
+                const adhanFiles: Record<string, string> = {
+                    'abdul-rahman': '/adhan/abdul-rahman-al-arake.mp3',
+                    'adan-al-jazaer': '/adhan/adan-al-jazaer.mp3',
+                    'adham': '/adhan/adham-al-sharqawe.mp3',
+                    'hamza': '/adhan/hamza-al-majale.mp3',
+                    'tamer': '/adhan/tamer-islam.mp3',
+                }
+                audioRef.current = new Audio(adhanFiles[savedAdhan] ?? '/adhan/tamer-islam.mp3')
             }
             audioRef.current.currentTime = 0
             audioRef.current.play().catch(() => { })

@@ -44,52 +44,6 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: '2026-03-30', fajr: '05:11', sunrise: '07:03', dhuhr: '13:40', asr: '17:06', maghrib: '20:17', isha: '21:30' },
     { date: '2026-03-31', fajr: '05:06', sunrise: '07:00', dhuhr: '13:40', asr: '17:07', maghrib: '20:20', isha: '21:32' },
 ]
-/* 
-
-function getLocalDateString(): string {
-    // Use Norway timezone explicitly — works correctly after midnight
-    return new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Oslo' })
-    // en-CA gives us YYYY-MM-DD format natively
-}
-
-export function getTodayPrayers(): Omit<PrayerTime, 'id'> {
-    const today = getLocalDateString()
-    return PRAYER_TIMES.find(p => p.date === today) ?? PRAYER_TIMES[PRAYER_TIMES.length - 1]
-}
-export function toMinutes(time: string): number {
-    if (!time || time === '--:--') return 9999
-    const [h, m] = time.split(':').map(Number)
-    return h * 60 + m
-}
-
-export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isNow?: boolean } {
-    const now = new Date()
-    const current = now.getHours() * 60 + now.getMinutes()
-    const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
-
-    // After Fajr passes → show Shurooq as next
-    const fajrMin = toMinutes(data.fajr)
-    const sunriseMin = toMinutes(data.sunrise)
-    if (current >= fajrMin && current < sunriseMin) {
-        return { key: 'sunrise', time: data.sunrise }
-    }
-
-    // Normal case — find next upcoming prayer
-    const found = keys.find(k => toMinutes(data[k]) > current)
-    const key = found ?? keys[0]
-    return { key, time: data[key] }
-}
-
-export function formatCountdown(targetTime: string, isNow?: boolean): string {
-    const now = new Date()
-    const current = now.getHours() * 60 + now.getMinutes()
-    let diff = toMinutes(targetTime) - current
-    if (diff < 0) diff += 24 * 60
-    const h = Math.floor(diff / 60)
-    const m = diff % 60
-    const s = 59 - now.getSeconds()
-    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-} */
 
 
 function getLocalDateString(): string {
