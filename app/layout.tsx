@@ -57,9 +57,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-FY5WD26T1P"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="beforeInteractive">
           {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
