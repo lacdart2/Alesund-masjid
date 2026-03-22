@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alesund-masjid.vercel.app/sitemap.xml

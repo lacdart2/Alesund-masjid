@@ -6,9 +6,33 @@ import StatusBarInit from '@/components/StatusBarInit'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Ålesund Masjid',
-  description: 'Bønnetider, kunngjøringer og arrangementer fra Ålesund Masjid',
+  title: 'Ålesund Masjid — Bønnetider, Kunngjøringer & Arrangementer',
+  description: 'Offisiell app for Ålesund Masjid. Finn bønnetider, kunngjøringer og arrangementer. مواقيت الصلاة والأنشطة في مسجد أولسند، النرويج.',
   manifest: '/manifest.json',
+  keywords: ['ålesund masjid', 'bønnetider ålesund', 'moské ålesund', 'islam norge', 'prayer times ålesund', 'مسجد أولسند', 'مواقيت الصلاة'],
+  authors: [{ name: 'Ålesund Masjid' }],
+  openGraph: {
+    title: 'Ålesund Masjid — Bønnetider & Arrangementer',
+    description: 'Offisiell app for Ålesund Masjid. Bønnetider, kunngjøringer og arrangementer.',
+    url: 'https://alesund-masjid.vercel.app',
+    siteName: 'Ålesund Masjid',
+    locale: 'no_NO',
+    type: 'website',
+    images: [
+      {
+        url: 'https://alesund-masjid.vercel.app/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Ålesund Masjid',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ålesund Masjid — Bønnetider & Arrangementer',
+    description: 'Offisiell app for Ålesund Masjid. Bønnetider, kunngjøringer og arrangementer.',
+    images: ['https://alesund-masjid.vercel.app/logo.png'],
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -19,7 +43,6 @@ export const metadata: Metadata = {
   },
   themeColor: '#166534',
 }
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="no" dir="ltr">
@@ -28,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Ålesund Masjid" />
+        <link rel="canonical" href="https://alesund-masjid.vercel.app" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
