@@ -4,6 +4,7 @@ import './globals.css'
 import { LangProvider } from '@/lib/context'
 import StatusBarInit from '@/components/StatusBarInit'
 import Script from 'next/script'
+import AndroidBanner from '@/components/ui/AndroidBanner'
 
 export const metadata: Metadata = {
   title: 'Ålesund Masjid — Bønnetider, Kunngjøringer & Arrangementer',
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <LangProvider>
           <StatusBarInit />
+          <AndroidBanner />
           {children}
         </LangProvider>
       </body>
