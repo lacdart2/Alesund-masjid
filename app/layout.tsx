@@ -1,12 +1,21 @@
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { LangProvider } from '@/lib/context'
 import StatusBarInit from '@/components/StatusBarInit'
 import Script from 'next/script'
 import AndroidBanner from '@/components/ui/AndroidBanner'
 
+export const viewport: Viewport = {
+  themeColor: '#166534',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover',
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://alesund-masjid.vercel.app'),
   title: 'Ålesund Masjid — Bønnetider, Kunngjøringer & Arrangementer',
   description: 'Offisiell app for Ålesund Masjid. Finn bønnetider, kunngjøringer og arrangementer. مواقيت الصلاة والأنشطة في مسجد أولسند، النرويج.',
   manifest: '/manifest.json',
@@ -42,13 +51,12 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
-  themeColor: '#166534',
 }
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="no" dir="ltr">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Ålesund Masjid" />
@@ -62,30 +70,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Script id="google-analytics" strategy="beforeInteractive">
           {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-FY5WD26T1P');
-                    `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FY5WD26T1P');
+          `}
         </Script>
         <Script id="pwa-install-tracking" strategy="afterInteractive">
           {`
-        // ✅ Track PWA install
-        window.addEventListener('appinstalled', function() {
-            gtag('event', 'pwa_installed', {
-                event_category: 'PWA',
-                event_label: 'App installed to home screen'
+            window.addEventListener('appinstalled', function() {
+                gtag('event', 'pwa_installed', {
+                    event_category: 'PWA',
+                    event_label: 'App installed to home screen'
+                });
             });
-        });
-
-        // ✅ Track install prompt shown
-        window.addEventListener('beforeinstallprompt', function() {
-            gtag('event', 'pwa_install_prompt_shown', {
-                event_category: 'PWA',
-                event_label: 'Install prompt shown to user'
+            window.addEventListener('beforeinstallprompt', function() {
+                gtag('event', 'pwa_install_prompt_shown', {
+                    event_category: 'PWA',
+                    event_label: 'Install prompt shown to user'
+                });
             });
-        });
-    `}
+          `}
         </Script>
       </head>
       <body>

@@ -6,6 +6,7 @@ import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
 import { getTodayPrayers } from '@/lib/prayer'
 import { PageKey } from '@/app/page'
+import { IconBrandFacebook } from '@/components/ui/Icons'
 
 interface FooterProps {
     navigate: (page: PageKey) => void
@@ -102,12 +103,23 @@ export default function Footer({ navigate }: FooterProps) {
                 </div>
 
                 <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', marginBottom: '18px' }} />
-
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
                     <span style={{ fontSize: '12px', color: '#607080' }}>
                         © 2026 <span style={{ color: '#22a052' }}>Ålesund Masjid</span>. {t.footer.copy}
                     </span>
-                    <span style={{ fontSize: '12px', color: '#607080' }}>Ålesund, Norge 🇳🇴</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <a href="https://www.facebook.com/share/1FU3p6YUzA/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#607080', textDecoration: 'none', transition: 'color 0.2s' }}
+                            onMouseEnter={e => e.currentTarget.style.color = '#22a052'}
+                            onMouseLeave={e => e.currentTarget.style.color = '#607080'}
+                        >
+                            <IconBrandFacebook size={14} />
+                            Facebook
+                        </a>
+                        <span style={{ fontSize: '12px', color: '#607080' }}>Ålesund, Norge 🇳🇴</span>
+                    </div>
                 </div>
             </div>
         </footer>
