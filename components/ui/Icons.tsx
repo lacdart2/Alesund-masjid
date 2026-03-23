@@ -33,6 +33,11 @@ export function IconHeartFilled({ size = 24, className = '' }: IconProps) {
         <path d="M19.5 12.572 12 20l-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 6.572" />
     </svg>
 }
+export function IconBrandFacebook({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)} viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+}
 export function IconDoor({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><circle cx="14" cy="13" r="1" fill="currentColor" /></svg>
 }
