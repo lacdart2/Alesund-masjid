@@ -99,12 +99,15 @@ export default function PhoneMockup() {
                                 {countdown}
                             </div>
                         </div>
-
                         {/* Prayer name */}
                         <div style={{ fontSize: '15px', fontWeight: 500, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.2px', marginBottom: '4px' }}>
                             {t.prayers.names[next.key]}
+                            {next.isTomorrow && (
+                                <span style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(255,255,255,0.5)', marginInlineStart: '6px' }}>
+                                    {lang === 'ar' ? 'غداً' : lang === 'no' ? 'i morgen' : 'tomorrow'}
+                                </span>
+                            )}
                         </div>
-
                         {/* Prayer time — dominant */}
                         <div style={{ fontSize: '52px', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1, marginBottom: '8px' }}>
                             {next.time}
@@ -146,7 +149,7 @@ export default function PhoneMockup() {
 
                     {/* Prayer rows */}
                     {PRAYER_ROWS.map(key => {
-                        const isNext = key === next.key && isToday
+                        const isNext = key === next.key && isToday && !next.isTomorrow
                         return (
                             <div key={key} style={{ background: isNext ? 'rgba(22,101,52,0.1)' : '#162538', borderRadius: '9px', padding: '13px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: isNext ? '1px solid rgba(22,101,52,0.3)' : '1px solid rgba(255,255,255,0.06)', direction: isRTL ? 'rtl' : 'ltr' }}>
                                 <span style={{ ...text.prayerName, fontWeight: isNext ? 700 : 600, color: isNext ? '#fff' : '#a8b8c8', fontFamily: isRTL ? "'Noto Sans Arabic', sans-serif" : 'inherit' }}>

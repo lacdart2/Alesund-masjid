@@ -25,7 +25,7 @@ export default function PrayerGrid({ data }: PrayerGridProps) {
     return (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '10px', marginBottom: '22px' }}>
             {ALL_KEYS.map(key => {
-                const isActive = key === next.key
+                const isActive = key === next.key && !next.isTomorrow
                 return (
                     <div
                         key={key}

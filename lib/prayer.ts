@@ -73,7 +73,7 @@ export function toMinutes(time: string): number {
     return h * 60 + m
 }
 
-export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string } {
+export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isTomorrow?: boolean } {
     const current = getNowMinutesOslo()
     const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
 
@@ -84,12 +84,16 @@ export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; t
         return { key: 'sunrise', time: data.sunrise }
     }
 
-    // Normal case — find next upcoming prayer
+    // Normal case — find next upcoming prayer today
     const found = keys.find(k => toMinutes(data[k]) > current)
-    const key = found ?? keys[0]
-    return { key, time: data[key] }
-}
+    if (found) return { key: found, time: data[found] }
 
+    // All prayers passed — return tomorrow's Fajr
+    const todayDate = getLocalDateString()
+    const todayIndex = PRAYER_TIMES.findIndex(p => p.date === todayDate)
+    const tomorrow = PRAYER_TIMES[todayIndex + 1] ?? PRAYER_TIMES[PRAYER_TIMES.length - 1]
+    return { key: 'fajr', time: tomorrow.fajr, isTomorrow: true }
+}
 export function formatCountdown(targetTime: string): string {
     const current = getNowMinutesOslo()
     const seconds = getNowSecondsOslo()
