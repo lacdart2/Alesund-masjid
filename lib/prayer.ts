@@ -74,6 +74,38 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: '2026-04-28', fajr: '04:04', sunrise: '05:28', dhuhr: '13:33', asr: '17:44', maghrib: '21:38', isha: '22:49' },
     { date: '2026-04-29', fajr: '04:03', sunrise: '05:25', dhuhr: '13:33', asr: '17:45', maghrib: '21:41', isha: '22:52' },
     { date: '2026-04-30', fajr: '04:02', sunrise: '05:22', dhuhr: '13:32', asr: '17:46', maghrib: '21:44', isha: '22:55' },
+    //mai
+    { date: '2026-05-01', fajr: '03:58', sunrise: '05:19', dhuhr: '13:30', asr: '17:47', maghrib: '21:47', isha: '22:47' },
+    { date: '2026-05-02', fajr: '03:55', sunrise: '05:16', dhuhr: '13:30', asr: '17:48', maghrib: '21:50', isha: '22:50' },
+    { date: '2026-05-03', fajr: '03:52', sunrise: '05:13', dhuhr: '13:30', asr: '17:49', maghrib: '21:53', isha: '22:53' },
+    { date: '2026-05-04', fajr: '03:48', sunrise: '05:10', dhuhr: '13:30', asr: '17:50', maghrib: '21:56', isha: '22:56' },
+    { date: '2026-05-05', fajr: '03:44', sunrise: '05:07', dhuhr: '13:30', asr: '17:51', maghrib: '21:59', isha: '22:59' },
+    { date: '2026-05-06', fajr: '03:41', sunrise: '05:04', dhuhr: '13:30', asr: '17:52', maghrib: '22:02', isha: '23:02' },
+    { date: '2026-05-07', fajr: '03:38', sunrise: '05:01', dhuhr: '13:30', asr: '17:53', maghrib: '22:05', isha: '23:05' },
+    { date: '2026-05-08', fajr: '03:34', sunrise: '04:58', dhuhr: '13:30', asr: '17:54', maghrib: '22:07', isha: '23:07' },
+    { date: '2026-05-09', fajr: '03:31', sunrise: '04:55', dhuhr: '13:30', asr: '17:55', maghrib: '22:10', isha: '23:10' },
+    { date: '2026-05-10', fajr: '03:28', sunrise: '04:52', dhuhr: '13:30', asr: '17:56', maghrib: '22:13', isha: '23:13' },
+    { date: '2026-05-11', fajr: '03:24', sunrise: '04:49', dhuhr: '13:30', asr: '17:57', maghrib: '22:16', isha: '23:16' },
+    { date: '2026-05-12', fajr: '03:21', sunrise: '04:46', dhuhr: '13:30', asr: '17:58', maghrib: '22:19', isha: '23:19' },
+    { date: '2026-05-13', fajr: '03:18', sunrise: '04:43', dhuhr: '13:30', asr: '17:59', maghrib: '22:22', isha: '23:22' },
+    { date: '2026-05-14', fajr: '03:15', sunrise: '04:40', dhuhr: '13:30', asr: '18:00', maghrib: '22:25', isha: '23:25' },
+    { date: '2026-05-15', fajr: '03:12', sunrise: '04:37', dhuhr: '13:30', asr: '18:01', maghrib: '22:27', isha: '23:27' },
+    { date: '2026-05-16', fajr: '03:09', sunrise: '04:35', dhuhr: '13:30', asr: '18:02', maghrib: '22:30', isha: '23:30' },
+    { date: '2026-05-17', fajr: '03:06', sunrise: '04:32', dhuhr: '13:30', asr: '18:03', maghrib: '22:33', isha: '23:33' },
+    { date: '2026-05-18', fajr: '03:03', sunrise: '04:29', dhuhr: '13:30', asr: '18:04', maghrib: '22:36', isha: '23:36' },
+    { date: '2026-05-19', fajr: '03:00', sunrise: '04:26', dhuhr: '13:30', asr: '18:05', maghrib: '22:38', isha: '23:38' },
+    { date: '2026-05-20', fajr: '02:57', sunrise: '04:24', dhuhr: '13:30', asr: '18:06', maghrib: '22:41', isha: '23:41' },
+    { date: '2026-05-21', fajr: '02:54', sunrise: '04:21', dhuhr: '13:30', asr: '18:07', maghrib: '22:44', isha: '23:44' },
+    { date: '2026-05-22', fajr: '02:51', sunrise: '04:19', dhuhr: '13:30', asr: '18:08', maghrib: '22:47', isha: '23:47' },
+    { date: '2026-05-23', fajr: '02:48', sunrise: '04:16', dhuhr: '13:30', asr: '18:09', maghrib: '22:49', isha: '23:49' },
+    { date: '2026-05-24', fajr: '02:45', sunrise: '04:14', dhuhr: '13:30', asr: '18:10', maghrib: '22:52', isha: '23:52' },
+    { date: '2026-05-25', fajr: '02:42', sunrise: '04:11', dhuhr: '13:30', asr: '18:11', maghrib: '22:54', isha: '23:54' },
+    { date: '2026-05-26', fajr: '02:40', sunrise: '04:09', dhuhr: '13:30', asr: '18:11', maghrib: '22:57', isha: '23:57' },
+    { date: '2026-05-27', fajr: '02:37', sunrise: '04:07', dhuhr: '13:30', asr: '18:12', maghrib: '22:59', isha: '23:59' },
+    { date: '2026-05-28', fajr: '02:35', sunrise: '04:04', dhuhr: '13:31', asr: '18:13', maghrib: '23:02', isha: '00:02' },
+    { date: '2026-05-29', fajr: '02:33', sunrise: '04:02', dhuhr: '13:31', asr: '18:14', maghrib: '23:04', isha: '00:04' },
+    { date: '2026-05-30', fajr: '02:31', sunrise: '04:00', dhuhr: '13:31', asr: '18:15', maghrib: '23:07', isha: '00:07' },
+    { date: '2026-05-31', fajr: '02:29', sunrise: '03:58', dhuhr: '13:31', asr: '18:15', maghrib: '23:09', isha: '00:09' },
 ]
 
 
@@ -98,12 +130,18 @@ export function getTodayPrayers(): Omit<PrayerTime, 'id'> {
     return PRAYER_TIMES.find(p => p.date === today) ?? PRAYER_TIMES[PRAYER_TIMES.length - 1]
 }
 
-export function toMinutes(time: string): number {
+/* export function toMinutes(time: string): number {
     if (!time || time === '--:--') return 9999
     const [h, m] = time.split(':').map(Number)
     return h * 60 + m
+} */
+export function toMinutes(time: string): number {
+    if (!time || time === '--:--') return 9999
+    const [h, m] = time.split(':').map(Number)
+    const minutes = h * 60 + m
+    // If time is past midnight (e.g. 00:02, 00:09) treat as next day
+    return minutes < 60 ? minutes + 24 * 60 : minutes
 }
-
 export function getNextPrayer(data: Omit<PrayerTime, 'id'>): { key: PrayerKey; time: string; isTomorrow?: boolean } {
     const current = getNowMinutesOslo()
     const keys: PrayerKey[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
