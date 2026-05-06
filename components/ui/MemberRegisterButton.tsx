@@ -574,7 +574,9 @@ export default function MemberRegisterButton() {
                                     }}
                                 >
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        <IconUsers size={18} style={{ color: hasFamily ? '#22a052' : '#607080' }} />
+                                        <span style={{ color: hasFamily ? '#22a052' : '#607080', display: 'flex' }}>
+                                            <IconUsers size={18} />
+                                        </span>
                                         <span style={{ fontSize: '14px', color: hasFamily ? '#f0f4f8' : '#a8b8c8', fontWeight: 600 }}>
                                             {t.hasFamily}
                                         </span>
@@ -765,8 +767,9 @@ export default function MemberRegisterButton() {
                             </button>
                         )}
                     </div>
-                </div>
-            )}
+                </div >
+            )
+            }
         </>
     )
 }
