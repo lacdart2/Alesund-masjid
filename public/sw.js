@@ -8,7 +8,7 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('push', (event) => {
     const data = event.data?.json() ?? {}
     event.waitUntil(
-        self.registration.showNotification(data.title ?? 'Ålesund Masjid', {
+        self.registration.showNotification(data.title ?? 'Ålesund Moske', {
             body: data.body ?? 'Tid for bønn',
             icon: '/web-app-manifest-192.png',
             badge: '/web-app-manifest-192.png',

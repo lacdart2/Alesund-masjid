@@ -2,14 +2,14 @@ import { Lang } from '@/types'
 
 export const translations = {
     no: {
-        brand: { name: 'Ålesund Masjid', sub: 'Din moské, alltid med deg' },
+        brand: { name: 'Ålesund Moske', sub: 'Din moské, alltid med deg' },
         nav: { home: 'Hjem', prayers: 'Bønnetider', announcements: 'Kunngjøringer', events: 'Arrangementer', about: 'Om oss', contact: 'Kontakt', donate: 'Doner' },
         hero: {
             badge: 'Åpen for daglige bønner',
             line1: 'Bønnetider, arrangementer,',
             line2: 'og moské-oppdateringer',
             line3: 'på ett vakkert sted.',
-            sub: 'Din digitale forbindelse til Ålesund Masjid — bønnetider, fredagsbønn, kunngjøringer og arrangementer for muslimer i Ålesund og omegn.',
+            sub: 'Din digitale forbindelse til Ålesund Moske — bønnetider, fredagsbønn, kunngjøringer og arrangementer for muslimer i Ålesund og omegn.',
             cta1: 'Se bønnetider', cta2: 'Finn oss',
         },
         phone: { next: 'NESTE BØNN', highlight: 'Dagens bønn', sub: 'Ålesund Jamii Islamic Center', today: '● I dag' },
@@ -42,19 +42,19 @@ export const translations = {
                 close: 'Lukk',
             },
         },
-        about: { title: 'Om Ålesund Masjid', p1: 'Ålesund Jamii Islamic Center er et åndelig hjem og fellesskapssenter for muslimer i og rundt Ålesund, Norge.', p2: 'Vi tilbyr daglige bønner, fredagstjenester, Korankurs for barn og voksne, og fellesskapsarrangementer.', p3: 'Vi ønsker besøkende fra alle bakgrunner velkommen.', s1: 'Daglige bønner', s2: 'Dager i uken', s3: 'Google-vurdering' },
+        about: { title: 'Om Ålesund Moske', p1: 'Ålesund Jamii Islamic Center er et åndelig hjem og fellesskapssenter for muslimer i og rundt Ålesund, Norge.', p2: 'Vi tilbyr daglige bønner, fredagstjenester, Korankurs for barn og voksne, og fellesskapsarrangementer.', p3: 'Vi ønsker besøkende fra alle bakgrunner velkommen.', s1: 'Daglige bønner', s2: 'Dager i uken', s3: 'Google-vurdering' },
         contact: { title: 'Kontakt og beliggenhet', findUs: 'Finn oss', address: 'Latinskolegata 1, 6004 Ålesund', hours: 'Åpen for alle 5 daglige bønner', openMap: 'Åpne i Google Maps', getInTouch: 'Ta kontakt', whatsapp: 'WhatsApp tilgjengelig', phone: '48 29 27 63', email: 'info@alesundmasjid.no' },
         footer: { desc: 'Ålesund Jamii Islamic Center — Latinskolegata 1, 6004 Ålesund', navigation: 'Navigasjon', more: 'Mer', prayersToday: 'Bønner i dag', copy: 'Bygget med omsorg for fellesskapet.' },
     },
     en: {
-        brand: { name: 'Ålesund Masjid', sub: 'Your mosque, always with you' },
+        brand: { name: 'Ålesund Moske', sub: 'Your mosque, always with you' },
         nav: { home: 'Home', prayers: 'Prayer Times', announcements: 'Announcements', events: 'Events', about: 'About', contact: 'Contact', donate: 'Donate' },
         hero: {
             badge: 'Open for prayers daily',
             line1: 'Prayer times, events,',
             line2: 'and mosque updates',
             line3: 'in one beautiful place.',
-            sub: 'Your digital connection to Ålesund Masjid — prayer times, Jumu\'ah, announcements and events for Muslims in Ålesund and the surrounding area.',
+            sub: 'Your digital connection to Ålesund Moske — prayer times, Jumu\'ah, announcements and events for Muslims in Ålesund and the surrounding area.',
             cta1: 'View Prayer Times', cta2: 'Find Us',
         },
         phone: { next: 'NEXT PRAYER', highlight: "Today's highlight", sub: 'Ålesund Jamii Islamic Center', today: '● Today' },
@@ -87,7 +87,7 @@ export const translations = {
                 close: 'Close',
             },
         },
-        about: { title: 'About Ålesund Masjid', p1: 'Ålesund Jamii Islamic Center is a spiritual home and community center for Muslims in Ålesund, Norway.', p2: 'We offer daily prayers, Friday Jumu\'ah, Quran classes, and community events.', p3: 'We welcome visitors of all backgrounds.', s1: 'Daily Prayers', s2: 'Days a Week', s3: 'Google Rating' },
+        about: { title: 'About Ålesund Moske', p1: 'Ålesund Jamii Islamic Center is a spiritual home and community center for Muslims in Ålesund, Norway.', p2: 'We offer daily prayers, Friday Jumu\'ah, Quran classes, and community events.', p3: 'We welcome visitors of all backgrounds.', s1: 'Daily Prayers', s2: 'Days a Week', s3: 'Google Rating' },
         contact: { title: 'Contact & Location', findUs: 'Find Us', address: 'Latinskolegata 1, 6004 Ålesund', hours: 'Open for all 5 daily prayers', openMap: 'Open in Google Maps', getInTouch: 'Get in Touch', whatsapp: 'WhatsApp available', phone: '48 29 27 63', email: 'info@alesundmasjid.no' },
         footer: { desc: 'Ålesund Jamii Islamic Center — Latinskolegata 1, 6004 Ålesund', navigation: 'Navigation', more: 'More', prayersToday: 'Prayers Today', copy: 'Built with care for the community.' },
     },

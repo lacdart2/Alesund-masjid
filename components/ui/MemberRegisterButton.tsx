@@ -129,7 +129,7 @@ const emptyMember = (): Member => ({
 const inputStyle = {
     width: '100%',
     background: '#0b1520',
-    border: '1px solid rgba(255,255,255,0.1)',
+    border: '1px solid rgba(255,255,255,0.2)',
     borderRadius: '10px',
     padding: '10px 14px',
     fontSize: '14px',
@@ -140,7 +140,7 @@ const inputStyle = {
 
 const labelStyle = {
     fontSize: '12px',
-    color: '#607080',
+    color: '#a8b8c8',
     marginBottom: '5px',
     display: 'block'
 }
@@ -286,7 +286,7 @@ export default function MemberRegisterButton() {
                     html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background: #f9f9f9;">
                 <div style="background: #166534; padding: 20px; border-radius: 12px 12px 0 0; text-align: center;">
-                    <h1 style="color: #fff; margin: 0; font-size: 20px;">🕌 Ålesund Masjid</h1>
+                    <h1 style="color: #fff; margin: 0; font-size: 20px;">🕌 Ålesund Moske</h1>
                     <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0; font-size: 14px;">Ny medlemsregistrering</p>
                 </div>
                 <div style="background: #fff; padding: 24px; border-radius: 0 0 12px 12px; border: 1px solid #e5e7eb;">
@@ -340,7 +340,7 @@ export default function MemberRegisterButton() {
                     </div>
                 </div>
                 <p style="text-align: center; font-size: 12px; color: #9ca3af; margin-top: 16px;">
-                    Ålesund Masjid — alesundmoske.no
+                    Ålesund Moske — alesundmoske.no
                 </p>
             </div>
         `,
@@ -495,7 +495,7 @@ export default function MemberRegisterButton() {
                                                     borderRadius: '8px',
                                                     border: gender === g ? '1px solid #22a052' : '1px solid rgba(255,255,255,0.1)',
                                                     background: gender === g ? 'rgba(22,101,52,0.2)' : 'transparent',
-                                                    color: gender === g ? '#22a052' : '#607080',
+                                                    color: gender === g ? '#22a052' : '#a8b8c8',
                                                     fontSize: '13px', fontWeight: 600, cursor: 'pointer',
                                                 }}
                                             >
@@ -634,7 +634,7 @@ export default function MemberRegisterButton() {
                                                                         flex: 1, padding: '9px', borderRadius: '8px',
                                                                         border: m.gender === g ? '1px solid #22a052' : '1px solid rgba(255,255,255,0.1)',
                                                                         background: m.gender === g ? 'rgba(22,101,52,0.2)' : 'transparent',
-                                                                        color: m.gender === g ? '#22a052' : '#607080',
+                                                                        color: m.gender === g ? '#22a052' : '#a8b8c8',
                                                                         fontSize: '13px', fontWeight: 600, cursor: 'pointer',
                                                                     }}
                                                                 >

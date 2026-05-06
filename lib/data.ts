@@ -79,7 +79,7 @@ export const EVENTS: MasjidEvent[] = [
         type: { no: 'Ramadan', en: 'Ramadan', ar: 'رمضان' },
         name: { no: 'Siste dag av Ramadan', en: 'Last Day of Ramadan', ar: 'آخر يوم من رمضان' },
         time: '—',
-        location: 'Ålesund Masjid',
+        location: 'Ålesund Moske',
     },
 ]
 

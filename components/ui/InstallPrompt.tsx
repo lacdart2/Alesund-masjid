@@ -44,7 +44,7 @@ const IconThreeDots = () => (
 
 const labels = {
     no: {
-        title: 'Installer Ålesund Masjid',
+        title: 'Installer Ålesund Moske',
         sub: 'Legg til på hjemskjermen for rask tilgang',
         btn: 'Installer',
         dismiss: 'Ikke nå',
@@ -74,7 +74,7 @@ const labels = {
         back: 'Tilbake',
     },
     en: {
-        title: 'Install Ålesund Masjid',
+        title: 'Install Ålesund Moske',
         sub: 'Add to home screen for quick access',
         btn: 'Install',
         dismiss: 'Not now',

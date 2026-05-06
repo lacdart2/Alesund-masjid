@@ -32,7 +32,7 @@ export default function EidBanner() {
             <div style={{ borderRadius: '24px', overflow: 'hidden', border: '1px solid rgba(234,179,8,0.25)', boxShadow: '0 8px 40px rgba(234,179,8,0.08)', position: 'relative' }}>
                 <img
                     src="/images/id-fitr-congrats.png"
-                    alt="عيد فطر مبارك — Ålesund Masjid"
+                    alt="عيد فطر مبارك — Ålesund Moske"
                     style={{ width: '100%', display: 'block', maxHeight: isMobile ? '480px' : '500px', objectFit: isMobile ? 'cover' : 'contain', objectPosition: 'center', background: '#0a1628' }}
                 />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75), transparent)', padding: '24px 24px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '10px', direction: lang === 'ar' ? 'rtl' : 'ltr' }}>

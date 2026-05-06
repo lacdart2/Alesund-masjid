@@ -48,7 +48,7 @@ export default function Footer({ navigate }: FooterProps) {
                                 height: isMobile ? '62px' : '68px',
                                 filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)'
                             }} />
-                            <span style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8' }}>Ålesund Masjid</span>
+                            <span style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8' }}>Ålesund Moske</span>
                         </div>
                         <p style={{ fontSize: '13px', color: '#607080', lineHeight: 1.7, maxWidth: '210px' }}>
                             {t.footer.desc}
@@ -105,7 +105,7 @@ export default function Footer({ navigate }: FooterProps) {
                 <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', marginBottom: '18px' }} />
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
                     <span style={{ fontSize: '12px', color: '#607080' }}>
-                        © 2026 <span style={{ color: '#22a052' }}>Ålesund Masjid</span>. {t.footer.copy}
+                        © 2026 <span style={{ color: '#22a052' }}>Ålesund Moske</span>. {t.footer.copy}
                     </span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <a href="https://www.facebook.com/share/1FU3p6YUzA/"

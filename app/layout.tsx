@@ -16,16 +16,16 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://alesund-masjid.vercel.app'),
-  title: 'Ålesund Masjid — Bønnetider, Kunngjøringer & Arrangementer',
-  description: 'Offisiell app for Ålesund Masjid. Finn bønnetider, kunngjøringer og arrangementer. مواقيت الصلاة والأنشطة في مسجد أولسند، النرويج.',
+  title: 'Ålesund Moske — Bønnetider, Kunngjøringer & Arrangementer',
+  description: 'Offisiell app for Ålesund Moske. Finn bønnetider, kunngjøringer og arrangementer. مواقيت الصلاة والأنشطة في مسجد أولسند، النرويج.',
   manifest: '/manifest.json',
-  keywords: ['ålesund masjid', 'bønnetider ålesund', 'moské ålesund', 'islam norge', 'prayer times ålesund', 'مسجد أولسند', 'مواقيت الصلاة'],
-  authors: [{ name: 'Ålesund Masjid' }],
+  keywords: ['ålesund Moske', 'bønnetider ålesund', 'moské ålesund', 'islam norge', 'prayer times ålesund', 'مسجد أولسند', 'مواقيت الصلاة'],
+  authors: [{ name: 'Ålesund Moske' }],
   openGraph: {
-    title: 'Ålesund Masjid — Bønnetider & Arrangementer',
-    description: 'Offisiell app for Ålesund Masjid. Bønnetider, kunngjøringer og arrangementer.',
-    url: 'https://alesund-masjid.vercel.app',
-    siteName: 'Ålesund Masjid',
+    title: 'Ålesund Moske — Bønnetider & Arrangementer',
+    description: 'Offisiell app for Ålesund Moske. Bønnetider, kunngjøringer og arrangementer.',
+    url: 'https://alesund-Moske.vercel.app',
+    siteName: 'Ålesund Moske',
     locale: 'no_NO',
     type: 'website',
     images: [
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
         url: 'https://alesund-masjid.vercel.app/logo.png',
         width: 512,
         height: 512,
-        alt: 'Ålesund Masjid',
+        alt: 'Ålesund Moske',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ålesund Masjid — Bønnetider & Arrangementer',
-    description: 'Offisiell app for Ålesund Masjid. Bønnetider, kunngjøringer og arrangementer.',
+    title: 'Ålesund Moske — Bønnetider & Arrangementer',
+    description: 'Offisiell app for Ålesund Moske. Bønnetider, kunngjøringer og arrangementer.',
     images: ['https://alesund-masjid.vercel.app/logo.png'],
   },
   icons: {
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Ålesund Masjid" />
+        <meta name="apple-mobile-web-app-title" content="Ålesund Moske" />
         <link rel="canonical" href="https://alesund-masjid.vercel.app" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -92,7 +92,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             });
           `}
         </Script>
+        <Script id="schema-org" strategy="beforeInteractive">
+          {`{
+    "@context": "https://schema.org",
+    "@type": "mosque",
+    "name": "Ålesund Moske",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Latinskolegata 1",
+      "addressLocality": "Ålesund",
+      "postalCode": "6004",
+      "addressCountry": "NO"
+    },
+    "telephone": "+4748292763",
+    "url": "https://alesundmoske.no",
+    "openingHours": "Mo-Su 05:00-23:00",
+    "sameAs": "https://www.facebook.com/share/1FU3p6YUzA/"
+  }`}
+        </Script>
       </head>
+
       <body>
         <LangProvider>
           <ToastProvider>

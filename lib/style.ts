@@ -1,5 +1,5 @@
 // ─── Typography System ────────────────────────────────────────────
-// Mobile-first type scale for Ålesund Masjid web app
+// Mobile-first type scale for Ålesund Moske web app
 
 export const text = {
     appName: {

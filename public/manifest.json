@@ -1,7 +1,7 @@
 {
-          "name": "Ålesund Masjid",
-          "short_name": "Ålesund Masjid",
-          "description": "Bønnetider, kunngjøringer og arrangementer fra Ålesund Masjid",
+          "name": "Ålesund Moske",
+          "short_name": "Ålesund Moske",
+          "description": "Bønnetider, kunngjøringer og arrangementer fra Ålesund Moske",
           "start_url": "/",
           "display": "standalone",
           "orientation": "portrait",

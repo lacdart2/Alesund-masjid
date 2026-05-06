@@ -123,7 +123,7 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <img src="/logo.png" alt="Ålesund Masjid" style={{ width: '48px', height: '48px', objectFit: 'contain', filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)' }} />
                     <div style={{ fontSize: '15px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
-                        Ålesund Masjid
+                        Ålesund Moske
                     </div>
                 </div>
                 <div className="nav-sk-desktop" style={{ gap: '2px', marginLeft: '16px' }}>
@@ -173,10 +173,10 @@ export default function Navbar({ currentPage, navigate }: NavbarProps) {
                     onClick={() => handleNav('home')}
                     style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0, padding: 0 }}
                 >
-                    <img src="/logo.png" alt="Ålesund Masjid" style={{ width: isMobile ? '62px' : '68px', height: isMobile ? '62px' : '68px', objectFit: 'contain', filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)' }} />
+                    <img src="/logo.png" alt="Ålesund Moske" style={{ width: isMobile ? '62px' : '68px', height: isMobile ? '62px' : '68px', objectFit: 'contain', filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(522%) hue-rotate(95deg) brightness(96%) contrast(96%)' }} />
                     <div style={{ textAlign: 'left' }}>
                         <div style={{ fontSize: isMobile ? '17px' : '15px', fontWeight: 700, color: '#f0f4f8', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
-                            Ålesund Masjid
+                            Ålesund Moske
                         </div>
                         {!isMobile && (
                             <div style={{ fontSize: '10px', fontWeight: 500, color: '#22a052', letterSpacing: '0.4px' }}>
