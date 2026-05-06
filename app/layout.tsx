@@ -1,10 +1,10 @@
-
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { LangProvider } from '@/lib/context'
 import StatusBarInit from '@/components/StatusBarInit'
 import Script from 'next/script'
 import AndroidBanner from '@/components/ui/AndroidBanner'
+import { ToastProvider } from '@/lib/toastContext'
 
 export const viewport: Viewport = {
   themeColor: '#166534',
@@ -95,9 +95,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <LangProvider>
-          <StatusBarInit />
-          <AndroidBanner />
-          {children}
+          <ToastProvider>
+            <StatusBarInit />
+            <AndroidBanner />
+            {children}
+          </ToastProvider>
         </LangProvider>
       </body>
     </html>

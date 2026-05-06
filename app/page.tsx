@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState, useCallback } from 'react'
@@ -15,14 +14,13 @@ import DonateModal from '@/components/donate/DonateModal'
 import InstallPrompt from '@/components/ui/InstallPrompt'
 import PrayerChecker from '@/components/ui/PrayerChecker'
 import AdhanBanner from '@/components/ui/AdhanBanner'
+import MemberRegisterButton from '@/components/ui/MemberRegisterButton'
 
 export type PageKey = 'home' | 'prayers' | 'announcements' | 'events' | 'about' | 'contact' | 'donate'
 
 export default function App() {
   const [page, setPage] = useState<PageKey>('home')
   const [donateModalOpen, setDonateModalOpen] = useState(false)
-
-  // ✅ Global banner state — lives here, visible on all pages
   const [banner, setBanner] = useState<{ prayerKey: string; time: string } | null>(null)
 
   const navigate = (p: PageKey) => {
@@ -34,11 +32,8 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // ✅ Called by PrayerChecker when prayer time hits
   const handlePrayerTime = useCallback((prayerKey: string, time: string) => {
     setBanner({ prayerKey, time })
-
-    // OS notification
     if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
       new Notification(`🕌 ${prayerKey}`, {
         body: 'May Allah accept your prayer',
@@ -50,13 +45,8 @@ export default function App() {
   return (
     <>
       <div className="geo-pattern" />
-
-      {/* ✅ Always alive — checks prayer times on all pages */}
       <PrayerChecker onPrayerTime={handlePrayerTime} />
-
-      {/* ✅ Always visible when prayer fires */}
       <AdhanBanner banner={banner} onClose={() => setBanner(null)} />
-
       <Navbar currentPage={page} navigate={navigate} />
       <main style={{ position: 'relative', zIndex: 1, paddingTop: 'calc(64px + env(safe-area-inset-top))' }}>
         {page === 'home' && <HomePage navigate={navigate} openModal={() => setDonateModalOpen(true)} />}
@@ -69,11 +59,11 @@ export default function App() {
       </main>
       <Footer navigate={navigate} />
       <InstallPrompt />
-
       <DonateModal
         isOpen={donateModalOpen}
         onClose={() => setDonateModalOpen(false)}
       />
+      <MemberRegisterButton />
     </>
   )
 }
