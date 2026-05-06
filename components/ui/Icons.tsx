@@ -48,7 +48,21 @@ export function IconBell({ size = 24, className = '' }: IconProps) {
 export function IconBellOff({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M13.73 21a2 2 0 0 1-3.46 0" /><path d="M18.63 13A17.9 17.9 0 0 1 18 8" /><path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14" /><path d="M18 8a6 6 0 0 0-9.33-5" /><path d="M3 3l18 18" /></svg>
 }
-
+export function IconUserPlus({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><line x1="19" y1="8" x2="19" y2="14" /><line x1="22" y1="11" x2="16" y2="11" /></svg>
+}
+export function IconDownload({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /><path d="M7 11l5 5 5-5" /><path d="M12 4v12" /></svg>
+}
+export function IconLogout({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M14 8v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" /><path d="M9 12h12l-3-3m0 6 3-3" /></svg>
+}
+export function IconSearch({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
+}
+export function IconSend({ size = 24, className = '' }: IconProps) {
+    return <svg {...ic(size, className)}><path d="M10 14L21 3" /><path d="M21 3L14.5 21a.55.55 0 0 1-1 0L10 14L3 10.5a.55.55 0 0 1 0-1L21 3" /></svg>
+}
 export function IconMosque({ size = 24, className = '' }: IconProps) {
     return <svg {...ic(size, className)}><path d="M3 21h18M9 21V10.5M15 21V10.5M12 3a3 3 0 0 1 3 3v1l-3 2-3-2V6a3 3 0 0 1 3-3zM6 10.5V8a6 6 0 0 1 12 0v2.5M3 10.5h18" /></svg>
 }

@@ -22,6 +22,7 @@ export default function Toast({ toasts, removeToast }: ToastProps) {
             position: 'fixed', top: '24px', right: '24px',
             zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '10px',
             maxWidth: '320px', width: '90%',
+            direction: 'ltr',
         }}>
             {toasts.map(toast => (
                 <ToastItem key={toast.id} toast={toast} onRemove={() => removeToast(toast.id)} />

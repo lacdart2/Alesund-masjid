@@ -107,7 +107,14 @@ export default function Footer({ navigate }: FooterProps) {
                     <span style={{ fontSize: '12px', color: '#607080' }}>
                         © 2026 <span style={{ color: '#22a052' }}>Ålesund Moske</span>. {t.footer.copy}
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <a href="/personvern"
+                            style={{ fontSize: '12px', color: '#607080', textDecoration: 'none', transition: 'color 0.2s' }}
+                            onMouseEnter={e => e.currentTarget.style.color = '#22a052'}
+                            onMouseLeave={e => e.currentTarget.style.color = '#607080'}
+                        >
+                            Personvern
+                        </a>
                         <a href="https://www.facebook.com/share/1FU3p6YUzA/"
                             target="_blank"
                             rel="noopener noreferrer"
