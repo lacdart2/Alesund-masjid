@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ålesund Moske — Bønnetider & Arrangementer',
     description: 'Offisiell app for Ålesund Moske. Bønnetider, kunngjøringer og arrangementer.',
-    url: 'https://alesund-Moske.vercel.app',
+    url: 'https://alesund-moske.vercel.app',
     siteName: 'Ålesund Moske',
     locale: 'no_NO',
     type: 'website',

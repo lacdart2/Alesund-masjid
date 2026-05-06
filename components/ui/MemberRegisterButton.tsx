@@ -477,16 +477,16 @@ export default function MemberRegisterButton() {
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                                     <div>
                                         <label style={labelStyle}>{t.fornavn}</label>
-                                        <input style={inputStyle} value={fornavn} onChange={e => setFornavn(e.target.value)} />
+                                        <input style={inputStyle} value={fornavn} onChange={e => setFornavn(e.target.value)} autoComplete="given-name" />
                                     </div>
                                     <div>
                                         <label style={labelStyle}>{t.etternavn}</label>
-                                        <input style={inputStyle} value={etternavn} onChange={e => setEtternavn(e.target.value)} />
+                                        <input style={inputStyle} value={etternavn} onChange={e => setEtternavn(e.target.value)} autoComplete="family-name" />
                                     </div>
                                 </div>
                                 <div>
                                     <label style={labelStyle}>{t.personnummer}</label>
-                                    <input style={inputStyle} value={personnummer} onChange={e => setPersonnummer(e.target.value)} />
+                                    <input style={inputStyle} value={personnummer} onChange={e => setPersonnummer(e.target.value)} autoComplete="off" />
                                 </div>
                                 <div>
                                     <label style={labelStyle}>{t.gender}</label>
@@ -517,12 +517,12 @@ export default function MemberRegisterButton() {
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                                 <div>
                                     <label style={labelStyle}>{t.address}</label>
-                                    <input style={inputStyle} value={address} onChange={e => setAddress(e.target.value)} />
+                                    <input style={inputStyle} value={address} onChange={e => setAddress(e.target.value)} autoComplete="street-address" />
                                 </div>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                                     <div>
                                         <label style={labelStyle}>{t.postNr}</label>
-                                        <input style={inputStyle} value={postNr} onChange={e => setPostNr(e.target.value)} />
+                                        <input style={inputStyle} value={postNr} onChange={e => setPostNr(e.target.value)} autoComplete="postal-code" />
                                     </div>
                                     <div>
                                         <label style={labelStyle}>{t.kommune}</label>
@@ -545,7 +545,7 @@ export default function MemberRegisterButton() {
                                 </div>
                                 <div>
                                     <label style={labelStyle}>{t.phoneMobile}</label>
-                                    <input style={inputStyle} value={phoneMobile} onChange={e => setPhoneMobile(e.target.value)} />
+                                    <input style={inputStyle} value={phoneMobile} onChange={e => setPhoneMobile(e.target.value)} autoComplete="tel" />
                                 </div>
                                 <div>
                                     <label style={labelStyle}>{t.email}</label>
@@ -555,6 +555,7 @@ export default function MemberRegisterButton() {
                                         value={email}
                                         onChange={e => setEmail(e.target.value)}
                                         placeholder="navn@example.com"
+                                        autoComplete="email"
                                     />
                                 </div>
                                 <div>
