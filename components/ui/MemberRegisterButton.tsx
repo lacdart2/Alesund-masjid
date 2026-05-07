@@ -555,7 +555,7 @@ export default function MemberRegisterButton() {
                                         value={email}
                                         onChange={e => setEmail(e.target.value)}
                                         placeholder="navn@example.com"
-                                        autoComplete="email"
+
                                     />
                                 </div>
                                 <div>
@@ -693,7 +693,6 @@ export default function MemberRegisterButton() {
                                 )}
                             </div>
                         )}
-                        
                         {/* Step 4 — confirmation */}
                         {step === 4 && (
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
