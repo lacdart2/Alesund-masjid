@@ -1,11 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+
 import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
 import { supabase } from '@/lib/supabase'
 import { useToast } from '@/lib/toastContext'
 import { IconMail } from '@/components/ui/Icons'
+import { useState, useEffect } from 'react'
+
 
 export default function NewsletterSection() {
     const { lang } = useLang()
@@ -14,7 +16,14 @@ export default function NewsletterSection() {
     const isRTL = lang === 'ar'
     const [email, setEmail] = useState('')
     const [submitting, setSubmitting] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
 
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 640)
+        check()
+        window.addEventListener('resize', check)
+        return () => window.removeEventListener('resize', check)
+    }, [])
     const handleSubscribe = async () => {
         if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) return
         setSubmitting(true)
@@ -106,7 +115,7 @@ export default function NewsletterSection() {
                 gap: '10px',
                 maxWidth: '440px',
                 margin: '0 auto',
-                flexDirection: 'row',
+                flexDirection: isMobile ? 'column' : 'row',
             }}>
                 <input
                     type="email"
@@ -139,6 +148,7 @@ export default function NewsletterSection() {
                         cursor: submitting ? 'not-allowed' : 'pointer',
                         whiteSpace: 'nowrap',
                         transition: 'background 0.2s',
+                        width: isMobile ? '100%' : 'auto',
                     }}
                     onMouseEnter={e => { if (!submitting) e.currentTarget.style.background = '#22a052' }}
                     onMouseLeave={e => { if (!submitting) e.currentTarget.style.background = '#166534' }}
