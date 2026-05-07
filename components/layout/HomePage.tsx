@@ -11,6 +11,7 @@ import PhoneMockup from '@/components/prayer/PhoneMockup'
 import { IconMosque, IconSpeakerphone, IconCalendar, IconMapPin, IconHeart, AnnouncementIcon, IconClock } from '@/components/ui/Icons'
 import ZakatBanner from '@/components/ui/ZakatBanner'
 import EidBanner from '@/components/ui/EidBanner'
+import NewsletterSection from '@/components/ui/NewsletterSection'
 
 interface HomePageProps {
     navigate: (page: PageKey) => void
@@ -168,7 +169,9 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                     </div>
                 </div>
             </div>
-
+            <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px 0' : '48px 40px 0' }}>
+                <NewsletterSection />
+            </div>
             <div style={{ maxWidth: '1120px', margin: '0 auto', padding: isMobile ? '48px 20px 0' : '48px 40px 0' }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
                     <span style={{ fontSize: '19px', fontWeight: 700, color: '#f0f4f8' }}>{t.announcements.title}</span>

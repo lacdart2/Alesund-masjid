@@ -8,12 +8,22 @@ export default function AdminLogin() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [rememberMe, setRememberMe] = useState(false)
 
     useEffect(() => {
         document.documentElement.lang = 'no'
         document.documentElement.dir = 'ltr'
         document.body.style.direction = 'ltr'
         document.body.style.textAlign = 'left'
+    }, [])
+
+    useEffect(() => {
+        document.documentElement.lang = 'no'
+        document.documentElement.dir = 'ltr'
+        document.body.style.direction = 'ltr'
+        document.body.style.textAlign = 'left'
+        const saved = localStorage.getItem('admin-email')
+        if (saved) { setEmail(saved); setRememberMe(true) }
     }, [])
 
     const handleLogin = async () => {
@@ -27,6 +37,11 @@ export default function AdminLogin() {
             })
             const data = await res.json()
             if (data.success) {
+                if (rememberMe) {
+                    localStorage.setItem('admin-email', email)
+                } else {
+                    localStorage.removeItem('admin-email')
+                }
                 localStorage.setItem('admin-auth', '1')
                 router.push('/admin/dashboard')
             } else {
@@ -114,7 +129,15 @@ export default function AdminLogin() {
                             {error}
                         </div>
                     )}
-
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                        <input
+                            type="checkbox"
+                            checked={rememberMe}
+                            onChange={e => setRememberMe(e.target.checked)}
+                            style={{ accentColor: '#22a052', width: '15px', height: '15px' }}
+                        />
+                        <span style={{ fontSize: '13px', color: '#607080' }}>Husk meg</span>
+                    </label>
                     <button
                         onClick={handleLogin}
                         disabled={loading}

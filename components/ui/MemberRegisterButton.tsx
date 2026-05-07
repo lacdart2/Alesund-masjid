@@ -286,7 +286,6 @@ export default function MemberRegisterButton() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    to: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
                     subject: '🕌 Ny medlemsregistrering — Ålesund Moske',
                     html: `
                         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background: #f9f9f9;">
@@ -301,10 +300,7 @@ export default function MemberRegisterButton() {
                                         <td style="padding: 8px 0; color: #6b7280; width: 40%;">Navn</td>
                                         <td style="padding: 8px 0; color: #111827; font-weight: 600;">${fornavn} ${etternavn}</td>
                                     </tr>
-                                    <tr style="border-bottom: 1px solid #f3f4f6;">
-                                        <td style="padding: 8px 0; color: #6b7280;">Personnummer</td>
-                                        <td style="padding: 8px 0; color: #111827; font-weight: 600;">${personnummer}</td>
-                                    </tr>
+                              
                                     <tr style="border-bottom: 1px solid #f3f4f6;">
                                         <td style="padding: 8px 0; color: #6b7280;">Adresse</td>
                                         <td style="padding: 8px 0; color: #111827; font-weight: 600;">${address}, ${postNr} ${sted}</td>

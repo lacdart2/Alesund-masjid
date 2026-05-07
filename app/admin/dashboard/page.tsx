@@ -32,6 +32,13 @@ type Membership = {
     membership_members: Member[]
 }
 
+type Subscriber = {
+    id: string
+    email: string
+    lang: string
+    subscribed_at: string
+}
+
 type Lang = 'no' | 'en' | 'ar'
 
 const TEMPLATES = [
@@ -64,7 +71,13 @@ const TEMPLATES = [
         label: { no: 'Egendefinert melding', en: 'Custom Message', ar: 'رسالة مخصصة' },
         subject: { no: '', en: '', ar: '' },
         body: { no: '', en: '', ar: '' }
-    }
+    },
+    {
+        id: 'newsletter', icon: 'mail',
+        label: { no: 'Til abonnenter', en: 'To subscribers', ar: 'للمشتركين' },
+        subject: { no: '📬 Nytt fra Ålesund Moske', en: '📬 News from Ålesund Moske', ar: '📬 أخبار من مسجد أولسند' },
+        body: { no: 'Hei,\n\nTakk for at du følger med på Ålesund Moske.\n\n[Legg til innhold her]\n\nMvh,\nÅlesund Moske', en: 'Hello,\n\nThank you for following Ålesund Moske.\n\n[Add content here]\n\nBest regards,\nÅlesund Moske', ar: 'مرحباً،\n\nشكراً لمتابعتك مسجد أولسند.\n\n[أضف المحتوى هنا]\n\nمع التحية،\nمسجد أولسند' }
+    },
 ]
 
 const inputStyle: React.CSSProperties = {
@@ -93,10 +106,10 @@ export default function AdminDashboard() {
     const router = useRouter()
     const [memberships, setMemberships] = useState<Membership[]>([])
     const [loading, setLoading] = useState(true)
-    const [activeTab, setActiveTab] = useState<'members' | 'broadcast'>('members')
+    const [activeTab, setActiveTab] = useState<'members' | 'broadcast' | 'subscribers'>('members')
     const [search, setSearch] = useState('')
     const [selectedMembership, setSelectedMembership] = useState<Membership | null>(null)
-
+    const [subscribers, setSubscribers] = useState<Subscriber[]>([])
     // Broadcast
     const [emailLang, setEmailLang] = useState<Lang>('no')
     const [selectedTemplate, setSelectedTemplate] = useState(TEMPLATES[0])
@@ -104,13 +117,22 @@ export default function AdminDashboard() {
     const [body, setBody] = useState(TEMPLATES[0].body.no)
     const [sending, setSending] = useState(false)
     const [sendResult, setSendResult] = useState('')
-    const [recipientMode, setRecipientMode] = useState<'all' | 'one'>('all')
+    const [recipientMode, setRecipientMode] = useState<'all' | 'one' | 'subscribers' | 'both'>('all')
     const [recipientEmail, setRecipientEmail] = useState('')
-
+    const [isMobile, setIsMobile] = useState(false)
     // Delete states
     const [deleteMemberId, setDeleteMemberId] = useState<string | null>(null)
     const [deleteMemberName, setDeleteMemberName] = useState('')
     const { addToast } = useToast()
+
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768)
+        check()
+        window.addEventListener('resize', check)
+        return () => window.removeEventListener('resize', check)
+    }, [])
+
     useEffect(() => {
         if (typeof window !== 'undefined' && localStorage.getItem('admin-auth') !== '1') {
             router.push('/admin')
@@ -126,9 +148,16 @@ export default function AdminDashboard() {
                 .select('*, membership_members(*)')
                 .order('submitted_at', { ascending: false })
             if (!error && data) setMemberships(data)
+
+            const { data: subs } = await supabase
+                .from('newsletter_subscribers')
+                .select('*')
+                .order('subscribed_at', { ascending: false })
+            if (subs) setSubscribers(subs)
             setLoading(false)
         }
         fetch_()
+
     }, [])
 
     const handleTemplateSelect = (tmpl: typeof TEMPLATES[0]) => {
@@ -193,9 +222,17 @@ export default function AdminDashboard() {
         if (recipientMode === 'one' && !recipientEmail) { setSendResult('Velg et medlem.'); return }
         setSending(true); setSendResult('')
         try {
+            const memberEmails = memberships.map(m => m.email).filter(Boolean) as string[]
+            const subscriberEmails = subscribers.map(s => s.email)
+
             const emails = recipientMode === 'all'
-                ? memberships.map(m => m.email).filter(Boolean)
-                : [recipientEmail]
+                ? memberEmails
+                : recipientMode === 'subscribers'
+                    ? subscriberEmails
+                    : recipientMode === 'both'
+                        ? deduped([...memberEmails, ...subscriberEmails])
+                        : [recipientEmail]
+
             if (emails.length === 0) { setSendResult('Ingen e-postadresser funnet.'); setSending(false); return }
             const htmlBody = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px"><div style="background:#166534;padding:20px;border-radius:12px 12px 0 0;text-align:center"><h1 style="color:#fff;margin:0;font-size:20px">🕌 Ålesund Moske</h1></div><div style="background:#f9f9f9;padding:24px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb"><h2 style="color:#166534">${subject}</h2><div style="white-space:pre-line;color:#374151;font-size:15px;line-height:1.7">${body}</div><hr style="margin:24px 0;border:none;border-top:1px solid #e5e7eb"/><p style="font-size:12px;color:#9ca3af;text-align:center">Ålesund Moske — Latinskolegata 1, 6004 Ålesund</p></div></div>`
             let sent = 0
@@ -226,10 +263,15 @@ export default function AdminDashboard() {
         return diff <= 7
     }).length
 
+    const deduped = (emails: string[]) => emails.filter((e, i, arr) => arr.indexOf(e) === i)
+
     const recipientCount = recipientMode === 'all'
         ? memberships.filter(m => m.email).length
-        : recipientEmail ? 1 : 0
-
+        : recipientMode === 'subscribers'
+            ? subscribers.length
+            : recipientMode === 'both'
+                ? deduped([...memberships.filter(m => m.email).map(m => m.email), ...subscribers.map(s => s.email)]).length
+                : recipientEmail ? 1 : 0
     return (
         <div style={{ minHeight: '100vh', background: '#0b1520', direction: 'ltr' }}>
 
@@ -251,12 +293,13 @@ export default function AdminDashboard() {
             <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '24px' }}>
 
                 {/* Stats */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px', marginBottom: '28px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(5, 1fr)', gap: '14px', marginBottom: '28px' }}>
                     {[
                         { label: 'Totalt registreringer', value: memberships.length, color: '#22a052' },
-                        { label: 'Totalt medlemmer', value: totalMembers, color: '#22a052' },
+                        { label: 'Totalt medlemmer', value: totalMembers, color: '#4ade80' },
                         { label: 'Nye i dag', value: newToday, color: newToday > 0 ? '#f59e0b' : '#607080' },
                         { label: 'Nye denne uken', value: newThisWeek, color: newThisWeek > 0 ? '#3b82f6' : '#607080' },
+                        { label: 'Nyhetsbrev abonnenter', value: subscribers.length, color: subscribers.length > 0 ? '#a855f7' : '#607080' },
                     ].map(s => (
                         <div key={s.label} style={{ background: '#111e2d', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '16px', padding: '20px 16px' }}>
                             <div style={{ fontSize: '36px', fontWeight: 800, color: s.color, letterSpacing: '-1px' }}>{s.value}</div>
@@ -266,13 +309,14 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Tabs */}
-                <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto' }}>
                     {[
                         { key: 'members', label: 'Medlemmer', icon: <IconUsers size={15} /> },
                         { key: 'broadcast', label: 'Send e-post', icon: <IconSpeakerphone size={15} /> },
+                        { key: 'subscribers', label: 'Abonnenter', icon: <IconMail size={15} /> },
                     ].map(tab => (
                         <button key={tab.key} onClick={() => setActiveTab(tab.key as any)}
-                            style={{ padding: '10px 18px', borderRadius: '10px 10px 0 0', fontSize: '13px', fontWeight: 700, cursor: 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: '6px', background: activeTab === tab.key ? '#166534' : 'transparent', color: activeTab === tab.key ? '#fff' : '#607080', borderBottom: activeTab === tab.key ? '2px solid #22a052' : '2px solid transparent' }}>
+                            style={{ padding: '10px 18px', borderRadius: '10px 10px 0 0', fontSize: '13px', fontWeight: 700, cursor: 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: '6px', background: activeTab === tab.key ? '#166534' : 'transparent', color: activeTab === tab.key ? '#fff' : '#607080', borderBottom: activeTab === tab.key ? '2px solid #22a052' : '2px solid transparent', whiteSpace: 'nowrap' }}>
                             {tab.icon} {tab.label}
                         </button>
                     ))}
@@ -341,7 +385,7 @@ export default function AdminDashboard() {
 
                 {/* Broadcast Tab */}
                 {activeTab === 'broadcast' && (
-                    <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '20px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '280px 1fr', gap: '20px' }}>
 
                         {/* Left column */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -376,9 +420,31 @@ export default function AdminDashboard() {
                             <div style={{ background: '#111e2d', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '14px', padding: '14px' }}>
                                 <div style={{ fontSize: '11px', color: '#607080', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', marginBottom: '10px' }}>Mottakere</div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                                    <button onClick={() => { setRecipientMode('all'); setRecipientEmail('') }}
+                                    <button onClick={() => {
+                                        setRecipientMode('all')
+                                        setRecipientEmail('')
+                                        const tmpl = TEMPLATES.find(t => t.id === 'event')!
+                                        setSelectedTemplate(tmpl)
+                                        setSubject(tmpl.subject[emailLang])
+                                        setBody(tmpl.body[emailLang])
+                                    }}
                                         style={{ padding: '9px 12px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', textAlign: 'left', border: 'none', background: recipientMode === 'all' ? 'rgba(22,101,52,0.2)' : 'rgba(255,255,255,0.04)', color: recipientMode === 'all' ? '#22a052' : '#a8b8c8', borderLeft: recipientMode === 'all' ? '3px solid #22a052' : '3px solid transparent' }}>
                                         Alle medlemmer ({memberships.filter(m => m.email).length})
+                                    </button>
+                                    <button onClick={() => {
+                                        setRecipientMode('subscribers')
+                                        setRecipientEmail('')
+                                        const tmpl = TEMPLATES.find(t => t.id === 'newsletter')!
+                                        setSelectedTemplate(tmpl)
+                                        setSubject(tmpl.subject[emailLang])
+                                        setBody(tmpl.body[emailLang])
+                                    }}
+                                        style={{ padding: '9px 12px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', textAlign: 'left', border: 'none', background: recipientMode === 'subscribers' ? 'rgba(22,101,52,0.2)' : 'rgba(255,255,255,0.04)', color: recipientMode === 'subscribers' ? '#22a052' : '#a8b8c8', borderLeft: recipientMode === 'subscribers' ? '3px solid #22a052' : '3px solid transparent' }}>
+                                        Abonnenter ({subscribers.length})
+                                    </button>
+                                    <button onClick={() => { setRecipientMode('both'); setRecipientEmail('') }}
+                                        style={{ padding: '9px 12px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', textAlign: 'left', border: 'none', background: recipientMode === 'both' ? 'rgba(22,101,52,0.2)' : 'rgba(255,255,255,0.04)', color: recipientMode === 'both' ? '#22a052' : '#a8b8c8', borderLeft: recipientMode === 'both' ? '3px solid #22a052' : '3px solid transparent' }}>
+                                        Begge ({deduped([...memberships.filter(m => m.email).map(m => m.email), ...subscribers.map(s => s.email)]).length})
                                     </button>
                                     <button onClick={() => setRecipientMode('one')}
                                         style={{ padding: '9px 12px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', textAlign: 'left', border: 'none', background: recipientMode === 'one' ? 'rgba(22,101,52,0.2)' : 'rgba(255,255,255,0.04)', color: recipientMode === 'one' ? '#22a052' : '#a8b8c8', borderLeft: recipientMode === 'one' ? '3px solid #22a052' : '3px solid transparent' }}>
@@ -416,7 +482,7 @@ export default function AdminDashboard() {
                                     placeholder="Skriv melding her..."
                                     dir={emailLang === 'ar' ? 'rtl' : 'ltr'} />
                             </div>
-                            <div style={{ background: 'rgba(22,101,52,0.08)', border: '1px solid rgba(22,101,52,0.2)', borderRadius: '10px', padding: '10px 14px', fontSize: '13px', color: '#607080', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <div style={{ background: 'rgba(22,101,52,0.08)', border: '1px solid rgba(22,101,52,0.2)', borderRadius: '10px', padding: '10px 14px', fontSize: '13px', color: '#607080', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                                 <IconMail size={14} />
                                 Sender til <strong style={{ color: '#22a052' }}>&nbsp;{recipientCount}&nbsp;</strong>
                                 {recipientMode === 'all' ? 'medlemmer med e-postadresse' : recipientEmail ? `(${recipientEmail})` : 'medlem'}
@@ -428,8 +494,50 @@ export default function AdminDashboard() {
                             )}
                             <button onClick={handleBroadcast} disabled={sending}
                                 style={{ background: sending ? '#607080' : '#166534', border: 'none', color: '#fff', borderRadius: '10px', padding: '12px', fontSize: '14px', fontWeight: 700, cursor: sending ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                                <IconSend size={16} /> {sending ? 'Sender...' : recipientMode === 'all' ? 'Send til alle medlemmer' : 'Send til valgt medlem'}
+                                <IconSend size={16} /> {sending ? 'Sender...'
+                                    : recipientMode === 'all' ? 'Send til alle medlemmer'
+                                        : recipientMode === 'subscribers' ? 'Send til abonnenter'
+                                            : recipientMode === 'both' ? 'Send til alle'
+                                                : 'Send til valgt medlem'}
                             </button>
+                        </div>
+                    </div>
+                )}
+                {activeTab === 'subscribers' && (
+                    <div>
+                        <div style={{ fontSize: '13px', color: '#607080', marginBottom: '16px' }}>
+                            {subscribers.length} abonnenter totalt
+                        </div>
+                        <div style={{ background: '#111e2d', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                                <thead>
+                                    <tr style={{ background: 'rgba(255,255,255,0.02)' }}>
+                                        <th style={thStyle}>E-post</th>
+                                        <th style={thStyle}>Språk</th>
+                                        <th style={thStyle}>Abonnert</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {subscribers.length === 0 ? (
+                                        <tr><td colSpan={3} style={{ ...tdStyle, textAlign: 'center', padding: '40px', color: '#607080' }}>Ingen abonnenter ennå.</td></tr>
+                                    ) : subscribers.map(s => (
+                                        <tr key={s.id}
+                                            style={{ transition: 'background 0.15s' }}
+                                            onMouseEnter={e => e.currentTarget.style.background = 'rgba(22,101,52,0.06)'}
+                                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                                            <td style={{ ...tdStyle, color: '#f0f4f8', fontWeight: 600 }}>{s.email}</td>
+                                            <td style={tdStyle}>
+                                                <span style={{ background: 'rgba(59,130,246,0.15)', color: '#3b82f6', fontSize: '11px', fontWeight: 700, padding: '3px 8px', borderRadius: '20px' }}>
+                                                    {s.lang === 'no' ? '🇳🇴 NO' : s.lang === 'en' ? '🇬🇧 EN' : '🇸🇦 AR'}
+                                                </span>
+                                            </td>
+                                            <td style={{ ...tdStyle, color: '#607080' }}>
+                                                {new Date(s.subscribed_at).toLocaleDateString('no-NO')}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 )}
