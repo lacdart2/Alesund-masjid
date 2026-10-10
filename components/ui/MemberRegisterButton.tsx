@@ -171,6 +171,8 @@ export default function MemberRegisterButton() {
     }, [])
 
     const [open, setOpen] = useState(false)
+    const [showFloatingButton, setShowFloatingButton] = useState(true)
+    useEffect(() => { setShowFloatingButton(localStorage.getItem('member-button-dismissed') !== 'true') }, [])
     const [step, setStep] = useState(1)
     const [submitting, setSubmitting] = useState(false)
     const [error, setError] = useState('')
@@ -366,15 +368,13 @@ export default function MemberRegisterButton() {
 
     return (
         <>
-            {/* Floating button */}
+            {/* Floating button — dismissible */}
+            {showFloatingButton && <div style={{ position: 'fixed', bottom: bottomOffset, right: isMobile ? '12px' : '24px', left: isMobile ? '12px' : 'auto', zIndex: 998 }}>
+            <button type="button" aria-label="Dismiss membership button" onClick={() => { localStorage.setItem('member-button-dismissed', 'true'); setShowFloatingButton(false) }} style={{ position: 'absolute', top: '-16px', right: '6px', zIndex: 2, width: '30px', height: '30px', borderRadius: '50%', border: '1px solid #496052', background: '#111e2d', color: '#fff', fontSize: '19px', cursor: 'pointer' }}>×</button>
             <button
                 onClick={() => { setOpen(true); reset() }}
                 style={{
-                    position: 'fixed',
-                    bottom: bottomOffset,
-                    right: isMobile ? '12px' : '24px',
-                    left: isMobile ? '12px' : 'auto',
-                    zIndex: 998,
+                    position: 'relative',
                     background: '#166534',
                     color: '#fff',
                     border: 'none',
@@ -389,7 +389,7 @@ export default function MemberRegisterButton() {
                     justifyContent: 'center',
                     gap: '8px',
                     transition: 'all 0.2s',
-                    width: isMobile ? 'calc(100% - 24px)' : 'auto',
+                    width: isMobile ? '100%' : 'auto',
                 }}
                 onMouseEnter={e => e.currentTarget.style.background = '#22a052'}
                 onMouseLeave={e => e.currentTarget.style.background = '#166534'}
@@ -397,6 +397,8 @@ export default function MemberRegisterButton() {
                 <IconUserPlus size={18} />
                 {t.btn}
             </button>
+
+            </div>}
 
             {/* Backdrop */}
             {open && (
