@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '@/lib/context'
 import { translations } from '@/lib/translations'
-import { getTodayPrayers } from '@/lib/prayer'
+import { getTodayPrayers, getFridayPrayer } from '@/lib/prayer'
 import { ANNOUNCEMENTS, EVENTS, getUpcomingEvents } from '@/lib/data'
 import { PageKey } from '@/app/page'
 import PrayerGrid from '@/components/prayer/PrayerGrid'
@@ -22,6 +22,7 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
     const { lang } = useLang()
     const t = translations[lang]
     const today = getTodayPrayers()
+    const fridayPrayer = getFridayPrayer()
     const [isMobile, setIsMobile] = useState<boolean | null>(null)
 
     useEffect(() => {
@@ -164,8 +165,8 @@ export default function HomePage({ navigate, openModal }: HomePageProps) {
                     </div>
                     <div style={{ textAlign: isMobile ? 'left' : 'right', flexShrink: 0 }}>
                         <div style={{ fontSize: '11px', color: '#607080', marginBottom: '3px' }}>{t.jumuah.iqamah}</div>
-                        <div style={{ fontSize: '44px', fontWeight: 700, color: '#22a052', letterSpacing: '-2px', lineHeight: 1 }}>14:30</div>
-                        <div style={{ fontSize: '12px', color: '#607080', marginTop: '3px' }}>{t.jumuah.note}</div>
+                        <div style={{ fontSize: '44px', fontWeight: 700, color: '#22a052', letterSpacing: '-2px', lineHeight: 1 }}>{fridayPrayer?.time ?? '—'}</div>
+                        {!fridayPrayer && <div style={{ fontSize: '12px', color: '#a8b8c8', marginTop: '3px' }}>{t.jumuah.note}</div>}
                     </div>
                 </div>
             </div>
