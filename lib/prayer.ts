@@ -1,6 +1,8 @@
 import { PrayerTime, PrayerKey } from '@/types'
 
-export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
+export type PrayerScheduleEntry = Omit<PrayerTime, 'id'> & { fridayPrayer?: string }
+
+export const PRAYER_TIMES: PrayerScheduleEntry[] = [
     { date: '2026-02-18', fajr: '06:43', sunrise: '08:14', dhuhr: '12:49', asr: '14:49', maghrib: '17:26', isha: '18:56' },
     { date: '2026-02-19', fajr: '06:40', sunrise: '08:10', dhuhr: '12:49', asr: '14:51', maghrib: '17:29', isha: '18:58' },
     { date: '2026-02-20', fajr: '06:37', sunrise: '08:07', dhuhr: '12:49', asr: '14:54', maghrib: '17:32', isha: '19:01' },
@@ -234,28 +236,28 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: "2026-09-30", fajr: "06:10", sunrise: "07:39", dhuhr: "13:25", asr: "16:12", maghrib: "19:09", isha: "20:09" },
     // October 2026 — official Ålesund mosque timetable
     { date: "2026-10-01", fajr: "06:12", sunrise: "07:42", dhuhr: "13:23", asr: "16:10", maghrib: "19:06", isha: "20:36" },
-    { date: "2026-10-02", fajr: "06:15", sunrise: "07:45", dhuhr: "13:22", asr: "16:08", maghrib: "19:02", isha: "20:32" },
+    { date: "2026-10-02", fajr: "06:15", sunrise: "07:45", dhuhr: "13:22", asr: "16:08", maghrib: "19:02", isha: "20:32", fridayPrayer: "15:30" },
     { date: "2026-10-03", fajr: "06:18", sunrise: "07:47", dhuhr: "13:22", asr: "16:06", maghrib: "18:59", isha: "20:29" },
     { date: "2026-10-04", fajr: "06:20", sunrise: "07:50", dhuhr: "13:22", asr: "16:04", maghrib: "18:56", isha: "20:26" },
     { date: "2026-10-05", fajr: "06:23", sunrise: "07:53", dhuhr: "13:22", asr: "16:02", maghrib: "18:52", isha: "20:22" },
     { date: "2026-10-06", fajr: "06:26", sunrise: "07:55", dhuhr: "13:21", asr: "16:00", maghrib: "18:49", isha: "20:19" },
     { date: "2026-10-07", fajr: "06:29", sunrise: "07:58", dhuhr: "13:21", asr: "15:57", maghrib: "18:46", isha: "20:16" },
     { date: "2026-10-08", fajr: "06:32", sunrise: "08:01", dhuhr: "13:21", asr: "15:55", maghrib: "18:43", isha: "20:13" },
-    { date: "2026-10-09", fajr: "06:35", sunrise: "08:04", dhuhr: "13:20", asr: "15:52", maghrib: "18:39", isha: "20:19" },
+    { date: "2026-10-09", fajr: "06:35", sunrise: "08:04", dhuhr: "13:20", asr: "15:52", maghrib: "18:39", isha: "20:19", fridayPrayer: "15:20" },
     { date: "2026-10-10", fajr: "06:38", sunrise: "08:06", dhuhr: "13:20", asr: "15:50", maghrib: "18:36", isha: "20:06" },
     { date: "2026-10-11", fajr: "06:40", sunrise: "08:09", dhuhr: "13:20", asr: "15:48", maghrib: "18:33", isha: "20:03" },
     { date: "2026-10-12", fajr: "06:43", sunrise: "08:12", dhuhr: "13:20", asr: "15:45", maghrib: "18:30", isha: "20:00" },
     { date: "2026-10-13", fajr: "06:46", sunrise: "08:15", dhuhr: "13:19", asr: "15:43", maghrib: "18:26", isha: "19:56" },
     { date: "2026-10-14", fajr: "06:49", sunrise: "08:17", dhuhr: "13:19", asr: "15:40", maghrib: "18:23", isha: "19:53" },
     { date: "2026-10-15", fajr: "06:52", sunrise: "08:20", dhuhr: "13:19", asr: "15:38", maghrib: "18:20", isha: "19:50" },
-    { date: "2026-10-16", fajr: "06:55", sunrise: "08:23", dhuhr: "13:19", asr: "15:36", maghrib: "18:17", isha: "19:47" },
+    { date: "2026-10-16", fajr: "06:55", sunrise: "08:23", dhuhr: "13:19", asr: "15:36", maghrib: "18:17", isha: "19:47", fridayPrayer: "15:00" },
     { date: "2026-10-17", fajr: "06:58", sunrise: "08:26", dhuhr: "13:19", asr: "15:33", maghrib: "18:14", isha: "19:44" },
     { date: "2026-10-18", fajr: "07:00", sunrise: "08:29", dhuhr: "13:18", asr: "15:31", maghrib: "18:10", isha: "19:40" },
     { date: "2026-10-19", fajr: "07:03", sunrise: "08:31", dhuhr: "13:18", asr: "15:29", maghrib: "18:07", isha: "19:34" },
     { date: "2026-10-20", fajr: "07:05", sunrise: "08:34", dhuhr: "13:18", asr: "15:26", maghrib: "18:04", isha: "19:35" },
     { date: "2026-10-21", fajr: "07:08", sunrise: "08:37", dhuhr: "13:18", asr: "15:24", maghrib: "18:01", isha: "19:31" },
     { date: "2026-10-22", fajr: "07:10", sunrise: "08:40", dhuhr: "13:18", asr: "15:22", maghrib: "17:58", isha: "19:28" },
-    { date: "2026-10-23", fajr: "07:13", sunrise: "08:43", dhuhr: "13:18", asr: "15:19", maghrib: "17:55", isha: "19:25" },
+    { date: "2026-10-23", fajr: "07:13", sunrise: "08:43", dhuhr: "13:18", asr: "15:19", maghrib: "17:55", isha: "19:25", fridayPrayer: "14:45" },
     { date: "2026-10-24", fajr: "07:16", sunrise: "08:45", dhuhr: "13:17", asr: "15:17", maghrib: "17:52", isha: "19:22" },
     // Vintertid starts 25 October 2026 — clocks move back one hour
     { date: "2026-10-25", fajr: "06:19", sunrise: "07:48", dhuhr: "12:17", asr: "14:15", maghrib: "16:48", isha: "18:18" },
@@ -263,7 +265,7 @@ export const PRAYER_TIMES: Omit<PrayerTime, 'id'>[] = [
     { date: "2026-10-27", fajr: "06:24", sunrise: "07:54", dhuhr: "12:17", asr: "14:10", maghrib: "16:42", isha: "18:12" },
     { date: "2026-10-28", fajr: "06:27", sunrise: "07:57", dhuhr: "12:17", asr: "14:08", maghrib: "16:39", isha: "18:09" },
     { date: "2026-10-29", fajr: "06:29", sunrise: "08:00", dhuhr: "12:17", asr: "14:06", maghrib: "16:36", isha: "18:06" },
-    { date: "2026-10-30", fajr: "06:31", sunrise: "08:03", dhuhr: "12:17", asr: "14:03", maghrib: "16:33", isha: "18:03" },
+    { date: "2026-10-30", fajr: "06:31", sunrise: "08:03", dhuhr: "12:17", asr: "14:03", maghrib: "16:33", isha: "18:03", fridayPrayer: "13:30" },
     { date: "2026-10-31", fajr: "06:33", sunrise: "08:06", dhuhr: "12:17", asr: "14:00", maghrib: "16:30", isha: "18:00" },
 ]
 
@@ -331,4 +333,14 @@ export function formatCountdown(targetTime: string): string {
     const m = diff % 60
     const s = 59 - seconds
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+}
+// Friday prayer is independent of Dhuhr. Only use a time explicitly supplied
+// in the mosque's official timetable; never infer it from daily prayer times.
+export function getFridayPrayer(referenceDate = getLocalDateString()): { date: string; time: string } | null {
+    const current = new Date(referenceDate + 'T12:00:00Z')
+    const daysUntilFriday = (5 - current.getUTCDay() + 7) % 7
+    current.setUTCDate(current.getUTCDate() + daysUntilFriday)
+    const fridayDate = current.toISOString().slice(0, 10)
+    const entry = PRAYER_TIMES.find(p => p.date === fridayDate)
+    return entry?.fridayPrayer ? { date: fridayDate, time: entry.fridayPrayer } : null
 }
