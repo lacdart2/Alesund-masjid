@@ -129,7 +129,7 @@ export default function PhoneMockup() {
                             <IconChevronLeft size={16} />
                         </button>
                         <div style={{ textAlign: 'center', flex: 1, padding: '0 4px' }}>
-                            <div style={{ ...text.prayerName, fontSize: '13px', color: '#a8b8c8', fontFamily: isRTL ? "'Noto Sans Arabic', sans-serif" : 'inherit', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            <div style={{ ...text.prayerName, fontSize: '15px', color: '#a8b8c8', fontFamily: isRTL ? "'Noto Sans Arabic', sans-serif" : 'inherit', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                 {dateLabel}
                             </div>
                             {isToday && (
@@ -152,10 +152,10 @@ export default function PhoneMockup() {
                         const isNext = key === next.key && isToday && !next.isTomorrow
                         return (
                             <div key={key} style={{ background: isNext ? 'rgba(22,101,52,0.1)' : '#162538', borderRadius: '9px', padding: '13px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: isNext ? '1px solid rgba(22,101,52,0.3)' : '1px solid rgba(255,255,255,0.06)', direction: isRTL ? 'rtl' : 'ltr' }}>
-                                <span style={{ ...text.prayerName, fontWeight: isNext ? 700 : 600, color: isNext ? '#fff' : '#a8b8c8', fontFamily: isRTL ? "'Noto Sans Arabic', sans-serif" : 'inherit' }}>
+                                <span style={{ ...text.prayerName, fontWeight: isNext ? 700 : 600, fontSize: isMobile ? '17px' : '15px', color: isNext ? '#fff' : '#c3cfdb', fontFamily: isRTL ? "'Noto Sans Arabic', sans-serif" : 'inherit' }}>
                                     {t.prayers.names[key]}
                                 </span>
-                                <span style={{ ...text.prayerTime, color: isNext ? '#22a052' : '#607080' }}>
+                                <span style={{ ...text.prayerTime, fontSize: isMobile ? '19px' : '17px', color: isNext ? '#22a052' : '#d0d9e3' }}>
                                     {displayData[key]}
                                 </span>
                             </div>
